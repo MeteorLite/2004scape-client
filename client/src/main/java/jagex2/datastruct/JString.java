@@ -1,9 +1,5 @@
 package jagex2.datastruct;
 
-import org.openrs2.deob.annotation.OriginalArg;
-import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
-
 public class JString {
 
     private static final char[] builder = new char[12];

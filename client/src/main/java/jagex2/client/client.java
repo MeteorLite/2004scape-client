@@ -17,14 +17,9 @@ import jagex2.io.*;
 import jagex2.sound.Wave;
 import jagex2.wordenc.WordFilter;
 import jagex2.wordenc.WordPack;
-import org.openrs2.deob.annotation.OriginalArg;
-import org.openrs2.deob.annotation.OriginalClass;
-import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 import sign.signlink;
 
 import javax.sound.midi.MidiChannel;
-import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import java.awt.*;
 import java.io.ByteArrayInputStream;

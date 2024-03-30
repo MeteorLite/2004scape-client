@@ -1,10 +1,5 @@
 package jagex2.io;
 
-import org.openrs2.deob.annotation.OriginalArg;
-import org.openrs2.deob.annotation.OriginalClass;
-import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
-
 public class Isaac {
 
     private int count;

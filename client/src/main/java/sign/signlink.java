@@ -1,10 +1,6 @@
 package sign;
 
 import audio.MidiPlayer;
-import org.openrs2.deob.annotation.OriginalArg;
-import org.openrs2.deob.annotation.OriginalClass;
-import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 import java.applet.Applet;
 import java.io.*;
@@ -125,14 +121,12 @@ public class signlink implements Runnable {
 					cache = new File(dir);
 
 					if (!cache.exists() || !cache.canWrite()) {
-						System.out.println("Unable to find or write to cache directory: " + dir);
 						continue;
 					}
 				}
 
 				cache = new File(dir + store);
 				if ((!cache.exists() && !cache.mkdir()) || !cache.canWrite()) {
-					System.out.println("Unable to find or write to cache directory: " + dir + store + "/");
 					continue;
 				}
 

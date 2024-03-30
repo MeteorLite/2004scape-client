@@ -1,8 +1,5 @@
 package jagex2.datastruct;
 
-import org.openrs2.deob.annotation.OriginalClass;
-import org.openrs2.deob.annotation.OriginalMember;
-
 public class Hashable extends Linkable {
 
     public Hashable nextHashable;

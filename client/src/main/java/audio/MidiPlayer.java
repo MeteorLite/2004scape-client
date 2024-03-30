@@ -1,13 +1,10 @@
 package audio;
 
-import java.io.ByteArrayInputStream;
+import javax.sound.midi.*;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Objects;
-import javax.sound.midi.*;
 
 import static sign.signlink.midi;
 

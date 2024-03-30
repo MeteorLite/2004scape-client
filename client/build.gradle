@@ -3,10 +3,6 @@ plugins {
     id 'application'
 }
 
-dependencies {
-    compileOnly project(':deob-annotations')
-}
-
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8

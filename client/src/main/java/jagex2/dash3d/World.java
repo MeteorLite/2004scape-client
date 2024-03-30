@@ -8,10 +8,6 @@ import jagex2.datastruct.LinkList;
 import jagex2.graphics.Draw3D;
 import jagex2.graphics.Model;
 import jagex2.io.Packet;
-import org.openrs2.deob.annotation.OriginalArg;
-import org.openrs2.deob.annotation.OriginalClass;
-import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 public class World {
 

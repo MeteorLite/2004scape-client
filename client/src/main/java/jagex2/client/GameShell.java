@@ -2,17 +2,10 @@ package jagex2.client;
 
 import jagex2.graphics.Pix24;
 import jagex2.graphics.PixMap;
-import org.openrs2.deob.annotation.OriginalArg;
-import org.openrs2.deob.annotation.OriginalClass;
-import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.*;
-import java.net.InetAddress;
-
-import sign.signlink;
 
 public class GameShell extends Applet implements Runnable, MouseListener, MouseMotionListener, KeyListener, FocusListener, WindowListener {
 

@@ -2,10 +2,6 @@ package jagex2.dash3d.entity;
 
 import jagex2.config.SpotAnimType;
 import jagex2.graphics.Model;
-import org.openrs2.deob.annotation.OriginalArg;
-import org.openrs2.deob.annotation.OriginalClass;
-import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 public class ProjectileEntity extends Entity {
 

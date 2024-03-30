@@ -1,10 +1,6 @@
 package jagex2.graphics;
 
 import jagex2.datastruct.Hashable;
-import org.openrs2.deob.annotation.OriginalArg;
-import org.openrs2.deob.annotation.OriginalClass;
-import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 public class Draw2D extends Hashable {
 

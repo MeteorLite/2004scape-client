@@ -2,14 +2,10 @@ package audio;
 
 import jagex2.client.client;
 
+import javax.sound.sampled.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.FloatControl;
 
 import static sign.signlink.wavevol;
 

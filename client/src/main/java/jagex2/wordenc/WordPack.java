@@ -1,9 +1,6 @@
 package jagex2.wordenc;
 
 import jagex2.io.Packet;
-import org.openrs2.deob.annotation.OriginalArg;
-import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 public class WordPack {
 
