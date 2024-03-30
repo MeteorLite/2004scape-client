@@ -8179,8 +8179,7 @@ public class client extends GameShell {
 			}
 
 			this.handleInputKey();
-			// TODO: Re-enable (plugin-ize)
-			//super.idleCycles++;
+			super.idleCycles++;
 			if (super.idleCycles > 4500) {
 				this.idleTimeout = 250;
 				super.idleCycles -= 500;
