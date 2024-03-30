@@ -1,10 +1,13 @@
 package sign;
 
+import audio.MidiPlayer;
+import audio.SoundPlayer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.applet.Applet;
 import java.io.*;
 import java.net.InetAddress;
@@ -445,6 +448,7 @@ public class signlink implements Runnable {
 
 				if (midiplay) {
 					midi = cacheDir + savereq;
+					MidiPlayer.playSong(false);
 					midiplay = false;
 				}
 

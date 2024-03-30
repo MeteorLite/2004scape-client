@@ -1,3 +1,5 @@
+import audio.MidiPlayer;
+import audio.SoundPlayer;
 import jagex2.client.GameShell;
 import jagex2.client.InputTracking;
 import jagex2.config.*;
@@ -22,7 +24,9 @@ import org.openrs2.deob.annotation.Pc;
 import sign.signlink;
 import sun.security.krb5.Config;
 
+import javax.sound.midi.MidiChannel;
 import java.awt.*;
+import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -4166,6 +4170,24 @@ public class client extends GameShell {
 	private void setMidiVolume(@OriginalArg(1) int volume) {
 		signlink.midivol = volume;
 		signlink.midi = "voladjust";
+
+		switch (volume) {
+			case 0:
+				MidiPlayer.volume = 80;
+				break;
+			case -400:
+				MidiPlayer.volume = 60;
+				break;
+			case -800:
+				MidiPlayer.volume = 40;
+				break;
+			case -1200:
+				MidiPlayer.volume = 20;
+				break;
+			default:
+				MidiPlayer.stop();
+				break;
+		}
 	}
 
 	@OriginalMember(owner = "client!client", name = "o", descriptor = "(I)V")
@@ -5326,6 +5348,13 @@ public class client extends GameShell {
 			this.fontPlain12.drawStringTaggableCenter("Report abuse", 462, 38, 16777215, true);
 			this.areaBackbase1.draw(super.graphics, 0, 471);
 			this.areaViewport.bind();
+		}
+
+		if (MidiPlayer.synthesizer != null) {
+			MidiChannel[] channels = MidiPlayer.synthesizer.getChannels();
+			for (MidiChannel channel : channels) {
+				channel.controlChange(7, MidiPlayer.volume);
+			}
 		}
 
 		this.sceneDelta = 0;
@@ -7992,7 +8021,7 @@ public class client extends GameShell {
 					try {
 						if (this.waveIds[wave] != this.lastWaveId || this.waveLoops[wave] != this.lastWaveLoops) {
 							@Pc(89) Packet buf = Wave.generate(this.waveIds[wave], this.waveLoops[wave]);
-
+							new SoundPlayer(new ByteArrayInputStream(buf.data, 0, buf.pos), 100, waveDelay[wave]);
 							if (System.currentTimeMillis() + (long) (buf.pos / 22) > this.lastWaveStartTime + (long) (this.lastWaveLength / 22)) {
 								this.lastWaveLength = buf.pos;
 								this.lastWaveStartTime = System.currentTimeMillis();
