@@ -20,6 +20,7 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import sign.signlink;
+import sun.security.krb5.Config;
 
 import java.awt.*;
 import java.io.DataInputStream;
@@ -1246,7 +1247,7 @@ public class client extends GameShell {
 			if (args.length > 1) {
 				portOffset = Integer.parseInt(args[1]);
 			} else {
-				portOffset = 0;
+				portOffset = Configuration.PORT_OFFSET;
 			}
 
 			if (args.length > 2 && args[2].equals("lowmem")) {
@@ -1265,7 +1266,7 @@ public class client extends GameShell {
 			signlink.startpriv(InetAddress.getByName("localhost"));
 
 			@Pc(82) client c = new client();
-			c.initApplication(789, 532);
+			c.initApplication(789, 531);
 		} catch (@Pc(89) Exception _ex) {
 		}
 	}
@@ -7280,7 +7281,7 @@ public class client extends GameShell {
 			return signlink.openurl(url);
 		}
 
-		return new DataInputStream((new URL(this.getCodeBase(), url)).openStream());
+		return new DataInputStream((new URL(new URL(Configuration.URL), url)).openStream());
 	}
 
 	@OriginalMember(owner = "client!client", name = "j", descriptor = "(B)V")
@@ -7429,7 +7430,7 @@ public class client extends GameShell {
 				this.drawTitleScreen();
 			}
 
-			this.stream = new ClientStream(this, this.openSocket(portOffset + 43594));
+			this.stream = new ClientStream(this, this.openSocket(Configuration.PORT_OFFSET + Configuration.PORT));
 			this.stream.read(this.in.data, 0, 8);
 			this.in.pos = 0;
 
@@ -8178,7 +8179,8 @@ public class client extends GameShell {
 			}
 
 			this.handleInputKey();
-			super.idleCycles++;
+			// TODO: Re-enable (plugin-ize)
+			//super.idleCycles++;
 			if (super.idleCycles > 4500) {
 				this.idleTimeout = 250;
 				super.idleCycles -= 500;
@@ -8321,7 +8323,7 @@ public class client extends GameShell {
 
 		try {
 			if (super.frame != null) {
-				return new URL("http://localhost:" + (portOffset + 80));
+				return new URL(Configuration.URL + ":" + ( Configuration.PORT + Configuration.PORT_OFFSET));
 			}
 		} catch (@Pc(21) Exception ex) {
 		}
