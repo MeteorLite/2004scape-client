@@ -7,47 +7,36 @@ import org.openrs2.deob.annotation.Pc;
 
 public class InputTracking {
 
-	@OriginalMember(owner = "client!e", name = "e", descriptor = "Z")
-	public static boolean enabled;
+    public static boolean enabled;
 
-	@OriginalMember(owner = "client!e", name = "f", descriptor = "Lclient!kb;")
-	private static Packet outBuffer = null;
+    private static Packet outBuffer = null;
 
-	@OriginalMember(owner = "client!e", name = "g", descriptor = "Lclient!kb;")
-	private static Packet oldBuffer = null;
+    private static Packet oldBuffer = null;
 
-	@OriginalMember(owner = "client!e", name = "h", descriptor = "J")
-	private static long lastTime;
+    private static long lastTime;
 
-	@OriginalMember(owner = "client!e", name = "i", descriptor = "I")
-	private static int trackedCount;
+    private static int trackedCount;
 
-	@OriginalMember(owner = "client!e", name = "j", descriptor = "J")
-	private static long lastMoveTime;
+    private static long lastMoveTime;
 
-	@OriginalMember(owner = "client!e", name = "k", descriptor = "I")
-	private static int lastX;
+    private static int lastX;
 
-	@OriginalMember(owner = "client!e", name = "l", descriptor = "I")
-	private static int lastY;
+    private static int lastY;
 
-	@OriginalMember(owner = "client!e", name = "a", descriptor = "(I)V")
-	public static synchronized void setEnabled() {
+    public static synchronized void setEnabled() {
 		outBuffer = Packet.alloc(1);
 		oldBuffer = null;
 		lastTime = System.currentTimeMillis();
 		enabled = true;
 	}
 
-	@OriginalMember(owner = "client!e", name = "a", descriptor = "(B)V")
-	public static synchronized void setDisabled() {
+    public static synchronized void setDisabled() {
 		enabled = false;
 		outBuffer = null;
 	}
 
-	@OriginalMember(owner = "client!e", name = "b", descriptor = "(I)Lclient!kb;")
-	public static synchronized Packet flush() {
-		@Pc(1) Packet buffer = null;
+    public static synchronized Packet flush() {
+		Packet buffer = null;
 		if (oldBuffer != null && enabled) {
 			buffer = oldBuffer;
 		}
@@ -55,9 +44,8 @@ public class InputTracking {
 		return buffer;
 	}
 
-	@OriginalMember(owner = "client!e", name = "c", descriptor = "(I)Lclient!kb;")
-	public static synchronized Packet stop() {
-		@Pc(9) Packet buffer = null;
+    public static synchronized Packet stop() {
+		Packet buffer = null;
 		if (outBuffer != null && outBuffer.pos > 0 && enabled) {
 			buffer = outBuffer;
 		}
@@ -65,22 +53,20 @@ public class InputTracking {
 		return buffer;
 	}
 
-	@OriginalMember(owner = "client!e", name = "a", descriptor = "(II)V")
-	private static synchronized void ensureCapacity(@OriginalArg(1) int n) {
+    private static synchronized void ensureCapacity( int n) {
 		if (outBuffer.pos + n >= 500) {
-			@Pc(15) Packet buffer = outBuffer;
+			Packet buffer = outBuffer;
 			outBuffer = Packet.alloc(1);
 			oldBuffer = buffer;
 		}
 	}
 
-	@OriginalMember(owner = "client!e", name = "a", descriptor = "(IIIB)V")
-	public static synchronized void mousePressed(@OriginalArg(0) int x, @OriginalArg(2) int y, @OriginalArg(1) int button) {
+    public static synchronized void mousePressed( int x, int y, int button) {
 		if (enabled && (x >= 0 && x < 789 && y >= 0 && y < 532)) {
 			trackedCount++;
 
-			@Pc(19) long now = System.currentTimeMillis();
-			@Pc(25) long delta = (now - lastTime) / 10L;
+			long now = System.currentTimeMillis();
+			long delta = (now - lastTime) / 10L;
 			if (delta > 250L) {
 				delta = 250L;
 			}
@@ -99,13 +85,12 @@ public class InputTracking {
 		}
 	}
 
-	@OriginalMember(owner = "client!e", name = "b", descriptor = "(II)V")
-	public static synchronized void mouseReleased(@OriginalArg(0) int button) {
+    public static synchronized void mouseReleased( int button) {
 		if (enabled) {
 			trackedCount++;
 
-			@Pc(8) long now = System.currentTimeMillis();
-			@Pc(14) long delta = (now - lastTime) / 10L;
+			long now = System.currentTimeMillis();
+			long delta = (now - lastTime) / 10L;
 			if (delta > 250L) {
 				delta = 250L;
 			}
@@ -123,16 +108,15 @@ public class InputTracking {
 		}
 	}
 
-	@OriginalMember(owner = "client!e", name = "a", descriptor = "(IZI)V")
-	public static synchronized void mouseMoved(@OriginalArg(2) int x, @OriginalArg(0) int y) {
+    public static synchronized void mouseMoved( int x, int y) {
 		if (enabled && (x >= 0 && x < 789 && y >= 0 && y < 532)) {
-			@Pc(17) long now = System.currentTimeMillis();
+			long now = System.currentTimeMillis();
 
 			if (now - lastMoveTime >= 50L) {
 				lastMoveTime = now;
 				trackedCount++;
 
-				@Pc(39) long delta = (now - lastTime) / 10L;
+				long delta = (now - lastTime) / 10L;
 				if (delta > 250L) {
 					delta = 250L;
 				}
@@ -162,13 +146,12 @@ public class InputTracking {
 		}
 	}
 
-	@OriginalMember(owner = "client!e", name = "a", descriptor = "(IZ)V")
-	public static synchronized void keyPressed(@OriginalArg(0) int key) {
+    public static synchronized void keyPressed( int key) {
 		if (enabled) {
 			trackedCount++;
 
-			@Pc(8) long now = System.currentTimeMillis();
-			@Pc(14) long delta = (now - lastTime) / 10L;
+			long now = System.currentTimeMillis();
+			long delta = (now - lastTime) / 10L;
 			if (delta > 250L) {
 				delta = 250L;
 			}
@@ -193,13 +176,12 @@ public class InputTracking {
 		}
 	}
 
-	@OriginalMember(owner = "client!e", name = "c", descriptor = "(II)V")
-	public static synchronized void keyReleased(@OriginalArg(0) int key) {
+    public static synchronized void keyReleased( int key) {
 		if (enabled) {
 			trackedCount++;
 
-			@Pc(8) long now = System.currentTimeMillis();
-			@Pc(14) long delta = (now - lastTime) / 10L;
+			long now = System.currentTimeMillis();
+			long delta = (now - lastTime) / 10L;
 			if (delta > 250L) {
 				delta = 250L;
 			}
@@ -224,13 +206,12 @@ public class InputTracking {
 		}
 	}
 
-	@OriginalMember(owner = "client!e", name = "d", descriptor = "(I)V")
-	public static synchronized void focusGained() {
+    public static synchronized void focusGained() {
 		if (enabled) {
 			trackedCount++;
 
-			@Pc(11) long now = System.currentTimeMillis();
-			@Pc(17) long delta = (now - lastTime) / 10L;
+			long now = System.currentTimeMillis();
+			long delta = (now - lastTime) / 10L;
 			if (delta > 250L) {
 				delta = 250L;
 			}
@@ -242,13 +223,12 @@ public class InputTracking {
 		}
 	}
 
-	@OriginalMember(owner = "client!e", name = "e", descriptor = "(I)V")
-	public static synchronized void focusLost() {
+    public static synchronized void focusLost() {
 		if (enabled) {
 			trackedCount++;
 
-			@Pc(8) long now = System.currentTimeMillis();
-			@Pc(14) long delta = (now - lastTime) / 10L;
+			long now = System.currentTimeMillis();
+			long delta = (now - lastTime) / 10L;
 			if (delta > 250L) {
 				delta = 250L;
 			}
@@ -260,13 +240,12 @@ public class InputTracking {
 		}
 	}
 
-	@OriginalMember(owner = "client!e", name = "f", descriptor = "(I)V")
-	public static synchronized void mouseEntered() {
+    public static synchronized void mouseEntered() {
 		if (enabled) {
 			trackedCount++;
 
-			@Pc(8) long now = System.currentTimeMillis();
-			@Pc(14) long delta = (now - lastTime) / 10L;
+			long now = System.currentTimeMillis();
+			long delta = (now - lastTime) / 10L;
 			if (delta > 250L) {
 				delta = 250L;
 			}
@@ -278,13 +257,12 @@ public class InputTracking {
 		}
 	}
 
-	@OriginalMember(owner = "client!e", name = "a", descriptor = "(Z)V")
-	public static synchronized void mouseExited() {
+    public static synchronized void mouseExited() {
 		if (enabled) {
 			trackedCount++;
 
-			@Pc(11) long now = System.currentTimeMillis();
-			@Pc(17) long delta = (now - lastTime) / 10L;
+			long now = System.currentTimeMillis();
+			long delta = (now - lastTime) / 10L;
 			if (delta > 250L) {
 				delta = 250L;
 			}

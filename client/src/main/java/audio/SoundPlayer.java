@@ -1,7 +1,10 @@
 package audio;
 
-import java.io.FileInputStream;
+import jagex2.client.client;
+
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -13,18 +16,19 @@ import static sign.signlink.wavevol;
 
 public class SoundPlayer {
 
+	public static HashMap<Integer, AudioInputStream> sounds = new HashMap<>();
+
 	private AudioInputStream stream;
 	private DataLine.Info info;
 	private Clip sound;
 
 	private InputStream soundStream;
-	private Thread player;
 	private int delay;
 	private int soundLevel;
 	private InputStream arg0;
 	public static int volume;
 
-	public SoundPlayer(InputStream stream, int level, int delay) {
+	public SoundPlayer(AudioInputStream stream, int level, int delay) {
 		if (level == 0 || volume == 4 || level - volume <= 0) {
 			return;
 		}
@@ -34,9 +38,16 @@ public class SoundPlayer {
 		run();
 	}
 
+	public static void playLastSound() throws IOException {
+		if (client.lastWaveId != -1) {
+			new SoundPlayer(sounds.get(client.lastWaveId), 100, 0);
+			client.lastWaveId = -1;
+		}
+	}
+
 	public void run() {
 		try {
-			stream = AudioSystem.getAudioInputStream(soundStream);
+			stream = (AudioInputStream) soundStream;
 			info = new DataLine.Info(Clip.class, stream.getFormat());
 			sound = (Clip) AudioSystem.getLine(info);
 			sound.open(stream);
@@ -47,10 +58,7 @@ public class SoundPlayer {
 			}
 			sound.start();
 			sound.drain();
-			stream.close();
-			player.interrupt();
 		} catch (Exception e) {
-			player.interrupt();
 			e.printStackTrace();
 		}
 	}

@@ -5,71 +5,49 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("client!i")
 public class TileOverlay {
 
-	@OriginalMember(owner = "client!i", name = "a", descriptor = "[I")
-	public final int[] vertexX;
+    public final int[] vertexX;
 
-	@OriginalMember(owner = "client!i", name = "b", descriptor = "[I")
-	public final int[] vertexY;
+    public final int[] vertexY;
 
-	@OriginalMember(owner = "client!i", name = "c", descriptor = "[I")
-	public final int[] vertexZ;
+    public final int[] vertexZ;
 
-	@OriginalMember(owner = "client!i", name = "d", descriptor = "[I")
-	public final int[] triangleColorA;
+    public final int[] triangleColorA;
 
-	@OriginalMember(owner = "client!i", name = "e", descriptor = "[I")
-	public final int[] triangleColorB;
+    public final int[] triangleColorB;
 
-	@OriginalMember(owner = "client!i", name = "f", descriptor = "[I")
-	public final int[] triangleColorC;
+    public final int[] triangleColorC;
 
-	@OriginalMember(owner = "client!i", name = "g", descriptor = "[I")
-	public final int[] triangleVertexA;
+    public final int[] triangleVertexA;
 
-	@OriginalMember(owner = "client!i", name = "h", descriptor = "[I")
-	public final int[] triangleVertexB;
+    public final int[] triangleVertexB;
 
-	@OriginalMember(owner = "client!i", name = "i", descriptor = "[I")
-	public final int[] triangleVertexC;
+    public final int[] triangleVertexC;
 
-	@OriginalMember(owner = "client!i", name = "j", descriptor = "[I")
-	public int[] triangleTextureIds;
+    public int[] triangleTextureIds;
 
-	@OriginalMember(owner = "client!i", name = "k", descriptor = "Z")
-	public boolean flat = true;
+    public boolean flat = true;
 
-	@OriginalMember(owner = "client!i", name = "l", descriptor = "I")
-	public final int shape;
+    public final int shape;
 
-	@OriginalMember(owner = "client!i", name = "m", descriptor = "I")
-	public final int rotation;
+    public final int rotation;
 
-	@OriginalMember(owner = "client!i", name = "n", descriptor = "I")
-	public final int backgroundRgb;
+    public final int backgroundRgb;
 
-	@OriginalMember(owner = "client!i", name = "o", descriptor = "I")
-	public final int foregroundRgb;
+    public final int foregroundRgb;
 
-	@OriginalMember(owner = "client!i", name = "p", descriptor = "[I")
-	public static final int[] tmpScreenX = new int[6];
+    public static final int[] tmpScreenX = new int[6];
 
-	@OriginalMember(owner = "client!i", name = "q", descriptor = "[I")
-	public static final int[] tmpScreenY = new int[6];
+    public static final int[] tmpScreenY = new int[6];
 
-	@OriginalMember(owner = "client!i", name = "r", descriptor = "[I")
-	public static final int[] tmpViewspaceX = new int[6];
+    public static final int[] tmpViewspaceX = new int[6];
 
-	@OriginalMember(owner = "client!i", name = "s", descriptor = "[I")
-	public static final int[] tmpViewspaceY = new int[6];
+    public static final int[] tmpViewspaceY = new int[6];
 
-	@OriginalMember(owner = "client!i", name = "t", descriptor = "[I")
-	public static final int[] tmpViewspaceZ = new int[6];
+    public static final int[] tmpViewspaceZ = new int[6];
 
-	@OriginalMember(owner = "client!i", name = "x", descriptor = "[[I")
-	public static final int[][] SHAPE_POINTS = new int[][] {
+    public static final int[][] SHAPE_POINTS = new int[][] {
 		{ 1, 3, 5, 7 },
 		{ 1, 3, 5, 7 }, // PLAIN_SHAPE
 		{ 1, 3, 5, 7 }, // DIAGONAL_SHAPE
@@ -85,8 +63,7 @@ public class TileOverlay {
 		{ 1, 3, 5, 7, 13, 14 } // TRAPEZIUM_SHAPE
 	};
 
-	@OriginalMember(owner = "client!i", name = "y", descriptor = "[[I")
-	public static final int[][] SHAPE_PATHS = new int[][] {
+    public static final int[][] SHAPE_PATHS = new int[][] {
 		{ 0, 1, 2, 3, 0, 0, 1, 3 },
 		{ 1, 1, 2, 3, 1, 0, 1, 3 }, // PLAIN_SHAPE
 		{ 0, 1, 2, 3, 1, 0, 1, 3 }, // DIAGONAL_SHAPE
@@ -102,8 +79,7 @@ public class TileOverlay {
 		{ 1, 0, 5, 4, 1, 0, 1, 5, 0, 0, 4, 3, 0, 4, 5, 3, 0, 5, 2, 3, 0, 1, 2, 5 } // TRAPEZIUM_SHAPE
 	};
 
-	@OriginalMember(owner = "client!i", name = "<init>", descriptor = "(IIIIIIIIIIIIIIIIIIII)V")
-	public TileOverlay(@OriginalArg(0) int tileX, @OriginalArg(1) int shape, @OriginalArg(2) int southeastColor2, @OriginalArg(3) int southeastY, @OriginalArg(4) int northeastColor1, @OriginalArg(5) int rotation, @OriginalArg(6) int southwestColor1, @OriginalArg(7) int northwestY, @OriginalArg(8) int foregroundRgb, @OriginalArg(9) int southwestColor2, @OriginalArg(10) int textureId, @OriginalArg(11) int northwestColor2, @OriginalArg(12) int backgroundRgb, @OriginalArg(13) int northeastY, @OriginalArg(14) int northeastColor2, @OriginalArg(15) int northwestColor1, @OriginalArg(17) int southwestY, @OriginalArg(18) int tileZ, @OriginalArg(19) int southeastColor1) {
+    public TileOverlay( int tileX, int shape, int southeastColor2, int southeastY, int northeastColor1, int rotation, int southwestColor1, int northwestY, int foregroundRgb, int southwestColor2, int textureId, int northwestColor2, int backgroundRgb, int northeastY, int northeastColor2, int northwestColor1, int southwestY, int tileZ, int southeastColor1) {
 		if (southwestY != southeastY || southwestY != northeastY || southwestY != northwestY) {
 			this.flat = false;
 		}
@@ -113,24 +89,24 @@ public class TileOverlay {
 		this.backgroundRgb = backgroundRgb;
 		this.foregroundRgb = foregroundRgb;
 
-		@Pc(32) short ONE = 128;
-		@Pc(36) int HALF = ONE / 2;
-		@Pc(40) int QUARTER = ONE / 4;
-		@Pc(46) int THREE_QUARTER = ONE * 3 / 4;
+		short ONE = 128;
+		int HALF = ONE / 2;
+		int QUARTER = ONE / 4;
+		int THREE_QUARTER = ONE * 3 / 4;
 
-		@Pc(50) int[] points = SHAPE_POINTS[shape];
-		@Pc(53) int vertexCount = points.length;
+		int[] points = SHAPE_POINTS[shape];
+		int vertexCount = points.length;
 		this.vertexX = new int[vertexCount];
 		this.vertexY = new int[vertexCount];
 		this.vertexZ = new int[vertexCount];
-		@Pc(68) int[] primaryColors = new int[vertexCount];
-		@Pc(71) int[] secondaryColors = new int[vertexCount];
+		int[] primaryColors = new int[vertexCount];
+		int[] secondaryColors = new int[vertexCount];
 
-		@Pc(75) int sceneX = tileX * ONE;
-		@Pc(79) int sceneZ = tileZ * ONE;
+		int sceneX = tileX * ONE;
+		int sceneZ = tileZ * ONE;
 
-		for (@Pc(81) int v = 0; v < vertexCount; v++) {
-			@Pc(87) int type = points[v];
+		for ( int v = 0; v < vertexCount; v++) {
+			int type = points[v];
 
 			if ((type & 0x1) == 0 && type <= 8) {
 				type = (type - rotation - rotation - 1 & 0x7) + 1;
@@ -144,11 +120,11 @@ public class TileOverlay {
 				type = (type - rotation - 13 & 0x3) + 13;
 			}
 
-			@Pc(143) int x;
-			@Pc(145) int z;
-			@Pc(147) int y;
-			@Pc(149) int color1;
-			@Pc(151) int color2;
+			int x;
+			int z;
+			int y;
+			int color1;
+			int color2;
 
 			if (type == 1) {
 				x = sceneX;
@@ -255,7 +231,7 @@ public class TileOverlay {
 			secondaryColors[v] = color2;
 		}
 
-		@Pc(552) int[] paths = SHAPE_PATHS[shape];
+		int[] paths = SHAPE_PATHS[shape];
 		int triangleCount = paths.length / 4;
 		this.triangleVertexA = new int[triangleCount];
 		this.triangleVertexB = new int[triangleCount];
@@ -272,8 +248,8 @@ public class TileOverlay {
 		for (int t = 0; t < triangleCount; t++) {
 			int color = paths[index];
 			int a = paths[index + 1];
-			@Pc(617) int b = paths[index + 2];
-			@Pc(623) int c = paths[index + 3];
+			int b = paths[index + 2];
+			int c = paths[index + 3];
 			index += 4;
 
 			if (a < 4) {

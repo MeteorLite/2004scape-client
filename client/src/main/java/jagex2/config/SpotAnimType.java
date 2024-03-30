@@ -9,64 +9,47 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("client!kc")
 public class SpotAnimType {
 
-	@OriginalMember(owner = "client!kc", name = "b", descriptor = "I")
-	private static int count;
+    private static int count;
 
-	@OriginalMember(owner = "client!kc", name = "c", descriptor = "[Lclient!kc;")
-	public static SpotAnimType[] instances;
+    public static SpotAnimType[] instances;
 
-	@OriginalMember(owner = "client!kc", name = "d", descriptor = "I")
-	public int index;
+    public int index;
 
-	@OriginalMember(owner = "client!kc", name = "e", descriptor = "I")
-	private int model;
+    private int model;
 
-	@OriginalMember(owner = "client!kc", name = "f", descriptor = "I")
-	private int anim = -1;
+    private int anim = -1;
 
-	@OriginalMember(owner = "client!kc", name = "g", descriptor = "Lclient!jc;")
-	public SeqType seq;
+    public SeqType seq;
 
-	@OriginalMember(owner = "client!kc", name = "h", descriptor = "Z")
-	public boolean disposeAlpha = false;
+    public boolean disposeAlpha = false;
 
-	@OriginalMember(owner = "client!kc", name = "i", descriptor = "[I")
-	private final int[] recol_s = new int[6];
+    private final int[] recol_s = new int[6];
 
-	@OriginalMember(owner = "client!kc", name = "j", descriptor = "[I")
-	private final int[] recol_d = new int[6];
+    private final int[] recol_d = new int[6];
 
-	@OriginalMember(owner = "client!kc", name = "k", descriptor = "I")
-	public int resizeh = 128;
+    public int resizeh = 128;
 
-	@OriginalMember(owner = "client!kc", name = "l", descriptor = "I")
-	public int resizev = 128;
+    public int resizev = 128;
 
-	@OriginalMember(owner = "client!kc", name = "m", descriptor = "I")
-	public int orientation;
+    public int orientation;
 
-	@OriginalMember(owner = "client!kc", name = "n", descriptor = "I")
-	public int ambient;
+    public int ambient;
 
-	@OriginalMember(owner = "client!kc", name = "o", descriptor = "I")
-	public int contrast;
+    public int contrast;
 
-	@OriginalMember(owner = "client!kc", name = "p", descriptor = "Lclient!s;")
-	public static LruCache modelCache = new LruCache(30);
+    public static LruCache modelCache = new LruCache(30);
 
-	@OriginalMember(owner = "client!kc", name = "a", descriptor = "(Lclient!ub;I)V")
-	public static void unpack(@OriginalArg(0) Jagfile config) {
-		@Pc(13) Packet dat = new Packet(config.read("spotanim.dat", null));
+    public static void unpack( Jagfile config) {
+		Packet dat = new Packet(config.read("spotanim.dat", null));
 		count = dat.g2();
 
 		if (instances == null) {
 			instances = new SpotAnimType[count];
 		}
 
-		for (@Pc(23) int id = 0; id < count; id++) {
+		for ( int id = 0; id < count; id++) {
 			if (instances[id] == null) {
 				instances[id] = new SpotAnimType();
 			}
@@ -76,10 +59,9 @@ public class SpotAnimType {
 		}
 	}
 
-	@OriginalMember(owner = "client!kc", name = "a", descriptor = "(ZLclient!kb;)V")
-	public void decode(@OriginalArg(1) Packet dat) {
+    public void decode( Packet dat) {
 		while (true) {
-			@Pc(5) int code = dat.g1();
+			int code = dat.g1();
 			if (code == 0) {
 				break;
 			}
@@ -114,15 +96,14 @@ public class SpotAnimType {
 		}
 	}
 
-	@OriginalMember(owner = "client!kc", name = "a", descriptor = "()Lclient!eb;")
-	public Model getModel() {
-		@Pc(6) Model model = (Model) modelCache.get(this.index);
+    public Model getModel() {
+		Model model = (Model) modelCache.get(this.index);
 		if (model != null) {
 			return model;
 		}
 
 		model = new Model(this.model);
-		for (@Pc(19) int i = 0; i < 6; i++) {
+		for ( int i = 0; i < 6; i++) {
 			if (this.recol_s[0] != 0) {
 				model.recolor(this.recol_s[i], this.recol_d[i]);
 			}

@@ -7,38 +7,27 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("client!bb")
 public class SpotAnimEntity extends Entity {
 
-	@OriginalMember(owner = "client!bb", name = "g", descriptor = "Lclient!kc;")
-	private final SpotAnimType type;
+    private final SpotAnimType type;
 
-	@OriginalMember(owner = "client!bb", name = "h", descriptor = "I")
-	public final int startCycle;
+    public final int startCycle;
 
-	@OriginalMember(owner = "client!bb", name = "i", descriptor = "I")
-	public final int level;
+    public final int level;
 
-	@OriginalMember(owner = "client!bb", name = "j", descriptor = "I")
-	public final int x;
+    public final int x;
 
-	@OriginalMember(owner = "client!bb", name = "k", descriptor = "I")
-	public final int z;
+    public final int z;
 
-	@OriginalMember(owner = "client!bb", name = "l", descriptor = "I")
-	public final int y;
+    public final int y;
 
-	@OriginalMember(owner = "client!bb", name = "m", descriptor = "I")
-	private int seqFrame;
+    private int seqFrame;
 
-	@OriginalMember(owner = "client!bb", name = "n", descriptor = "I")
-	private int seqCycle;
+    private int seqCycle;
 
-	@OriginalMember(owner = "client!bb", name = "o", descriptor = "Z")
-	public boolean seqComplete = false;
+    public boolean seqComplete = false;
 
-	@OriginalMember(owner = "client!bb", name = "<init>", descriptor = "(IIZIIIII)V")
-	public SpotAnimEntity(@OriginalArg(1) int id, @OriginalArg(6) int level, @OriginalArg(0) int x, @OriginalArg(3) int z, @OriginalArg(5) int y, @OriginalArg(7) int cycle, @OriginalArg(4) int delay) {
+    public SpotAnimEntity( int id, int level, int x, int z, int y, int cycle, int delay) {
 		this.type = SpotAnimType.instances[id];
 		this.level = level;
 		this.x = x;
@@ -48,8 +37,7 @@ public class SpotAnimEntity extends Entity {
 		this.seqComplete = false;
 	}
 
-	@OriginalMember(owner = "client!bb", name = "a", descriptor = "(II)V")
-	public void update(@OriginalArg(0) int delta) {
+    public void update( int delta) {
 		for (this.seqCycle += delta; this.seqCycle > this.type.seq.delay[this.seqFrame]; ) {
 			this.seqCycle -= this.type.seq.delay[this.seqFrame] + 1;
 			this.seqFrame++;
@@ -61,11 +49,10 @@ public class SpotAnimEntity extends Entity {
 		}
 	}
 
-	@OriginalMember(owner = "client!bb", name = "a", descriptor = "(Z)Lclient!eb;")
-	@Override
-	public Model draw(int loopCycle) {
-		@Pc(3) Model tmp = this.type.getModel();
-		@Pc(19) Model model = new Model(tmp, true, !this.type.disposeAlpha, false);
+    @Override
+    public Model draw(int loopCycle) {
+		Model tmp = this.type.getModel();
+		Model model = new Model(tmp, true, !this.type.disposeAlpha, false);
 
 		if (!this.seqComplete) {
 			model.createLabelReferences();

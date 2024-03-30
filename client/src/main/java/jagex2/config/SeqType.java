@@ -8,58 +8,43 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("client!jc")
 public class SeqType {
 
-	@OriginalMember(owner = "client!jc", name = "c", descriptor = "I")
-	private static int count;
+    private static int count;
 
-	@OriginalMember(owner = "client!jc", name = "d", descriptor = "[Lclient!jc;")
-	public static SeqType[] instances;
+    public static SeqType[] instances;
 
-	@OriginalMember(owner = "client!jc", name = "e", descriptor = "I")
-	public int frameCount;
+    public int frameCount;
 
-	@OriginalMember(owner = "client!jc", name = "f", descriptor = "[I")
-	public int[] frames;
+    public int[] frames;
 
-	@OriginalMember(owner = "client!jc", name = "g", descriptor = "[I")
-	public int[] iframes;
+    public int[] iframes;
 
-	@OriginalMember(owner = "client!jc", name = "h", descriptor = "[I")
-	public int[] delay;
+    public int[] delay;
 
-	@OriginalMember(owner = "client!jc", name = "i", descriptor = "I")
-	public int replayoff = -1;
+    public int replayoff = -1;
 
-	@OriginalMember(owner = "client!jc", name = "j", descriptor = "[I")
-	public int[] labelGroups;
+    public int[] labelGroups;
 
-	@OriginalMember(owner = "client!jc", name = "k", descriptor = "Z")
-	public boolean stretches = false;
+    public boolean stretches = false;
 
-	@OriginalMember(owner = "client!jc", name = "l", descriptor = "I")
-	public int priority = 5;
+    public int priority = 5;
 
-	@OriginalMember(owner = "client!jc", name = "m", descriptor = "I")
-	public int mainhand = -1;
+    public int mainhand = -1;
 
-	@OriginalMember(owner = "client!jc", name = "n", descriptor = "I")
-	public int offhand = -1;
+    public int offhand = -1;
 
-	@OriginalMember(owner = "client!jc", name = "o", descriptor = "I")
-	public int replaycount = 99;
+    public int replaycount = 99;
 
-	@OriginalMember(owner = "client!jc", name = "a", descriptor = "(Lclient!ub;I)V")
-	public static void unpack(@OriginalArg(0) Jagfile config) {
-		@Pc(9) Packet dat = new Packet(config.read("seq.dat", null));
+    public static void unpack( Jagfile config) {
+		Packet dat = new Packet(config.read("seq.dat", null));
 		count = dat.g2();
 
 		if (instances == null) {
 			instances = new SeqType[count];
 		}
 
-		for (@Pc(27) int id = 0; id < count; id++) {
+		for ( int id = 0; id < count; id++) {
 			if (instances[id] == null) {
 				instances[id] = new SeqType();
 			}
@@ -68,10 +53,9 @@ public class SeqType {
 		}
 	}
 
-	@OriginalMember(owner = "client!jc", name = "a", descriptor = "(ZLclient!kb;)V")
-	public void decode(@OriginalArg(1) Packet dat) {
+    public void decode( Packet dat) {
 		while (true) {
-			@Pc(5) int code = dat.g1();
+			int code = dat.g1();
 			if (code == 0) {
 				break;
 			}
@@ -105,7 +89,7 @@ public class SeqType {
 				int count = dat.g1();
 				this.labelGroups = new int[count + 1];
 
-				for (@Pc(127) int i = 0; i < count; i++) {
+				for ( int i = 0; i < count; i++) {
 					this.labelGroups[i] = dat.g1();
 				}
 

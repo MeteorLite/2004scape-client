@@ -13,86 +13,59 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("client!c")
 public class World {
 
-	@OriginalMember(owner = "client!c", name = "d", descriptor = "Z")
-	public static boolean lowMemory = true;
+    public static boolean lowMemory = true;
 
-	@OriginalMember(owner = "client!c", name = "e", descriptor = "I")
-	public static int levelBuilt;
+    public static int levelBuilt;
 
-	@OriginalMember(owner = "client!c", name = "f", descriptor = "Z")
-	public static boolean fullbright;
+    public static boolean fullbright;
 
-	@OriginalMember(owner = "client!c", name = "g", descriptor = "I")
-	private final int maxTileX;
+    private final int maxTileX;
 
-	@OriginalMember(owner = "client!c", name = "h", descriptor = "I")
-	private final int maxTileZ;
+    private final int maxTileZ;
 
-	@OriginalMember(owner = "client!c", name = "i", descriptor = "[[[I")
-	private final int[][][] levelHeightmap;
+    private final int[][][] levelHeightmap;
 
-	@OriginalMember(owner = "client!c", name = "j", descriptor = "[[[B")
-	private final byte[][][] levelTileFlags;
+    private final byte[][][] levelTileFlags;
 
-	@OriginalMember(owner = "client!c", name = "k", descriptor = "[[[B")
-	private final byte[][][] levelTileUnderlayIds;
+    private final byte[][][] levelTileUnderlayIds;
 
-	@OriginalMember(owner = "client!c", name = "l", descriptor = "[[[B")
-	private final byte[][][] levelTileOverlayIds;
+    private final byte[][][] levelTileOverlayIds;
 
-	@OriginalMember(owner = "client!c", name = "m", descriptor = "[[[B")
-	private final byte[][][] levelTileOverlayShape;
+    private final byte[][][] levelTileOverlayShape;
 
-	@OriginalMember(owner = "client!c", name = "n", descriptor = "[[[B")
-	private final byte[][][] levelTileOverlayRotation;
+    private final byte[][][] levelTileOverlayRotation;
 
-	@OriginalMember(owner = "client!c", name = "o", descriptor = "[[[B")
-	private final byte[][][] levelShademap;
+    private final byte[][][] levelShademap;
 
-	@OriginalMember(owner = "client!c", name = "p", descriptor = "[[I")
-	private final int[][] levelLightmap;
+    private final int[][] levelLightmap;
 
-	@OriginalMember(owner = "client!c", name = "q", descriptor = "[I")
-	private final int[] blendChroma;
+    private final int[] blendChroma;
 
-	@OriginalMember(owner = "client!c", name = "r", descriptor = "[I")
-	private final int[] blendSaturation;
+    private final int[] blendSaturation;
 
-	@OriginalMember(owner = "client!c", name = "s", descriptor = "[I")
-	private final int[] blendLightness;
+    private final int[] blendLightness;
 
-	@OriginalMember(owner = "client!c", name = "t", descriptor = "[I")
-	private final int[] blendLuminance;
+    private final int[] blendLuminance;
 
-	@OriginalMember(owner = "client!c", name = "u", descriptor = "[I")
-	private final int[] blendMagnitude;
+    private final int[] blendMagnitude;
 
-	@OriginalMember(owner = "client!c", name = "v", descriptor = "[[[I")
-	private final int[][][] levelOccludemap;
+    private final int[][][] levelOccludemap;
 
-	@OriginalMember(owner = "client!c", name = "w", descriptor = "[I")
-	public static final int[] ROTATION_WALL_TYPE = new int[] { 1, 2, 4, 8 };
+    public static final int[] ROTATION_WALL_TYPE = new int[] { 1, 2, 4, 8 };
 
-	@OriginalMember(owner = "client!c", name = "x", descriptor = "[I")
-	public static final int[] ROTATION_WALL_CORNER_TYPE = new int[] { 16, 32, 64, 128 };
+    public static final int[] ROTATION_WALL_CORNER_TYPE = new int[] { 16, 32, 64, 128 };
 
-	@OriginalMember(owner = "client!c", name = "y", descriptor = "[I")
-	public static final int[] WALL_DECORATION_ROTATION_FORWARD_X = new int[] { 1, 0, -1, 0 };
+    public static final int[] WALL_DECORATION_ROTATION_FORWARD_X = new int[] { 1, 0, -1, 0 };
 
-	@OriginalMember(owner = "client!c", name = "z", descriptor = "[I")
-	public static final int[] WALL_DECORATION_ROTATION_FORWARD_Z = new int[] { 0, -1, 0, 1 };
+    public static final int[] WALL_DECORATION_ROTATION_FORWARD_Z = new int[] { 0, -1, 0, 1 };
 
-	@OriginalMember(owner = "client!c", name = "A", descriptor = "I")
-	public static int randomHueOffset = (int) (Math.random() * 17.0D) - 8;
+    public static int randomHueOffset = (int) (Math.random() * 17.0D) - 8;
 
-	@OriginalMember(owner = "client!c", name = "B", descriptor = "I")
-	public static int randomLightnessOffset = (int) (Math.random() * 33.0D) - 16;
+    public static int randomLightnessOffset = (int) (Math.random() * 33.0D) - 16;
 
-	@OriginalMember(owner = "client!c", name = "<init>", descriptor = "(I[[[BI[[[II)V")
-	public World(@OriginalArg(2) int maxTileX, @OriginalArg(0) int maxTileZ, @OriginalArg(3) int[][][] levelHeightmap, @OriginalArg(1) byte[][][] levelTileFlags) {
+    public World( int maxTileX, int maxTileZ, int[][][] levelHeightmap, byte[][][] levelTileFlags) {
 		this.maxTileX = maxTileX;
 		this.maxTileZ = maxTileZ;
 		this.levelHeightmap = levelHeightmap;
@@ -114,9 +87,8 @@ public class World {
 		this.blendMagnitude = new int[this.maxTileZ];
 	}
 
-	@OriginalMember(owner = "client!c", name = "a", descriptor = "(II)I")
-	public static int perlin(@OriginalArg(0) int x, @OriginalArg(1) int z) {
-		@Pc(32) int value = perlin(x + 45365, z + 91923, 4) + (perlin(x + 10294, z + 37821, 2) - 128 >> 1) + (perlin(x, z, 1) - 128 >> 2) - 128;
+    public static int perlin( int x, int z) {
+		int value = perlin(x + 45365, z + 91923, 4) + (perlin(x + 10294, z + 37821, 2) - 128 >> 1) + (perlin(x, z, 1) - 128 >> 2) - 128;
 		value = (int) ((double) value * 0.3D) + 35;
 		if (value < 10) {
 			value = 10;
@@ -126,45 +98,40 @@ public class World {
 		return value;
 	}
 
-	@OriginalMember(owner = "client!c", name = "a", descriptor = "(III)I")
-	private static int perlin(@OriginalArg(0) int x, @OriginalArg(1) int z, @OriginalArg(2) int scale) {
-		@Pc(3) int intX = x / scale;
-		@Pc(9) int fracX = x & scale - 1;
-		@Pc(13) int intZ = z / scale;
-		@Pc(19) int fracZ = z & scale - 1;
-		@Pc(23) int v1 = smoothNoise(intX, intZ);
-		@Pc(29) int v2 = smoothNoise(intX + 1, intZ);
-		@Pc(35) int v3 = smoothNoise(intX, intZ + 1);
-		@Pc(43) int v4 = smoothNoise(intX + 1, intZ + 1);
-		@Pc(49) int i1 = interpolate(v1, v2, fracX, scale);
-		@Pc(55) int i2 = interpolate(v3, v4, fracX, scale);
+    private static int perlin( int x, int z, int scale) {
+		int intX = x / scale;
+		int fracX = x & scale - 1;
+		int intZ = z / scale;
+		int fracZ = z & scale - 1;
+		int v1 = smoothNoise(intX, intZ);
+		int v2 = smoothNoise(intX + 1, intZ);
+		int v3 = smoothNoise(intX, intZ + 1);
+		int v4 = smoothNoise(intX + 1, intZ + 1);
+		int i1 = interpolate(v1, v2, fracX, scale);
+		int i2 = interpolate(v3, v4, fracX, scale);
 		return interpolate(i1, i2, fracZ, scale);
 	}
 
-	@OriginalMember(owner = "client!c", name = "a", descriptor = "(IIII)I")
-	private static int interpolate(@OriginalArg(0) int a, @OriginalArg(1) int b, @OriginalArg(2) int x, @OriginalArg(3) int scale) {
-		@Pc(11) int f = 65536 - Draw3D.cos[x * 1024 / scale] >> 1;
+    private static int interpolate( int a, int b, int x, int scale) {
+		int f = 65536 - Draw3D.cos[x * 1024 / scale] >> 1;
 		return (a * (65536 - f) >> 16) + (b * f >> 16);
 	}
 
-	@OriginalMember(owner = "client!c", name = "b", descriptor = "(II)I")
-	private static int smoothNoise(@OriginalArg(0) int x, @OriginalArg(1) int y) {
-		@Pc(31) int corners = noise(x - 1, y - 1) + noise(x + 1, y - 1) + noise(x - 1, y + 1) + noise(x + 1, y + 1);
-		@Pc(55) int sides = noise(x - 1, y) + noise(x + 1, y) + noise(x, y - 1) + noise(x, y + 1);
-		@Pc(59) int center = noise(x, y);
+    private static int smoothNoise( int x, int y) {
+		int corners = noise(x - 1, y - 1) + noise(x + 1, y - 1) + noise(x - 1, y + 1) + noise(x + 1, y + 1);
+		int sides = noise(x - 1, y) + noise(x + 1, y) + noise(x, y - 1) + noise(x, y + 1);
+		int center = noise(x, y);
 		return corners / 16 + sides / 8 + center / 4;
 	}
 
-	@OriginalMember(owner = "client!c", name = "c", descriptor = "(II)I")
-	private static int noise(@OriginalArg(0) int x, @OriginalArg(1) int y) {
-		@Pc(5) int n = x + y * 57;
-		@Pc(11) int n1 = n << 13 ^ n;
-		@Pc(25) int n2 = n1 * (n1 * n1 * 15731 + 789221) + 1376312589 & Integer.MAX_VALUE;
+    private static int noise( int x, int y) {
+		int n = x + y * 57;
+		int n1 = n << 13 ^ n;
+		int n2 = n1 * (n1 * n1 * 15731 + 789221) + 1376312589 & Integer.MAX_VALUE;
 		return n2 >> 19 & 0xFF;
 	}
 
-	@OriginalMember(owner = "client!c", name = "d", descriptor = "(II)I")
-	public static int mulHSL(@OriginalArg(0) int hsl, @OriginalArg(1) int lightness) {
+    public static int mulHSL( int hsl, int lightness) {
 		if (hsl == -1) {
 			return 12345678;
 		}
@@ -179,25 +146,24 @@ public class World {
 		return (hsl & 0xFF80) + lightness;
 	}
 
-	@OriginalMember(owner = "client!c", name = "a", descriptor = "(ILclient!ob;Lclient!ec;II[[[IIIIILclient!r;I)V")
-	public static void addLoc(@OriginalArg(7) int level, @OriginalArg(0) int x, @OriginalArg(3) int z, @OriginalArg(10) World3D scene, @OriginalArg(5) int[][][] levelHeightmap, @OriginalArg(1) LinkList locs, @OriginalArg(2) CollisionMap collision, @OriginalArg(8) int locId, @OriginalArg(9) int shape, @OriginalArg(4) int rotation, @OriginalArg(11) int trueLevel) {
-		@Pc(15) int heightSW = levelHeightmap[trueLevel][x][z];
-		@Pc(25) int heightSE = levelHeightmap[trueLevel][x + 1][z];
-		@Pc(37) int heightNW = levelHeightmap[trueLevel][x + 1][z + 1];
-		@Pc(47) int heightNE = levelHeightmap[trueLevel][x][z + 1];
-		@Pc(57) int y = heightSW + heightSE + heightNW + heightNE >> 2;
+    public static void addLoc( int level, int x, int z, World3D scene, int[][][] levelHeightmap, LinkList locs, CollisionMap collision, int locId, int shape, int rotation, int trueLevel) {
+		int heightSW = levelHeightmap[trueLevel][x][z];
+		int heightSE = levelHeightmap[trueLevel][x + 1][z];
+		int heightNW = levelHeightmap[trueLevel][x + 1][z + 1];
+		int heightNE = levelHeightmap[trueLevel][x][z + 1];
+		int y = heightSW + heightSE + heightNW + heightNE >> 2;
 
-		@Pc(60) LocType loc = LocType.get(locId);
-		@Pc(72) int bitset = x + (z << 7) + (locId << 14) + 0x40000000;
+		LocType loc = LocType.get(locId);
+		int bitset = x + (z << 7) + (locId << 14) + 0x40000000;
 		if (!loc.active) {
 			bitset += Integer.MIN_VALUE;
 		}
 
-		@Pc(86) byte info = (byte) ((rotation << 6) + shape);
-		@Pc(99) Model model1;
-		@Pc(174) int width;
-		@Pc(430) int offset;
-		@Pc(452) Model model2;
+		byte info = (byte) ((rotation << 6) + shape);
+		Model model1;
+		int width;
+		int offset;
+		Model model2;
 
 		if (shape == LocType.GROUNDDECOR) {
 			model1 = loc.getModel(LocType.GROUNDDECOR, rotation, heightSW, heightSE, heightNW, heightNE, -1);
@@ -213,12 +179,12 @@ public class World {
 		} else if (shape == LocType.CENTREPIECE_STRAIGHT || shape == LocType.CENTREPIECE_DIAGONAL) {
 			model1 = loc.getModel(LocType.CENTREPIECE_STRAIGHT, rotation, heightSW, heightSE, heightNW, heightNE, -1);
 			if (model1 != null) {
-				@Pc(161) int yaw = 0;
+				int yaw = 0;
 				if (shape == LocType.CENTREPIECE_DIAGONAL) {
 					yaw += 256;
 				}
 
-				@Pc(177) int height;
+				int height;
 				if (rotation == 1 || rotation == 3) {
 					width = loc.length;
 					height = loc.width;
@@ -272,7 +238,7 @@ public class World {
 			}
 		} else if (shape == LocType.WALL_L) {
 			int nextRotation = rotation + 1 & 0x3;
-			@Pc(442) Model model3 = loc.getModel(LocType.WALL_L, rotation + 4, heightSW, heightSE, heightNW, heightNE, -1);
+			Model model3 = loc.getModel(LocType.WALL_L, rotation + 4, heightSW, heightSE, heightNW, heightNE, -1);
 			model2 = loc.getModel(LocType.WALL_L, nextRotation, heightSW, heightSE, heightNW, heightNE, -1);
 			scene.addWall(level, x, z, y, ROTATION_WALL_TYPE[rotation], ROTATION_WALL_TYPE[nextRotation], model3, model2, bitset, info);
 
@@ -350,25 +316,24 @@ public class World {
 		}
 	}
 
-	@OriginalMember(owner = "client!c", name = "a", descriptor = "(IIIII)V")
-	public void clearLandscape(@OriginalArg(1) int startX, @OriginalArg(0) int startZ, @OriginalArg(4) int endX, @OriginalArg(3) int endZ) {
-		@Pc(3) byte waterOverlay = 0;
-		for (@Pc(11) int i = 0; i < FloType.count; i++) {
+    public void clearLandscape( int startX, int startZ, int endX, int endZ) {
+		byte waterOverlay = 0;
+		for ( int i = 0; i < FloType.count; i++) {
 			if (FloType.instances[i].name.equalsIgnoreCase("water")) {
 				waterOverlay = (byte) (i + 1);
 				break;
 			}
 		}
 
-		for (@Pc(33) int z = startX; z < startX + endX; z++) {
-			for (@Pc(37) int x = startZ; x < startZ + endZ; x++) {
+		for ( int z = startX; z < startX + endX; z++) {
+			for ( int x = startZ; x < startZ + endZ; x++) {
 				if (x < 0 || x >= this.maxTileX || z < 0 || z >= this.maxTileZ) {
 					continue;
 				}
 
 				this.levelTileOverlayIds[0][x][z] = waterOverlay;
 
-				for (@Pc(62) int level = 0; level < 4; level++) {
+				for ( int level = 0; level < 4; level++) {
 					this.levelHeightmap[level][x][z] = 0;
 					this.levelTileFlags[level][x][z] = 0;
 				}
@@ -376,16 +341,15 @@ public class World {
 		}
 	}
 
-	@OriginalMember(owner = "client!c", name = "a", descriptor = "([BIIIII)V")
-	public void readLandscape(@OriginalArg(1) int originX, @OriginalArg(5) int originZ, @OriginalArg(4) int xOffset, @OriginalArg(3) int zOffset, @OriginalArg(0) byte[] src) {
-		@Pc(7) Packet buf = new Packet(src);
+    public void readLandscape( int originX, int originZ, int xOffset, int zOffset, byte[] src) {
+		Packet buf = new Packet(src);
 
-		for (@Pc(20) int level = 0; level < 4; level++) {
-			for (@Pc(24) int x = 0; x < 64; x++) {
-				for (@Pc(28) int z = 0; z < 64; z++) {
-					@Pc(34) int stx = x + xOffset;
-					@Pc(38) int stz = z + zOffset;
-					@Pc(60) int opcode;
+		for ( int level = 0; level < 4; level++) {
+			for ( int x = 0; x < 64; x++) {
+				for ( int z = 0; z < 64; z++) {
+					int stx = x + xOffset;
+					int stz = z + zOffset;
+					int opcode;
 
 					if (stx >= 0 && stx < 104 && stz >= 0 && stz < 104) {
 						this.levelTileFlags[level][stx][stz] = 0;
@@ -401,7 +365,7 @@ public class World {
 							}
 
 							if (opcode == 1) {
-								@Pc(116) int height = buf.g1();
+								int height = buf.g1();
 								if (height == 1) {
 									height = 0;
 								}
@@ -445,44 +409,43 @@ public class World {
 		}
 	}
 
-	@OriginalMember(owner = "client!c", name = "a", descriptor = "([BLclient!r;[Lclient!ec;Lclient!ob;ZII)V")
-	public void readLocs(@OriginalArg(1) World3D scene, @OriginalArg(3) LinkList locs, @OriginalArg(2) CollisionMap[] collision, @OriginalArg(0) byte[] src, @OriginalArg(6) int xOffset, @OriginalArg(5) int zOffset) {
-		@Pc(7) Packet buf = new Packet(src);
-		@Pc(19) int locId = -1;
+    public void readLocs( World3D scene, LinkList locs, CollisionMap[] collision, byte[] src, int xOffset, int zOffset) {
+		Packet buf = new Packet(src);
+		int locId = -1;
 
 		while (true) {
-			@Pc(22) int deltaId = buf.gsmarts();
+			int deltaId = buf.gsmarts();
 			if (deltaId == 0) {
 				return;
 			}
 
 			locId += deltaId;
 
-			@Pc(30) int locPos = 0;
+			int locPos = 0;
 			while (true) {
-				@Pc(33) int deltaPos = buf.gsmarts();
+				int deltaPos = buf.gsmarts();
 				if (deltaPos == 0) {
 					break;
 				}
 
 				locPos += deltaPos - 1;
-				@Pc(45) int z = locPos & 0x3F;
-				@Pc(51) int x = locPos >> 6 & 0x3F;
-				@Pc(55) int level = locPos >> 12;
+				int z = locPos & 0x3F;
+				int x = locPos >> 6 & 0x3F;
+				int level = locPos >> 12;
 
-				@Pc(58) int info = buf.g1();
-				@Pc(62) int shape = info >> 2;
-				@Pc(66) int rotation = info & 0x3;
-				@Pc(70) int stx = x + xOffset;
-				@Pc(74) int stz = z + zOffset;
+				int info = buf.g1();
+				int shape = info >> 2;
+				int rotation = info & 0x3;
+				int stx = x + xOffset;
+				int stz = z + zOffset;
 
 				if (stx > 0 && stz > 0 && stx < 103 && stz < 103) {
-					@Pc(86) int currentLevel = level;
+					int currentLevel = level;
 					if ((this.levelTileFlags[1][stx][stz] & 0x2) == 2) {
 						currentLevel = level - 1;
 					}
 
-					@Pc(101) CollisionMap collisionMap = null;
+					CollisionMap collisionMap = null;
 					if (currentLevel >= 0) {
 						collisionMap = collision[currentLevel];
 					}
@@ -493,8 +456,7 @@ public class World {
 		}
 	}
 
-	@OriginalMember(owner = "client!c", name = "a", descriptor = "(Lclient!ec;ZIIIILclient!r;Lclient!ob;II)V")
-	private void addLoc(@OriginalArg(2) int level, @OriginalArg(9) int x, @OriginalArg(3) int z, @OriginalArg(6) World3D scene, @OriginalArg(7) LinkList locs, @OriginalArg(0) CollisionMap collision, @OriginalArg(8) int locId, @OriginalArg(5) int shape, @OriginalArg(4) int rotation) {
+    private void addLoc( int level, int x, int z, World3D scene, LinkList locs, CollisionMap collision, int locId, int shape, int rotation) {
 		if (lowMemory) {
 			if ((this.levelTileFlags[level][x][z] & 0x10) != 0) {
 				return;
@@ -505,23 +467,23 @@ public class World {
 			}
 		}
 
-		@Pc(36) int heightSW = this.levelHeightmap[level][x][z];
-		@Pc(47) int heightSE = this.levelHeightmap[level][x + 1][z];
-		@Pc(60) int heightNW = this.levelHeightmap[level][x + 1][z + 1];
-		@Pc(71) int heightNE = this.levelHeightmap[level][x][z + 1];
-		@Pc(81) int y = heightSW + heightSE + heightNW + heightNE >> 2;
+		int heightSW = this.levelHeightmap[level][x][z];
+		int heightSE = this.levelHeightmap[level][x + 1][z];
+		int heightNW = this.levelHeightmap[level][x + 1][z + 1];
+		int heightNE = this.levelHeightmap[level][x][z + 1];
+		int y = heightSW + heightSE + heightNW + heightNE >> 2;
 
-		@Pc(84) LocType loc = LocType.get(locId);
-		@Pc(96) int bitset = x + (z << 7) + (locId << 14) + 0x40000000;
+		LocType loc = LocType.get(locId);
+		int bitset = x + (z << 7) + (locId << 14) + 0x40000000;
 		if (!loc.active) {
 			bitset += Integer.MIN_VALUE;
 		}
 
-		@Pc(110) byte info = (byte) ((rotation << 6) + shape);
-		@Pc(132) Model model;
-		@Pc(209) int width;
-		@Pc(810) int offset;
-		@Pc(832) Model model1;
+		byte info = (byte) ((rotation << 6) + shape);
+		Model model;
+		int width;
+		int offset;
+		Model model1;
 
 		if (shape == LocType.GROUNDDECOR) {
 			if (lowMemory && !loc.active && !loc.forcedecor) {
@@ -542,12 +504,12 @@ public class World {
 			model = loc.getModel(LocType.CENTREPIECE_STRAIGHT, rotation, heightSW, heightSE, heightNW, heightNE, -1);
 
 			if (model != null) {
-				@Pc(196) int yaw = 0;
+				int yaw = 0;
 				if (shape == LocType.CENTREPIECE_DIAGONAL) {
 					yaw += 256;
 				}
 
-				@Pc(212) int height;
+				int height;
 				if (rotation == 1 || rotation == 3) {
 					width = loc.length;
 					height = loc.width;
@@ -557,9 +519,9 @@ public class World {
 				}
 
 				if (scene.addLoc(level, x, z, y, model, null, bitset, info, width, height, yaw) && loc.shadow) {
-					for (@Pc(240) int dx = 0; dx <= width; dx++) {
-						for (@Pc(244) int dz = 0; dz <= height; dz++) {
-							@Pc(251) int shade = model.radius / 4;
+					for ( int dx = 0; dx <= width; dx++) {
+						for ( int dz = 0; dz <= height; dz++) {
+							int shade = model.radius / 4;
 							if (shade > 30) {
 								shade = 30;
 							}
@@ -672,7 +634,7 @@ public class World {
 			}
 		} else if (shape == LocType.WALL_L) {
 			int nextRotation = rotation + 1 & 0x3;
-			@Pc(822) Model model3 = loc.getModel(LocType.WALL_L, rotation + 4, heightSW, heightSE, heightNW, heightNE, -1);
+			Model model3 = loc.getModel(LocType.WALL_L, rotation + 4, heightSW, heightSE, heightNW, heightNE, -1);
 			model1 = loc.getModel(LocType.WALL_L, nextRotation, heightSW, heightSE, heightNW, heightNE, -1);
 			scene.addWall(level, x, z, y, ROTATION_WALL_TYPE[rotation], ROTATION_WALL_TYPE[nextRotation], model3, model1, bitset, info);
 
@@ -781,9 +743,8 @@ public class World {
 		}
 	}
 
-	@OriginalMember(owner = "client!c", name = "a", descriptor = "(Lclient!r;I[Lclient!ec;)V")
-	public void build(@OriginalArg(0) World3D scene, @OriginalArg(2) CollisionMap[] collision) {
-		for (@Pc(3) int level = 0; level < 4; level++) {
+    public void build( World3D scene, CollisionMap[] collision) {
+		for ( int level = 0; level < 4; level++) {
 			for (int x = 0; x < 104; x++) {
 				for (int z = 0; z < 104; z++) {
 					// solid
@@ -818,12 +779,12 @@ public class World {
 		}
 
 		for (int level = 0; level < 4; level++) {
-			@Pc(108) byte[][] shademap = this.levelShademap[level];
-			@Pc(110) byte lightAmbient = 96;
-			@Pc(112) short lightAttenuation = 768;
-			@Pc(114) byte lightX = -50;
-			@Pc(116) byte lightY = -10;
-			@Pc(118) byte lightZ = -50;
+			byte[][] shademap = this.levelShademap[level];
+			byte lightAmbient = 96;
+			short lightAttenuation = 768;
+			byte lightX = -50;
+			byte lightY = -10;
+			byte lightZ = -50;
 			int lightMag = (int) Math.sqrt(lightX * lightX + lightY * lightY + lightZ * lightZ);
 			int lightMagnitude = lightAttenuation * lightMag >> 8;
 
@@ -852,13 +813,13 @@ public class World {
 			for (int x0 = -5; x0 < this.maxTileX + 5; x0++) {
 				for (int z0 = 0; z0 < this.maxTileZ; z0++) {
 					int x1 = x0 + 5;
-					@Pc(419) int debugMag;
+					int debugMag;
 
 					if (x1 >= 0 && x1 < this.maxTileX) {
 						int underlayId = this.levelTileUnderlayIds[level][x1][z0] & 0xFF;
 
 						if (underlayId > 0) {
-							@Pc(378) FloType flu = FloType.instances[underlayId - 1];
+							FloType flu = FloType.instances[underlayId - 1];
 							this.blendChroma[z0] += flu.chroma;
 							this.blendSaturation[z0] += flu.saturation;
 							this.blendLightness[z0] += flu.lightness;
@@ -872,7 +833,7 @@ public class World {
 						int underlayId = this.levelTileUnderlayIds[level][x2][z0] & 0xFF;
 
 						if (underlayId > 0) {
-							@Pc(451) FloType flu = FloType.instances[underlayId - 1];
+							FloType flu = FloType.instances[underlayId - 1];
 							this.blendChroma[z0] -= flu.chroma;
 							this.blendSaturation[z0] -= flu.saturation;
 							this.blendLightness[z0] -= flu.lightness;
@@ -890,7 +851,7 @@ public class World {
 					int magnitudeAccumulator = 0;
 
 					for (int z0 = -5; z0 < this.maxTileZ + 5; z0++) {
-						@Pc(527) int dz1 = z0 + 5;
+						int dz1 = z0 + 5;
 						if (dz1 >= 0 && dz1 < this.maxTileZ) {
 							hueAccumulator += this.blendChroma[dz1];
 							saturationAccumulator += this.blendSaturation[dz1];
@@ -899,7 +860,7 @@ public class World {
 							magnitudeAccumulator += this.blendMagnitude[dz1];
 						}
 
-						@Pc(572) int dz2 = z0 - 5;
+						int dz2 = z0 - 5;
 						if (dz2 >= 0 && dz2 < this.maxTileZ) {
 							hueAccumulator -= this.blendChroma[dz2];
 							saturationAccumulator -= this.blendSaturation[dz2];
@@ -909,29 +870,29 @@ public class World {
 						}
 
 						if (z0 >= 1 && z0 < this.maxTileZ - 1 && (!lowMemory || (this.levelTileFlags[level][x0][z0] & 0x10) == 0 && this.getDrawLevel(level, x0, z0) == levelBuilt)) {
-							@Pc(655) int underlayId = this.levelTileUnderlayIds[level][x0][z0] & 0xFF;
-							@Pc(666) int overlayId = this.levelTileOverlayIds[level][x0][z0] & 0xFF;
+							int underlayId = this.levelTileUnderlayIds[level][x0][z0] & 0xFF;
+							int overlayId = this.levelTileOverlayIds[level][x0][z0] & 0xFF;
 
 							if (underlayId > 0 || overlayId > 0) {
-								@Pc(679) int heightSW = this.levelHeightmap[level][x0][z0];
-								@Pc(690) int heightSE = this.levelHeightmap[level][x0 + 1][z0];
-								@Pc(703) int heightNE = this.levelHeightmap[level][x0 + 1][z0 + 1];
-								@Pc(714) int heightNW = this.levelHeightmap[level][x0][z0 + 1];
+								int heightSW = this.levelHeightmap[level][x0][z0];
+								int heightSE = this.levelHeightmap[level][x0 + 1][z0];
+								int heightNE = this.levelHeightmap[level][x0 + 1][z0 + 1];
+								int heightNW = this.levelHeightmap[level][x0][z0 + 1];
 
-								@Pc(721) int lightSW = this.levelLightmap[x0][z0];
-								@Pc(730) int lightSE = this.levelLightmap[x0 + 1][z0];
-								@Pc(741) int lightNE = this.levelLightmap[x0 + 1][z0 + 1];
-								@Pc(750) int lightNW = this.levelLightmap[x0][z0 + 1];
+								int lightSW = this.levelLightmap[x0][z0];
+								int lightSE = this.levelLightmap[x0 + 1][z0];
+								int lightNE = this.levelLightmap[x0 + 1][z0 + 1];
+								int lightNW = this.levelLightmap[x0][z0 + 1];
 
-								@Pc(752) int baseColor = -1;
-								@Pc(754) int tintColor = -1;
+								int baseColor = -1;
+								int tintColor = -1;
 
 								if (underlayId > 0) {
 									int hue = hueAccumulator * 256 / luminanceAccumulator;
 									int saturation = saturationAccumulator / magnitudeAccumulator;
-									@Pc(770) int lightness = lightnessAccumulator / magnitudeAccumulator;
+									int lightness = lightnessAccumulator / magnitudeAccumulator;
 									baseColor = this.hsl24to16(hue, saturation, lightness);
-									@Pc(782) int randomHue = hue + randomHueOffset & 0xFF;
+									int randomHue = hue + randomHueOffset & 0xFF;
 									lightness += randomLightnessOffset;
 									if (lightness < 0) {
 										lightness = 0;
@@ -942,7 +903,7 @@ public class World {
 								}
 
 								if (level > 0) {
-									@Pc(807) boolean occludes = underlayId != 0 || this.levelTileOverlayShape[level][x0][z0] == 0;
+									boolean occludes = underlayId != 0 || this.levelTileOverlayShape[level][x0][z0] == 0;
 
 									if (overlayId > 0 && !FloType.instances[overlayId - 1].occlude) {
 										occludes = false;
@@ -963,11 +924,11 @@ public class World {
 									scene.setTile(level, x0, z0, 0, 0, -1, heightSW, heightSE, heightNE, heightNW, mulHSL(baseColor, lightSW), mulHSL(baseColor, lightSE), mulHSL(baseColor, lightNE), mulHSL(baseColor, lightNW), 0, 0, 0, 0, shadeColor, 0);
 								} else {
 									int shape = this.levelTileOverlayShape[level][x0][z0] + 1;
-									@Pc(919) byte rotation = this.levelTileOverlayRotation[level][x0][z0];
-									@Pc(925) FloType flo = FloType.instances[overlayId - 1];
-									@Pc(928) int textureId = flo.texture;
-									@Pc(936) int hsl;
-									@Pc(934) int rgb;
+									byte rotation = this.levelTileOverlayRotation[level][x0][z0];
+									FloType flo = FloType.instances[overlayId - 1];
+									int textureId = flo.texture;
+									int hsl;
+									int rgb;
 
 									if (textureId >= 0) {
 										rgb = Draw3D.getAverageTextureRGB(textureId);
@@ -1010,17 +971,17 @@ public class World {
 
 		if (!fullbright) {
 			int wall0 = 0x1; // this flag is set by walls with rotation 0 or 2
-			@Pc(1123) int wall1 = 0x2; // this flag is set by walls with rotation 1 or 3
-			@Pc(1125) int floor = 0x4; // this flag is set by floors which are flat
+			int wall1 = 0x2; // this flag is set by walls with rotation 1 or 3
+			int floor = 0x4; // this flag is set by floors which are flat
 
-			for (@Pc(1127) int topLevel = 0; topLevel < 4; topLevel++) {
+			for ( int topLevel = 0; topLevel < 4; topLevel++) {
 				if (topLevel > 0) {
 					wall0 <<= 0x3;
 					wall1 <<= 0x3;
 					floor <<= 0x3;
 				}
 
-				for (@Pc(1145) int level = 0; level <= topLevel; level++) {
+				for ( int level = 0; level <= topLevel; level++) {
 					for (int tileZ = 0; tileZ <= this.maxTileZ; tileZ++) {
 						for (int tileX = 0; tileX <= this.maxTileX; tileX++) {
 							if ((this.levelOccludemap[level][tileX][tileZ] & wall0) != 0) {
@@ -1174,8 +1135,7 @@ public class World {
 		}
 	}
 
-	@OriginalMember(owner = "client!c", name = "a", descriptor = "(IBII)I")
-	private int getDrawLevel(@OriginalArg(0) int level, @OriginalArg(2) int stx, @OriginalArg(3) int stz) {
+    private int getDrawLevel( int level, int stx, int stz) {
 		if ((this.levelTileFlags[level][stx][stz] & 0x8) == 0) {
 			return level <= 0 || (this.levelTileFlags[1][stx][stz] & 0x2) == 0 ? level : level - 1;
 		} else {
@@ -1183,8 +1143,7 @@ public class World {
 		}
 	}
 
-	@OriginalMember(owner = "client!c", name = "e", descriptor = "(II)I")
-	private int adjustLightness(@OriginalArg(0) int hsl, @OriginalArg(1) int scalar) {
+    private int adjustLightness( int hsl, int scalar) {
 		if (hsl == -2) {
 			return 12345678;
 		}
@@ -1207,8 +1166,7 @@ public class World {
 		}
 	}
 
-	@OriginalMember(owner = "client!c", name = "b", descriptor = "(III)I")
-	private int hsl24to16(@OriginalArg(0) int hue, @OriginalArg(1) int saturation, @OriginalArg(2) int lightness) {
+    private int hsl24to16( int hue, int saturation, int lightness) {
 		if (lightness > 179) {
 			saturation /= 2;
 		}

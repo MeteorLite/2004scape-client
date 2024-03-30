@@ -8,15 +8,12 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("client!y")
 public class NpcEntity extends PathingEntity {
 
-	@OriginalMember(owner = "client!y", name = "ib", descriptor = "Lclient!bc;")
-	public NpcType type;
+    public NpcType type;
 
-	@OriginalMember(owner = "client!y", name = "a", descriptor = "(Z)Lclient!eb;")
-	@Override
-	public Model draw(int loopCycle) {
+    @Override
+    public Model draw(int loopCycle) {
 		if (this.type == null) {
 			return null;
 		}
@@ -25,10 +22,10 @@ public class NpcEntity extends PathingEntity {
 			return this.getSequencedModel();
 		}
 
-		@Pc(20) Model model = this.getSequencedModel();
-		@Pc(25) SpotAnimType spotanim = SpotAnimType.instances[super.spotanimId];
+		Model model = this.getSequencedModel();
+		SpotAnimType spotanim = SpotAnimType.instances[super.spotanimId];
 
-		@Pc(41) Model model1 = new Model(spotanim.getModel(), true, !spotanim.disposeAlpha, false);
+		Model model1 = new Model(spotanim.getModel(), true, !spotanim.disposeAlpha, false);
 		model1.translate(-super.spotanimOffset, 0, 0);
 		model1.createLabelReferences();
 		model1.applyTransform(spotanim.seq.frames[super.spotanimFrame]);
@@ -40,9 +37,9 @@ public class NpcEntity extends PathingEntity {
 		}
 
 		model1.calculateNormals(64 + spotanim.ambient, 850 + spotanim.contrast, -30, -50, -30, true);
-		@Pc(115) Model[] models = new Model[] { model, model1 };
+		Model[] models = new Model[] { model, model1 };
 
-		@Pc(123) Model tmp = new Model(models, 2, true);
+		Model tmp = new Model(models, 2, true);
 		if (this.type.size == 1) {
 			tmp.pickable = true;
 		}
@@ -50,11 +47,10 @@ public class NpcEntity extends PathingEntity {
 		return tmp;
 	}
 
-	@OriginalMember(owner = "client!y", name = "c", descriptor = "(Z)Lclient!eb;")
-	private Model getSequencedModel() {
+    private Model getSequencedModel() {
 		if (super.primarySeqId >= 0 && super.primarySeqDelay == 0) {
-			@Pc(14) int primaryTransformId = SeqType.instances[super.primarySeqId].frames[super.primarySeqFrame];
-			@Pc(16) int secondaryTransformId = -1;
+			int primaryTransformId = SeqType.instances[super.primarySeqId].frames[super.primarySeqFrame];
+			int secondaryTransformId = -1;
 			if (super.secondarySeqId >= 0 && super.secondarySeqId != super.seqStandId) {
 				secondaryTransformId = SeqType.instances[super.secondarySeqId].frames[super.secondarySeqFrame];
 			}
@@ -66,14 +62,13 @@ public class NpcEntity extends PathingEntity {
 			transformId = SeqType.instances[super.secondarySeqId].frames[super.secondarySeqFrame];
 		}
 
-		@Pc(71) Model model = this.type.getSequencedModel(transformId, -1, null);
+		Model model = this.type.getSequencedModel(transformId, -1, null);
 		super.height = model.maxY;
 		return model;
 	}
 
-	@OriginalMember(owner = "client!y", name = "b", descriptor = "(Z)Z")
-	@Override
-	public boolean isVisible() {
+    @Override
+    public boolean isVisible() {
 		return this.type != null;
 	}
 }

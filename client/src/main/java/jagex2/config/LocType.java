@@ -9,7 +9,6 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("client!ac")
 public class LocType {
 
 	// shapes
@@ -37,151 +36,108 @@ public class LocType {
 	public static final int ROOFEDGE_L = 20;
 	public static final int ROOFEDGE_SQUARECORNER = 21;
 
-	@OriginalMember(owner = "client!ac", name = "c", descriptor = "Z")
-	public static boolean reset;
+    public static boolean reset;
 
-	@OriginalMember(owner = "client!ac", name = "d", descriptor = "I")
-	private static int count;
+    private static int count;
 
-	@OriginalMember(owner = "client!ac", name = "e", descriptor = "[I")
-	private static int[] offsets;
+    private static int[] offsets;
 
-	@OriginalMember(owner = "client!ac", name = "f", descriptor = "Lclient!kb;")
-	private static Packet dat;
+    private static Packet dat;
 
-	@OriginalMember(owner = "client!ac", name = "g", descriptor = "[Lclient!ac;")
-	private static LocType[] cache;
+    private static LocType[] cache;
 
-	@OriginalMember(owner = "client!ac", name = "h", descriptor = "I")
-	private static int cachePos;
+    private static int cachePos;
 
-	@OriginalMember(owner = "client!ac", name = "i", descriptor = "I")
-	public int index = -1;
+    public int index = -1;
 
-	@OriginalMember(owner = "client!ac", name = "j", descriptor = "[I")
-	private int[] models;
+    private int[] models;
 
-	@OriginalMember(owner = "client!ac", name = "k", descriptor = "[I")
-	private int[] shapes;
+    private int[] shapes;
 
-	@OriginalMember(owner = "client!ac", name = "l", descriptor = "Ljava/lang/String;")
-	public String name;
+    public String name;
 
-	@OriginalMember(owner = "client!ac", name = "m", descriptor = "[B")
-	public String desc;
+    public String desc;
 
-	@OriginalMember(owner = "client!ac", name = "n", descriptor = "[I")
-	private int[] recol_s;
+    private int[] recol_s;
 
-	@OriginalMember(owner = "client!ac", name = "o", descriptor = "[I")
-	private int[] recol_d;
+    private int[] recol_d;
 
-	@OriginalMember(owner = "client!ac", name = "p", descriptor = "I")
-	public int width;
+    public int width;
 
-	@OriginalMember(owner = "client!ac", name = "q", descriptor = "I")
-	public int length;
+    public int length;
 
-	@OriginalMember(owner = "client!ac", name = "r", descriptor = "Z")
-	public boolean blockwalk;
+    public boolean blockwalk;
 
-	@OriginalMember(owner = "client!ac", name = "s", descriptor = "Z")
-	public boolean blockrange;
+    public boolean blockrange;
 
-	@OriginalMember(owner = "client!ac", name = "t", descriptor = "Z")
-	public boolean active;
+    public boolean active;
 
-	@OriginalMember(owner = "client!ac", name = "u", descriptor = "Z")
-	private boolean hillskew;
+    private boolean hillskew;
 
-	@OriginalMember(owner = "client!ac", name = "v", descriptor = "Z")
-	private boolean sharelight;
+    private boolean sharelight;
 
-	@OriginalMember(owner = "client!ac", name = "w", descriptor = "Z")
-	public boolean occlude;
+    public boolean occlude;
 
-	@OriginalMember(owner = "client!ac", name = "x", descriptor = "I")
-	public int anim;
+    public int anim;
 
-	@OriginalMember(owner = "client!ac", name = "y", descriptor = "I")
-	public int walloff;
+    public int walloff;
 
-	@OriginalMember(owner = "client!ac", name = "z", descriptor = "B")
-	private byte ambient;
+    private byte ambient;
 
-	@OriginalMember(owner = "client!ac", name = "A", descriptor = "B")
-	private byte contrast;
+    private byte contrast;
 
-	@OriginalMember(owner = "client!ac", name = "B", descriptor = "[Ljava/lang/String;")
-	public String[] ops;
+    public String[] ops;
 
-	@OriginalMember(owner = "client!ac", name = "C", descriptor = "Z")
-	private boolean disposeAlpha;
+    private boolean disposeAlpha;
 
-	@OriginalMember(owner = "client!ac", name = "D", descriptor = "I")
-	public int mapfunction;
+    public int mapfunction;
 
-	@OriginalMember(owner = "client!ac", name = "E", descriptor = "I")
-	public int mapscene;
+    public int mapscene;
 
-	@OriginalMember(owner = "client!ac", name = "F", descriptor = "Z")
-	private boolean mirror;
+    private boolean mirror;
 
-	@OriginalMember(owner = "client!ac", name = "G", descriptor = "Z")
-	public boolean shadow;
+    public boolean shadow;
 
-	@OriginalMember(owner = "client!ac", name = "H", descriptor = "I")
-	private int resizex;
+    private int resizex;
 
-	@OriginalMember(owner = "client!ac", name = "I", descriptor = "I")
-	private int resizey;
+    private int resizey;
 
-	@OriginalMember(owner = "client!ac", name = "J", descriptor = "I")
-	private int resizez;
+    private int resizez;
 
-	@OriginalMember(owner = "client!ac", name = "K", descriptor = "I")
-	private int xoff;
+    private int xoff;
 
-	@OriginalMember(owner = "client!ac", name = "L", descriptor = "I")
-	private int yoff;
+    private int yoff;
 
-	@OriginalMember(owner = "client!ac", name = "M", descriptor = "I")
-	private int zoff;
+    private int zoff;
 
-	@OriginalMember(owner = "client!ac", name = "N", descriptor = "I")
-	public int forceapproach;
+    public int forceapproach;
 
-	@OriginalMember(owner = "client!ac", name = "O", descriptor = "Z")
-	public boolean forcedecor;
+    public boolean forcedecor;
 
-	@OriginalMember(owner = "client!ac", name = "P", descriptor = "Lclient!s;")
-	public static LruCache modelCacheStatic = new LruCache(500);
+    public static LruCache modelCacheStatic = new LruCache(500);
 
-	@OriginalMember(owner = "client!ac", name = "Q", descriptor = "Lclient!s;")
-	public static LruCache modelCacheDynamic = new LruCache(30);
+    public static LruCache modelCacheDynamic = new LruCache(30);
 
-	@OriginalMember(owner = "client!ac", name = "a", descriptor = "(Lclient!ub;)V")
-	public static void unpack(@OriginalArg(0) Jagfile config) {
+    public static void unpack( Jagfile config) {
 		dat = new Packet(config.read("loc.dat", null));
-		@Pc(21) Packet idx = new Packet(config.read("loc.idx", null));
+		Packet idx = new Packet(config.read("loc.idx", null));
 
 		count = idx.g2();
 		offsets = new int[count];
 
-		@Pc(29) int offset = 2;
-		for (@Pc(31) int id = 0; id < count; id++) {
+		int offset = 2;
+		for ( int id = 0; id < count; id++) {
 			offsets[id] = offset;
 			offset += idx.g2();
 		}
 
 		cache = new LocType[10];
-		for (@Pc(51) int id = 0; id < 10; id++) {
+		for ( int id = 0; id < 10; id++) {
 			cache[id] = new LocType();
 		}
 	}
 
-	@OriginalMember(owner = "client!ac", name = "a", descriptor = "(Z)V")
-	public static void unload() {
+    public static void unload() {
 		modelCacheStatic = null;
 		modelCacheDynamic = null;
 		offsets = null;
@@ -189,16 +145,15 @@ public class LocType {
 		dat = null;
 	}
 
-	@OriginalMember(owner = "client!ac", name = "a", descriptor = "(I)Lclient!ac;")
-	public static LocType get(@OriginalArg(0) int id) {
-		for (@Pc(1) int i = 0; i < 10; i++) {
+    public static LocType get( int id) {
+		for ( int i = 0; i < 10; i++) {
 			if (cache[i].index == id) {
 				return cache[i];
 			}
 		}
 
 		cachePos = (cachePos + 1) % 10;
-		@Pc(27) LocType loc = cache[cachePos];
+		LocType loc = cache[cachePos];
 		dat.pos = offsets[id];
 		loc.index = id;
 		loc.reset();
@@ -206,8 +161,7 @@ public class LocType {
 		return loc;
 	}
 
-	@OriginalMember(owner = "client!ac", name = "a", descriptor = "()V")
-	public void reset() {
+    public void reset() {
 		this.models = null;
 		this.shapes = null;
 		this.name = null;
@@ -242,12 +196,11 @@ public class LocType {
 		this.forcedecor = false;
 	}
 
-	@OriginalMember(owner = "client!ac", name = "a", descriptor = "(ZLclient!kb;)V")
-	public void decode(@OriginalArg(1) Packet dat) {
-		@Pc(5) int active = -1;
+    public void decode( Packet dat) {
+		int active = -1;
 
 		while (true) {
-			@Pc(15) int code = dat.g1();
+			int code = dat.g1();
 			if (code == 0) {
 				break;
 			}
@@ -356,10 +309,9 @@ public class LocType {
 		}
 	}
 
-	@OriginalMember(owner = "client!ac", name = "a", descriptor = "(IIIIIII)Lclient!eb;")
-	public Model getModel(@OriginalArg(0) int shape, @OriginalArg(1) int rotation, @OriginalArg(2) int heightmapSW, @OriginalArg(3) int heightmapSE, @OriginalArg(4) int heightmapNE, @OriginalArg(5) int heightmapNW, @OriginalArg(6) int transformId) {
-		@Pc(3) int shapeIndex = -1;
-		for (@Pc(5) int i = 0; i < this.shapes.length; i++) {
+    public Model getModel( int shape, int rotation, int heightmapSW, int heightmapSE, int heightmapNE, int heightmapNW, int transformId) {
+		int shapeIndex = -1;
+		for ( int i = 0; i < this.shapes.length; i++) {
 			if (this.shapes[i] == shape) {
 				shapeIndex = i;
 				break;
@@ -370,12 +322,12 @@ public class LocType {
 			return null;
 		}
 
-		@Pc(47) long bitset = ((long) this.index << 6) + ((long) shapeIndex << 3) + rotation + ((long) (transformId + 1) << 32);
+		long bitset = ((long) this.index << 6) + ((long) shapeIndex << 3) + rotation + ((long) (transformId + 1) << 32);
 		if (reset) {
 			bitset = 0L;
 		}
 
-		@Pc(56) Model cached = (Model) modelCacheDynamic.get(bitset);
+		Model cached = (Model) modelCacheDynamic.get(bitset);
 		if (cached != null) {
 			if (reset) {
 				return cached;
@@ -388,12 +340,12 @@ public class LocType {
 			if (this.hillskew) {
 				int groundY = (heightmapSW + heightmapSE + heightmapNE + heightmapNW) / 4;
 
-				for (@Pc(93) int i = 0; i < cached.vertexCount; i++) {
-					@Pc(100) int x = cached.vertexX[i];
-					@Pc(105) int z = cached.vertexZ[i];
+				for ( int i = 0; i < cached.vertexCount; i++) {
+					int x = cached.vertexX[i];
+					int z = cached.vertexZ[i];
 
-					@Pc(117) int heightS = heightmapSW + (heightmapSE - heightmapSW) * (x + 64) / 128;
-					@Pc(129) int heightN = heightmapNW + (heightmapNE - heightmapNW) * (x + 64) / 128;
+					int heightS = heightmapSW + (heightmapSE - heightmapSW) * (x + 64) / 128;
+					int heightN = heightmapNW + (heightmapNE - heightmapNW) * (x + 64) / 128;
 					int y = heightS + (heightN - heightS) * (z + 64) / 128;
 
 					cached.vertexY[i] += y - groundY;
@@ -414,12 +366,12 @@ public class LocType {
 			return null;
 		}
 
-		@Pc(188) boolean flipped = this.mirror ^ rotation > 3;
+		boolean flipped = this.mirror ^ rotation > 3;
 		if (flipped) {
 			modelId += 65536;
 		}
 
-		@Pc(200) Model model = (Model) modelCacheStatic.get(modelId);
+		Model model = (Model) modelCacheStatic.get(modelId);
 		if (model == null) {
 			model = new Model(modelId & 0xFFFF);
 			if (flipped) {
@@ -428,10 +380,10 @@ public class LocType {
 			modelCacheStatic.put(modelId, model);
 		}
 
-		@Pc(235) boolean scaled = this.resizex != 128 || this.resizey != 128 || this.resizez != 128;
-		@Pc(250) boolean translated = this.xoff != 0 || this.yoff != 0 || this.zoff != 0;
+		boolean scaled = this.resizex != 128 || this.resizey != 128 || this.resizez != 128;
+		boolean translated = this.xoff != 0 || this.yoff != 0 || this.zoff != 0;
 
-		@Pc(284) Model modified = new Model(model, this.recol_s == null, !this.disposeAlpha, rotation == 0 && transformId == -1 && !scaled && !translated);
+		Model modified = new Model(model, this.recol_s == null, !this.disposeAlpha, rotation == 0 && transformId == -1 && !scaled && !translated);
 		if (transformId != -1) {
 			modified.createLabelReferences();
 			modified.applyTransform(transformId);
@@ -472,13 +424,13 @@ public class LocType {
 		if (this.hillskew) {
 			int groundY = (heightmapSW + heightmapSE + heightmapNE + heightmapNW) / 4;
 
-			for (@Pc(417) int i = 0; i < modified.vertexCount; i++) {
-				@Pc(424) int x = modified.vertexX[i];
-				@Pc(429) int z = modified.vertexZ[i];
+			for ( int i = 0; i < modified.vertexCount; i++) {
+				int x = modified.vertexX[i];
+				int z = modified.vertexZ[i];
 
-				@Pc(441) int heightS = heightmapSW + (heightmapSE - heightmapSW) * (x + 64) / 128;
-				@Pc(453) int heightN = heightmapNW + (heightmapNE - heightmapNW) * (x + 64) / 128;
-				@Pc(465) int y = heightS + (heightN - heightS) * (z + 64) / 128;
+				int heightS = heightmapSW + (heightmapSE - heightmapSW) * (x + 64) / 128;
+				int heightN = heightmapNW + (heightmapNE - heightmapNW) * (x + 64) / 128;
+				int y = heightS + (heightN - heightS) * (z + 64) / 128;
 
 				modified.vertexY[i] += y - groundY;
 			}

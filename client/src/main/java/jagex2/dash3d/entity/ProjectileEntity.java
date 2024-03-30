@@ -7,83 +7,57 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("client!ab")
 public class ProjectileEntity extends Entity {
 
-	@OriginalMember(owner = "client!ab", name = "g", descriptor = "Lclient!kc;")
-	private final SpotAnimType spotanim;
+    private final SpotAnimType spotanim;
 
-	@OriginalMember(owner = "client!ab", name = "h", descriptor = "I")
-	public final int level;
+    public final int level;
 
-	@OriginalMember(owner = "client!ab", name = "i", descriptor = "I")
-	private final int srcX;
+    private final int srcX;
 
-	@OriginalMember(owner = "client!ab", name = "j", descriptor = "I")
-	private final int srcZ;
+    private final int srcZ;
 
-	@OriginalMember(owner = "client!ab", name = "k", descriptor = "I")
-	private final int srcY;
+    private final int srcY;
 
-	@OriginalMember(owner = "client!ab", name = "l", descriptor = "I")
-	public final int offsetY;
+    public final int offsetY;
 
-	@OriginalMember(owner = "client!ab", name = "m", descriptor = "I")
-	public final int startCycle;
+    public final int startCycle;
 
-	@OriginalMember(owner = "client!ab", name = "n", descriptor = "I")
-	public final int lastCycle;
+    public final int lastCycle;
 
-	@OriginalMember(owner = "client!ab", name = "o", descriptor = "I")
-	private final int peakPitch;
+    private final int peakPitch;
 
-	@OriginalMember(owner = "client!ab", name = "p", descriptor = "I")
-	private final int arc;
+    private final int arc;
 
-	@OriginalMember(owner = "client!ab", name = "q", descriptor = "I")
-	public final int target;
+    public final int target;
 
-	@OriginalMember(owner = "client!ab", name = "r", descriptor = "Z")
-	private boolean mobile = false;
+    private boolean mobile = false;
 
-	@OriginalMember(owner = "client!ab", name = "s", descriptor = "D")
-	public double x;
+    public double x;
 
-	@OriginalMember(owner = "client!ab", name = "t", descriptor = "D")
-	public double z;
+    public double z;
 
-	@OriginalMember(owner = "client!ab", name = "u", descriptor = "D")
-	public double y;
+    public double y;
 
-	@OriginalMember(owner = "client!ab", name = "v", descriptor = "D")
-	private double velocityX;
+    private double velocityX;
 
-	@OriginalMember(owner = "client!ab", name = "w", descriptor = "D")
-	private double velocityZ;
+    private double velocityZ;
 
-	@OriginalMember(owner = "client!ab", name = "x", descriptor = "D")
-	private double velocity;
+    private double velocity;
 
-	@OriginalMember(owner = "client!ab", name = "y", descriptor = "D")
-	private double velocityY;
+    private double velocityY;
 
-	@OriginalMember(owner = "client!ab", name = "z", descriptor = "D")
-	private double accelerationY;
+    private double accelerationY;
 
-	@OriginalMember(owner = "client!ab", name = "A", descriptor = "I")
-	public int yaw;
+    public int yaw;
 
-	@OriginalMember(owner = "client!ab", name = "B", descriptor = "I")
-	private int pitch;
+    private int pitch;
 
-	@OriginalMember(owner = "client!ab", name = "C", descriptor = "I")
-	private int seqFrame;
+    private int seqFrame;
 
-	@OriginalMember(owner = "client!ab", name = "D", descriptor = "I")
-	private int seqCycle;
+    private int seqCycle;
 
-	@OriginalMember(owner = "client!ab", name = "<init>", descriptor = "(IIIIIIIIIIII)V")
-	public ProjectileEntity(@OriginalArg(10) int spotanim, @OriginalArg(4) int level, @OriginalArg(11) int srcX, @OriginalArg(9) int srcY, @OriginalArg(2) int srcZ, @OriginalArg(6) int startCycle, @OriginalArg(3) int lastCycle, @OriginalArg(1) int peakPitch, @OriginalArg(7) int arc, @OriginalArg(5) int target, @OriginalArg(0) int offsetY) {
+    public ProjectileEntity( int spotanim, int level, int srcX, int srcY, int srcZ, int startCycle, int lastCycle, int peakPitch, int arc, int target, int offsetY) {
 		this.spotanim = SpotAnimType.instances[spotanim];
 		this.level = level;
 		this.srcX = srcX;
@@ -98,12 +72,11 @@ public class ProjectileEntity extends Entity {
 		this.mobile = false;
 	}
 
-	@OriginalMember(owner = "client!ab", name = "a", descriptor = "(IIIII)V")
-	public void updateVelocity(@OriginalArg(2) int dstX, @OriginalArg(0) int dstY, @OriginalArg(1) int dstZ, @OriginalArg(4) int cycle) {
+    public void updateVelocity( int dstX, int dstY, int dstZ, int cycle) {
 		if (!this.mobile) {
-			@Pc(8) double dx = dstX - this.srcX;
-			@Pc(14) double dz = dstZ - this.srcZ;
-			@Pc(23) double d = Math.sqrt(dx * dx + dz * dz);
+			double dx = dstX - this.srcX;
+			double dz = dstZ - this.srcZ;
+			double d = Math.sqrt(dx * dx + dz * dz);
 
 			this.x = (double) this.srcX + dx * (double) this.arc / d;
 			this.z = (double) this.srcZ + dz * (double) this.arc / d;
@@ -122,8 +95,7 @@ public class ProjectileEntity extends Entity {
 		this.accelerationY = ((double) dstY - this.y - this.velocityY * dt) * 2.0D / (dt * dt);
 	}
 
-	@OriginalMember(owner = "client!ab", name = "a", descriptor = "(BI)V")
-	public void update(@OriginalArg(1) int delta) {
+    public void update( int delta) {
 		this.mobile = true;
 		this.x += this.velocityX * (double) delta;
 		this.z += this.velocityZ * (double) delta;
@@ -145,11 +117,10 @@ public class ProjectileEntity extends Entity {
 		}
 	}
 
-	@OriginalMember(owner = "client!ab", name = "a", descriptor = "(Z)Lclient!eb;")
-	@Override
-	public Model draw(int loopCycle) {
-		@Pc(3) Model tmp = this.spotanim.getModel();
-		@Pc(19) Model model = new Model(tmp, true, !this.spotanim.disposeAlpha, false);
+    @Override
+    public Model draw(int loopCycle) {
+		Model tmp = this.spotanim.getModel();
+		Model model = new Model(tmp, true, !this.spotanim.disposeAlpha, false);
 
 		if (this.spotanim.seq != null) {
 			model.createLabelReferences();

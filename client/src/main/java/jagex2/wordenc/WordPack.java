@@ -7,11 +7,9 @@ import org.openrs2.deob.annotation.Pc;
 
 public class WordPack {
 
-	@OriginalMember(owner = "client!wb", name = "a", descriptor = "[C")
-	private static final char[] charBuffer = new char[100];
+    private static final char[] charBuffer = new char[100];
 
-	@OriginalMember(owner = "client!wb", name = "b", descriptor = "[C")
-	private static final char[] TABLE = new char[] {
+    private static final char[] TABLE = new char[] {
 		// combined to save space:
 		' ', 'e', 't', 'a', 'o', 'i', 'h', 'n', 's', 'r', 'd', 'l', 'u',
 		// allowed:
@@ -20,14 +18,13 @@ public class WordPack {
 		' ', '!', '?', '.', ',', ':', ';', '(', ')', '-', '&', '*', '\\', '\'', '@', '#', '+', '=', '£', '$', '%', '"', '[', ']'
 	};
 
-	@OriginalMember(owner = "client!wb", name = "a", descriptor = "(Lclient!kb;II)Ljava/lang/String;")
-	public static String unpack(@OriginalArg(0) Packet word, @OriginalArg(2) int length) {
-		@Pc(3) int pos = 0;
-		@Pc(5) int carry = -1;
+    public static String unpack( Packet word, int length) {
+		int pos = 0;
+		int carry = -1;
 
-		@Pc(22) int nibble;
-		for (@Pc(11) int i = 0; i < length; i++) {
-			@Pc(16) int value = word.g1();
+		int nibble;
+		for ( int i = 0; i < length; i++) {
+			int value = word.g1();
 			nibble = value >> 4 & 0xF;
 
 			if (carry != -1) {
@@ -50,9 +47,9 @@ public class WordPack {
 			}
 		}
 
-		@Pc(100) boolean uppercase = true;
+		boolean uppercase = true;
 		for (int i = 0; i < pos; i++) {
-			@Pc(108) char c = charBuffer[i];
+			char c = charBuffer[i];
 			if (uppercase && c >= 'a' && c <= 'z') {
 				charBuffer[i] = (char) (charBuffer[i] - 32);
 				uppercase = false;
@@ -65,19 +62,18 @@ public class WordPack {
 		return new String(charBuffer, 0, pos);
 	}
 
-	@OriginalMember(owner = "client!wb", name = "a", descriptor = "(Lclient!kb;ZLjava/lang/String;)V")
-	public static void pack(@OriginalArg(0) Packet word, @OriginalArg(2) String str) {
+    public static void pack( Packet word, String str) {
 		if (str.length() > 80) {
 			str = str.substring(0, 80);
 		}
 		str = str.toLowerCase();
 
-		@Pc(15) int carry = -1;
-		for (@Pc(17) int i = 0; i < str.length(); i++) {
-			@Pc(23) char c = str.charAt(i);
+		int carry = -1;
+		for ( int i = 0; i < str.length(); i++) {
+			char c = str.charAt(i);
 
-			@Pc(25) int index = 0;
-			for (@Pc(27) int j = 0; j < TABLE.length; j++) {
+			int index = 0;
+			for ( int j = 0; j < TABLE.length; j++) {
 				if (c == TABLE[j]) {
 					index = j;
 					break;

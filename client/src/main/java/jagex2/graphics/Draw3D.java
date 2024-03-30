@@ -6,95 +6,70 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("client!gb")
 public class Draw3D extends Draw2D {
 
-	@OriginalMember(owner = "client!gb", name = "A", descriptor = "Z")
-	public static boolean lowMemory = true;
+    public static boolean lowMemory = true;
 
-	@OriginalMember(owner = "client!gb", name = "B", descriptor = "Z")
-	public static boolean clipX;
+    public static boolean clipX;
 
-	@OriginalMember(owner = "client!gb", name = "C", descriptor = "Z")
-	private static boolean opaque;
+    private static boolean opaque;
 
-	@OriginalMember(owner = "client!gb", name = "D", descriptor = "Z")
-	public static boolean jagged = true;
+    public static boolean jagged = true;
 
-	@OriginalMember(owner = "client!gb", name = "E", descriptor = "I")
-	public static int alpha;
+    public static int alpha;
 
-	@OriginalMember(owner = "client!gb", name = "F", descriptor = "I")
-	public static int centerX;
+    public static int centerX;
 
-	@OriginalMember(owner = "client!gb", name = "G", descriptor = "I")
-	public static int centerY;
+    public static int centerY;
 
-	@OriginalMember(owner = "client!gb", name = "H", descriptor = "[I")
-	public static int[] reciprocal15 = new int[512];
+    public static int[] reciprocal15 = new int[512];
 
-	@OriginalMember(owner = "client!gb", name = "I", descriptor = "[I")
-	public static final int[] reciprocal16 = new int[2048];
+    public static final int[] reciprocal16 = new int[2048];
 
-	@OriginalMember(owner = "client!gb", name = "J", descriptor = "[I")
-	public static int[] sin = new int[2048];
+    public static int[] sin = new int[2048];
 
-	@OriginalMember(owner = "client!gb", name = "K", descriptor = "[I")
-	public static int[] cos = new int[2048];
+    public static int[] cos = new int[2048];
 
-	@OriginalMember(owner = "client!gb", name = "L", descriptor = "[I")
-	public static int[] lineOffset;
+    public static int[] lineOffset;
 
-	@OriginalMember(owner = "client!gb", name = "M", descriptor = "I")
-	private static int textureCount;
+    private static int textureCount;
 
-	@OriginalMember(owner = "client!gb", name = "N", descriptor = "[Lclient!ib;")
-	public static Pix8[] textures = new Pix8[50];
+    public static Pix8[] textures = new Pix8[50];
 
-	@OriginalMember(owner = "client!gb", name = "O", descriptor = "[Z")
-	private static boolean[] textureTranslucent = new boolean[50];
+    private static boolean[] textureTranslucent = new boolean[50];
 
-	@OriginalMember(owner = "client!gb", name = "P", descriptor = "[I")
-	private static int[] averageTextureRGB = new int[50];
+    private static int[] averageTextureRGB = new int[50];
 
-	@OriginalMember(owner = "client!gb", name = "Q", descriptor = "I")
-	private static int poolSize;
+    private static int poolSize;
 
-	@OriginalMember(owner = "client!gb", name = "R", descriptor = "[[I")
-	private static int[][] texelPool;
+    private static int[][] texelPool;
 
-	@OriginalMember(owner = "client!gb", name = "S", descriptor = "[[I")
-	private static int[][] activeTexels = new int[50][];
+    private static int[][] activeTexels = new int[50][];
 
-	@OriginalMember(owner = "client!gb", name = "T", descriptor = "[I")
-	public static int[] textureCycle = new int[50];
+    public static int[] textureCycle = new int[50];
 
-	@OriginalMember(owner = "client!gb", name = "U", descriptor = "I")
-	public static int cycle;
+    public static int cycle;
 
-	@OriginalMember(owner = "client!gb", name = "V", descriptor = "[I")
-	public static int[] palette = new int[65536];
+    public static int[] palette = new int[65536];
 
-	@OriginalMember(owner = "client!gb", name = "W", descriptor = "[[I")
-	private static int[][] texturePalette = new int[50][];
+    private static int[][] texturePalette = new int[50][];
 
 	static {
-		for (@Pc(23) int i = 1; i < 512; i++) {
+		for ( int i = 1; i < 512; i++) {
 			reciprocal15[i] = 32768 / i;
 		}
 
-		for (@Pc(36) int i = 1; i < 2048; i++) {
+		for ( int i = 1; i < 2048; i++) {
 			reciprocal16[i] = 65536 / i;
 		}
 
-		for (@Pc(49) int i = 0; i < 2048; i++) {
+		for ( int i = 0; i < 2048; i++) {
 			sin[i] = (int) (Math.sin((double) i * 0.0030679615D) * 65536.0D);
 			cos[i] = (int) (Math.cos((double) i * 0.0030679615D) * 65536.0D);
 		}
 	}
 
-	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(Z)V")
-	public static void unload() {
+    public static void unload() {
 		reciprocal15 = null;
 		reciprocal15 = null;
 		sin = null;
@@ -110,8 +85,7 @@ public class Draw3D extends Draw2D {
 		texturePalette = null;
 	}
 
-	@OriginalMember(owner = "client!gb", name = "c", descriptor = "(I)V")
-	public static void init2D() {
+    public static void init2D() {
 		lineOffset = new int[height2d];
 		for (int y = 0; y < height2d; y++) {
 			lineOffset[y] = width2d * y;
@@ -120,26 +94,23 @@ public class Draw3D extends Draw2D {
 		centerY = height2d / 2;
 	}
 
-	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(III)V")
-	public static void init3D(@OriginalArg(1) int width, @OriginalArg(0) int height) {
+    public static void init3D( int width, int height) {
 		lineOffset = new int[height];
-		for (@Pc(12) int y = 0; y < height; y++) {
+		for ( int y = 0; y < height; y++) {
 			lineOffset[y] = width * y;
 		}
 		centerX = width / 2;
 		centerY = height / 2;
 	}
 
-	@OriginalMember(owner = "client!gb", name = "b", descriptor = "(Z)V")
-	public static void clearTexels() {
+    public static void clearTexels() {
 		texelPool = null;
-		for (@Pc(6) int i = 0; i < 50; i++) {
+		for ( int i = 0; i < 50; i++) {
 			activeTexels[i] = null;
 		}
 	}
 
-	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(II)V")
-	public static void initPool(@OriginalArg(0) int size) {
+    public static void initPool( int size) {
 		if (texelPool != null) {
 			return;
 		}
@@ -154,10 +125,9 @@ public class Draw3D extends Draw2D {
 		}
 	}
 
-	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(BLclient!ub;)V")
-	public static void unpackTextures(@OriginalArg(1) Jagfile jag) {
+    public static void unpackTextures( Jagfile jag) {
 		textureCount = 0;
-		for (@Pc(9) int id = 0; id < 50; id++) {
+		for ( int id = 0; id < 50; id++) {
 			try {
 				textures[id] = new Pix8(jag, String.valueOf(id), 0);
 				if (lowMemory && textures[id].cropW == 128) {
@@ -166,28 +136,27 @@ public class Draw3D extends Draw2D {
 					textures[id].crop();
 				}
 				textureCount++;
-			} catch (@Pc(47) Exception ex) {
+			} catch ( Exception ex) {
 			}
 		}
 	}
 
-	@OriginalMember(owner = "client!gb", name = "b", descriptor = "(II)I")
-	public static int getAverageTextureRGB(@OriginalArg(1) int id) {
+    public static int getAverageTextureRGB( int id) {
 		if (averageTextureRGB[id] != 0) {
 			return averageTextureRGB[id];
 		}
 
-		@Pc(13) int r = 0;
-		@Pc(15) int g = 0;
-		@Pc(17) int b = 0;
-		@Pc(22) int length = texturePalette[id].length;
-		for (@Pc(24) int i = 0; i < length; i++) {
+		int r = 0;
+		int g = 0;
+		int b = 0;
+		int length = texturePalette[id].length;
+		for ( int i = 0; i < length; i++) {
 			r += texturePalette[id][i] >> 16 & 0xFF;
 			g += texturePalette[id][i] >> 8 & 0xFF;
 			b += texturePalette[id][i] & 0xFF;
 		}
 
-		@Pc(80) int rgb = (r / length << 16) + (g / length << 8) + b / length;
+		int rgb = (r / length << 16) + (g / length << 8) + b / length;
 		rgb = setGamma(rgb, 1.4D);
 		if (rgb == 0) {
 			rgb = 1;
@@ -196,28 +165,26 @@ public class Draw3D extends Draw2D {
 		return rgb;
 	}
 
-	@OriginalMember(owner = "client!gb", name = "c", descriptor = "(II)V")
-	public static void pushTexture(@OriginalArg(0) int id) {
+    public static void pushTexture( int id) {
 		if (activeTexels[id] != null) {
 			texelPool[poolSize++] = activeTexels[id];
 			activeTexels[id] = null;
 		}
 	}
 
-	@OriginalMember(owner = "client!gb", name = "d", descriptor = "(I)[I")
-	private static int[] getTexels(@OriginalArg(0) int id) {
+    private static int[] getTexels( int id) {
 		textureCycle[id] = cycle++;
 		if (activeTexels[id] != null) {
 			return activeTexels[id];
 		}
 
-		@Pc(27) int[] texels;
+		int[] texels;
 		if (poolSize > 0) {
 			texels = texelPool[--poolSize];
 			texelPool[poolSize] = null;
 		} else {
-			@Pc(35) int cycle = 0;
-			@Pc(37) int selected = -1;
+			int cycle = 0;
+			int selected = -1;
 			for (int t = 0; t < textureCount; t++) {
 				if (activeTexels[t] != null && (textureCycle[t] < cycle || selected == -1)) {
 					cycle = textureCycle[t];
@@ -229,8 +196,8 @@ public class Draw3D extends Draw2D {
 		}
 
 		activeTexels[id] = texels;
-		@Pc(79) Pix8 texture = textures[id];
-		@Pc(83) int[] palette = texturePalette[id];
+		Pix8 texture = textures[id];
+		int[] palette = texturePalette[id];
 
 		if (lowMemory) {
 			textureTranslucent[id] = false;
@@ -271,31 +238,30 @@ public class Draw3D extends Draw2D {
 		return texels;
 	}
 
-	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(ZD)V")
-	public static void setBrightness(@OriginalArg(1) double brightness) {
-		@Pc(9) double randomBrightness = brightness + Math.random() * 0.03D - 0.015D;
-		@Pc(11) int offset = 0;
-		for (@Pc(13) int y = 0; y < 512; y++) {
-			@Pc(24) double hue = (double) (y / 8) / 64.0D + 0.0078125D;
-			@Pc(33) double saturation = (double) (y & 0x7) / 8.0D + 0.0625D;
-			for (@Pc(35) int x = 0; x < 128; x++) {
-				@Pc(42) double lightness = (double) x / 128.0D;
-				@Pc(44) double r = lightness;
-				@Pc(46) double g = lightness;
-				@Pc(48) double b = lightness;
+    public static void setBrightness( double brightness) {
+		double randomBrightness = brightness + Math.random() * 0.03D - 0.015D;
+		int offset = 0;
+		for ( int y = 0; y < 512; y++) {
+			double hue = (double) (y / 8) / 64.0D + 0.0078125D;
+			double saturation = (double) (y & 0x7) / 8.0D + 0.0625D;
+			for ( int x = 0; x < 128; x++) {
+				double lightness = (double) x / 128.0D;
+				double r = lightness;
+				double g = lightness;
+				double b = lightness;
 				if (saturation != 0.0D) {
-					@Pc(62) double q;
+					double q;
 					if (lightness < 0.5D) {
 						q = lightness * (saturation + 1.0D);
 					} else {
 						q = lightness + saturation - lightness * saturation;
 					}
-					@Pc(78) double p = lightness * 2.0D - q;
-					@Pc(82) double t = hue + 0.3333333333333333D;
+					double p = lightness * 2.0D - q;
+					double t = hue + 0.3333333333333333D;
 					if (t > 1.0D) {
 						t--;
 					}
-					@Pc(96) double d11 = hue - 0.3333333333333333D;
+					double d11 = hue - 0.3333333333333333D;
 					if (d11 < 0.0D) {
 						d11++;
 					}
@@ -327,61 +293,59 @@ public class Draw3D extends Draw2D {
 						b = p;
 					}
 				}
-				@Pc(259) int intR = (int) (r * 256.0D);
-				@Pc(264) int intG = (int) (g * 256.0D);
-				@Pc(269) int intB = (int) (b * 256.0D);
-				@Pc(279) int rgb = (intR << 16) + (intG << 8) + intB;
-				@Pc(283) int rgbAdjusted = setGamma(rgb, randomBrightness);
+				int intR = (int) (r * 256.0D);
+				int intG = (int) (g * 256.0D);
+				int intB = (int) (b * 256.0D);
+				int rgb = (intR << 16) + (intG << 8) + intB;
+				int rgbAdjusted = setGamma(rgb, randomBrightness);
 				palette[offset++] = rgbAdjusted;
 			}
 		}
-		for (@Pc(298) int id = 0; id < 50; id++) {
+		for ( int id = 0; id < 50; id++) {
 			if (textures[id] != null) {
-				@Pc(309) int[] palette = textures[id].palette;
+				int[] palette = textures[id].palette;
 				texturePalette[id] = new int[palette.length];
-				for (@Pc(317) int i = 0; i < palette.length; i++) {
+				for ( int i = 0; i < palette.length; i++) {
 					texturePalette[id][i] = setGamma(palette[i], randomBrightness);
 				}
 			}
 		}
 
-		for (@Pc(344) int id = 0; id < 50; id++) {
+		for ( int id = 0; id < 50; id++) {
 			pushTexture(id);
 		}
 	}
 
-	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(ID)I")
-	private static int setGamma(@OriginalArg(0) int rgb, @OriginalArg(1) double gamma) {
-		@Pc(6) double r = (double) (rgb >> 16) / 256.0D;
-		@Pc(15) double g = (double) (rgb >> 8 & 0xFF) / 256.0D;
-		@Pc(22) double b = (double) (rgb & 0xFF) / 256.0D;
-		@Pc(26) double powR = Math.pow(r, gamma);
-		@Pc(30) double powG = Math.pow(g, gamma);
-		@Pc(34) double powB = Math.pow(b, gamma);
-		@Pc(39) int intR = (int) (powR * 256.0D);
-		@Pc(44) int intG = (int) (powG * 256.0D);
-		@Pc(49) int intB = (int) (powB * 256.0D);
+    private static int setGamma( int rgb, double gamma) {
+		double r = (double) (rgb >> 16) / 256.0D;
+		double g = (double) (rgb >> 8 & 0xFF) / 256.0D;
+		double b = (double) (rgb & 0xFF) / 256.0D;
+		double powR = Math.pow(r, gamma);
+		double powG = Math.pow(g, gamma);
+		double powB = Math.pow(b, gamma);
+		int intR = (int) (powR * 256.0D);
+		int intG = (int) (powG * 256.0D);
+		int intB = (int) (powB * 256.0D);
 		return (intR << 16) + (intG << 8) + intB;
 	}
 
-	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(IIIIIIIII)V")
-	public static void fillGouraudTriangle(@OriginalArg(3) int xA, @OriginalArg(4) int xB, @OriginalArg(5) int xC, @OriginalArg(0) int yA, @OriginalArg(1) int yB, @OriginalArg(2) int yC, @OriginalArg(6) int colorA, @OriginalArg(7) int colorB, @OriginalArg(8) int colorC) {
-		@Pc(3) int xStepAB = 0;
-		@Pc(5) int colorStepAB = 0;
+    public static void fillGouraudTriangle( int xA, int xB, int xC, int yA, int yB, int yC, int colorA, int colorB, int colorC) {
+		int xStepAB = 0;
+		int colorStepAB = 0;
 		if (yB != yA) {
 			xStepAB = (xB - xA << 16) / (yB - yA);
 			colorStepAB = (colorB - colorA << 15) / (yB - yA);
 		}
 
-		@Pc(30) int xStepBC = 0;
-		@Pc(32) int colorStepBC = 0;
+		int xStepBC = 0;
+		int colorStepBC = 0;
 		if (yC != yB) {
 			xStepBC = (xC - xB << 16) / (yC - yB);
 			colorStepBC = (colorC - colorB << 15) / (yC - yB);
 		}
 
-		@Pc(57) int xStepAC = 0;
-		@Pc(59) int colorStepAC = 0;
+		int xStepAC = 0;
+		int colorStepAC = 0;
 		if (yC != yA) {
 			xStepAC = (xA - xC << 16) / (yA - yC);
 			colorStepAC = (colorA - colorC << 15) / (yA - yC);
@@ -850,8 +814,7 @@ public class Draw3D extends Draw2D {
 		}
 	}
 
-	@OriginalMember(owner = "client!gb", name = "a", descriptor = "([IIIIIIII)V")
-	private static void drawGouraudScanline(@OriginalArg(4) int x0, @OriginalArg(5) int x1, @OriginalArg(6) int color0, @OriginalArg(7) int color1, @OriginalArg(0) int[] dst, @OriginalArg(1) int offset, @OriginalArg(3) int length) {
+    private static void drawGouraudScanline( int x0, int x1, int color0, int color1, int[] dst, int offset, int length) {
 		int rgb;
 
 		if (jagged) {
@@ -972,17 +935,16 @@ public class Draw3D extends Draw2D {
 		}
 	}
 
-	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(IIIIIII)V")
-	public static void fillTriangle(@OriginalArg(3) int x0, @OriginalArg(4) int x1, @OriginalArg(5) int x2, @OriginalArg(0) int y0, @OriginalArg(1) int y1, @OriginalArg(2) int y2, @OriginalArg(6) int color) {
-		@Pc(3) int xStepAB = 0;
+    public static void fillTriangle( int x0, int x1, int x2, int y0, int y1, int y2, int color) {
+		int xStepAB = 0;
 		if (y1 != y0) {
 			xStepAB = (x1 - x0 << 16) / (y1 - y0);
 		}
-		@Pc(18) int xStepBC = 0;
+		int xStepBC = 0;
 		if (y2 != y1) {
 			xStepBC = (x2 - x1 << 16) / (y2 - y1);
 		}
-		@Pc(33) int xStepAC = 0;
+		int xStepAC = 0;
 		if (y2 != y0) {
 			xStepAC = (x0 - x2 << 16) / (y0 - y2);
 		}
@@ -1371,8 +1333,7 @@ public class Draw3D extends Draw2D {
 		}
 	}
 
-	@OriginalMember(owner = "client!gb", name = "a", descriptor = "([IIIIII)V")
-	private static void drawScanline(@OriginalArg(4) int x0, @OriginalArg(5) int x1, @OriginalArg(0) int[] dst, @OriginalArg(1) int offset, @OriginalArg(2) int rgb) {
+    private static void drawScanline( int x0, int x1, int[] dst, int offset, int rgb) {
 		if (clipX) {
 			if (x1 > boundX) {
 				x1 = boundX;
@@ -1387,7 +1348,7 @@ public class Draw3D extends Draw2D {
 		}
 
 		offset += x0;
-		@Pc(26) int length = x1 - x0 >> 2;
+		int length = x1 - x0 >> 2;
 
 		if (alpha == 0) {
 			while (true) {
@@ -1409,8 +1370,8 @@ public class Draw3D extends Draw2D {
 			}
 		}
 
-		@Pc(72) int alpha = Draw3D.alpha;
-		@Pc(76) int invAlpha = 256 - Draw3D.alpha;
+		int alpha = Draw3D.alpha;
+		int invAlpha = 256 - Draw3D.alpha;
 		rgb = ((rgb & 0xFF00FF) * invAlpha >> 8 & 0xFF00FF) + ((rgb & 0xFF00) * invAlpha >> 8 & 0xFF00);
 
 		while (true) {
@@ -1433,47 +1394,46 @@ public class Draw3D extends Draw2D {
 		}
 	}
 
-	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(IIIIIIIIIIIIIIIIIII)V")
-	public static void fillTexturedTriangle(@OriginalArg(3) int xA, @OriginalArg(4) int xB, @OriginalArg(5) int xC, @OriginalArg(0) int yA, @OriginalArg(1) int yB, @OriginalArg(2) int yC, @OriginalArg(6) int shadeA, @OriginalArg(7) int shadeB, @OriginalArg(8) int shadeC, @OriginalArg(9) int originX, @OriginalArg(12) int originY, @OriginalArg(15) int originZ, @OriginalArg(10) int txB, @OriginalArg(11) int txC, @OriginalArg(13) int tyB, @OriginalArg(14) int tyC, @OriginalArg(16) int tzB, @OriginalArg(17) int tzC, @OriginalArg(18) int texture) {
-		@Pc(4) int[] texels = getTexels(texture);
+    public static void fillTexturedTriangle( int xA, int xB, int xC, int yA, int yB, int yC, int shadeA, int shadeB, int shadeC, int originX, int originY, int originZ, int txB, int txC, int tyB, int tyC, int tzB, int tzC, int texture) {
+		int[] texels = getTexels(texture);
 		opaque = !textureTranslucent[texture];
 
-		@Pc(16) int verticalX = originX - txB;
-		@Pc(20) int verticalY = originY - tyB;
-		@Pc(24) int verticalZ = originZ - tzB;
+		int verticalX = originX - txB;
+		int verticalY = originY - tyB;
+		int verticalZ = originZ - tzB;
 
-		@Pc(28) int horizontalX = txC - originX;
-		@Pc(32) int horizontalY = tyC - originY;
-		@Pc(36) int horizontalZ = tzC - originZ;
+		int horizontalX = txC - originX;
+		int horizontalY = tyC - originY;
+		int horizontalZ = tzC - originZ;
 
-		@Pc(46) int u = horizontalX * originY - horizontalY * originX << 14;
-		@Pc(56) int uStride = horizontalY * originZ - horizontalZ * originY << 8;
-		@Pc(66) int uStepVertical = horizontalZ * originX - horizontalX * originZ << 5;
+		int u = horizontalX * originY - horizontalY * originX << 14;
+		int uStride = horizontalY * originZ - horizontalZ * originY << 8;
+		int uStepVertical = horizontalZ * originX - horizontalX * originZ << 5;
 
-		@Pc(76) int v = verticalX * originY - verticalY * originX << 14;
-		@Pc(86) int vStride = verticalY * originZ - verticalZ * originY << 8;
-		@Pc(96) int vStepVertical = verticalZ * originX - verticalX * originZ << 5;
+		int v = verticalX * originY - verticalY * originX << 14;
+		int vStride = verticalY * originZ - verticalZ * originY << 8;
+		int vStepVertical = verticalZ * originX - verticalX * originZ << 5;
 
-		@Pc(106) int w = verticalY * horizontalX - verticalX * horizontalY << 14;
-		@Pc(116) int wStride = verticalZ * horizontalY - verticalY * horizontalZ << 8;
-		@Pc(126) int wStepVertical = verticalX * horizontalZ - verticalZ * horizontalX << 5;
+		int w = verticalY * horizontalX - verticalX * horizontalY << 14;
+		int wStride = verticalZ * horizontalY - verticalY * horizontalZ << 8;
+		int wStepVertical = verticalX * horizontalZ - verticalZ * horizontalX << 5;
 
-		@Pc(128) int xStepAB = 0;
-		@Pc(130) int shadeStepAB = 0;
+		int xStepAB = 0;
+		int shadeStepAB = 0;
 		if (yB != yA) {
 			xStepAB = (xB - xA << 16) / (yB - yA);
 			shadeStepAB = (shadeB - shadeA << 16) / (yB - yA);
 		}
 
-		@Pc(155) int xStepBC = 0;
-		@Pc(157) int shadeStepBC = 0;
+		int xStepBC = 0;
+		int shadeStepBC = 0;
 		if (yC != yB) {
 			xStepBC = (xC - xB << 16) / (yC - yB);
 			shadeStepBC = (shadeC - shadeB << 16) / (yC - yB);
 		}
 
-		@Pc(182) int xStepAC = 0;
-		@Pc(184) int shadeStepAC = 0;
+		int xStepAC = 0;
+		int shadeStepAC = 0;
 		if (yC != yA) {
 			xStepAC = (xA - xC << 16) / (yA - yC);
 			shadeStepAC = (shadeA - shadeC << 16) / (yA - yC);
@@ -2040,14 +2000,13 @@ public class Draw3D extends Draw2D {
 		}
 	}
 
-	@OriginalMember(owner = "client!gb", name = "a", descriptor = "([I[IIIIIIIIIIIIII)V")
-	private static void drawTexturedScanline(@OriginalArg(5) int xA, @OriginalArg(6) int xB, @OriginalArg(0) int[] dst, @OriginalArg(4) int offset, @OriginalArg(1) int[] texels, @OriginalArg(2) int curU, @OriginalArg(3) int curV, @OriginalArg(9) int u, @OriginalArg(10) int v, @OriginalArg(11) int w, @OriginalArg(12) int uStride, @OriginalArg(13) int vStride, @OriginalArg(14) int wStride, @OriginalArg(7) int shadeA, @OriginalArg(8) int shadeB) {
+    private static void drawTexturedScanline( int xA, int xB, int[] dst, int offset, int[] texels, int curU, int curV, int u, int v, int w, int uStride, int vStride, int wStride, int shadeA, int shadeB) {
 		if (xA >= xB) {
 			return;
 		}
 
-		@Pc(15) int shadeStrides;
-		@Pc(40) int strides;
+		int shadeStrides;
+		int strides;
 		if (clipX) {
 			shadeStrides = (shadeB - shadeA) / (xB - xA);
 
@@ -2081,13 +2040,13 @@ public class Draw3D extends Draw2D {
 
 		offset += xA;
 
-		@Pc(89) int nextU;
-		@Pc(91) int nextV;
-		@Pc(123) int curW;
-		@Pc(95) int dx;
-		@Pc(188) int stepU;
-		@Pc(194) int stepV;
-		@Pc(206) int shadeShift;
+		int nextU;
+		int nextV;
+		int curW;
+		int dx;
+		int stepU;
+		int stepV;
+		int shadeShift;
 		if (lowMemory) {
 			nextU = 0;
 			nextV = 0;
@@ -2175,7 +2134,7 @@ public class Draw3D extends Draw2D {
 				}
 			} else {
 				while (strides-- > 0) {
-					@Pc(507) int rgb;
+					int rgb;
 					if ((rgb = texels[(curV & 0xFC0) + (curU >> 6)] >>> shadeShift) != 0) {
 						dst[offset] = rgb;
 					}
@@ -2245,7 +2204,7 @@ public class Draw3D extends Draw2D {
 				}
 				strides = xB - xA & 0x7;
 				while (strides-- > 0) {
-					@Pc(796) int rgb;
+					int rgb;
 					if ((rgb = texels[(curV & 0xFC0) + (curU >> 6)] >>> shadeShift) != 0) {
 						dst[offset] = rgb;
 					}
@@ -2344,7 +2303,7 @@ public class Draw3D extends Draw2D {
 		}
 
 		while (strides-- > 0) {
-			@Pc(1230) int rgb;
+			int rgb;
 			if ((rgb = texels[(curV & 0x3F80) + (curU >> 7)] >>> shadeShift) != 0) {
 				dst[offset] = rgb;
 			}
@@ -2414,7 +2373,7 @@ public class Draw3D extends Draw2D {
 		}
 		strides = xB - xA & 0x7;
 		while (strides-- > 0) {
-			@Pc(1517) int rgb;
+			int rgb;
 			if ((rgb = texels[(curV & 0x3F80) + (curU >> 7)] >>> shadeShift) != 0) {
 				dst[offset] = rgb;
 			}

@@ -6,38 +6,29 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("client!yb")
 public class Wave {
 
-	@OriginalMember(owner = "client!yb", name = "c", descriptor = "[Lclient!yb;")
-	private static final Wave[] tracks = new Wave[1000];
+    private static final Wave[] tracks = new Wave[1000];
 
-	@OriginalMember(owner = "client!yb", name = "d", descriptor = "[I")
-	public static final int[] delays = new int[1000];
+    public static final int[] delays = new int[1000];
 
-	@OriginalMember(owner = "client!yb", name = "e", descriptor = "[B")
-	public static byte[] waveBytes;
+    public static byte[] waveBytes;
 
-	@OriginalMember(owner = "client!yb", name = "f", descriptor = "Lclient!kb;")
-	public static Packet waveBuffer;
+    public static Packet waveBuffer;
 
-	@OriginalMember(owner = "client!yb", name = "g", descriptor = "[Lclient!zb;")
-	private final SoundTone[] tones = new SoundTone[10];
+    private final SoundTone[] tones = new SoundTone[10];
 
-	@OriginalMember(owner = "client!yb", name = "h", descriptor = "I")
-	private int loopBegin;
+    private int loopBegin;
 
-	@OriginalMember(owner = "client!yb", name = "i", descriptor = "I")
-	private int loopEnd;
+    private int loopEnd;
 
-	@OriginalMember(owner = "client!yb", name = "a", descriptor = "(Lclient!kb;I)V")
-	public static void unpack(@OriginalArg(0) Packet dat) {
+    public static void unpack( Packet dat) {
 		waveBytes = new byte[441000];
 		waveBuffer = new Packet(waveBytes);
 		SoundTone.init();
 
 		while (true) {
-			@Pc(16) int id = dat.g2();
+			int id = dat.g2();
 			if (id == 65535) {
 				return;
 			}
@@ -48,19 +39,17 @@ public class Wave {
 		}
 	}
 
-	@OriginalMember(owner = "client!yb", name = "a", descriptor = "(BII)Lclient!kb;")
-	public static Packet generate(@OriginalArg(2) int id, @OriginalArg(1) int loopCount) {
+    public static Packet generate( int id, int loopCount) {
 		if (tracks[id] == null) {
 			return null;
 		}
 
-		@Pc(12) Wave track = tracks[id];
+		Wave track = tracks[id];
 		return track.getWave(loopCount);
 	}
 
-	@OriginalMember(owner = "client!yb", name = "a", descriptor = "(ZLclient!kb;)V")
-	public void read(@OriginalArg(1) Packet dat) {
-		for (@Pc(1) int tone = 0; tone < 10; tone++) {
+    public void read( Packet dat) {
+		for ( int tone = 0; tone < 10; tone++) {
 			if (dat.g1() != 0) {
 				dat.pos--;
 				this.tones[tone] = new SoundTone();
@@ -72,10 +61,9 @@ public class Wave {
 		this.loopEnd = dat.g2();
 	}
 
-	@OriginalMember(owner = "client!yb", name = "a", descriptor = "(B)I")
-	public int trim() {
-		@Pc(3) int start = 9999999;
-		for (@Pc(5) int tone = 0; tone < 10; tone++) {
+    public int trim() {
+		int start = 9999999;
+		for ( int tone = 0; tone < 10; tone++) {
 			if (this.tones[tone] != null && this.tones[tone].start / 20 < start) {
 				start = this.tones[tone].start / 20;
 			}
@@ -89,7 +77,7 @@ public class Wave {
 			return 0;
 		}
 
-		for (@Pc(67) int tone = 0; tone < 10; tone++) {
+		for ( int tone = 0; tone < 10; tone++) {
 			if (this.tones[tone] != null) {
 				this.tones[tone].start -= start * 20;
 			}
@@ -103,9 +91,8 @@ public class Wave {
 		return start;
 	}
 
-	@OriginalMember(owner = "client!yb", name = "a", descriptor = "(ZI)Lclient!kb;")
-	public Packet getWave(@OriginalArg(1) int loopCount) {
-		@Pc(3) int length = this.generate(loopCount);
+    public Packet getWave( int loopCount) {
+		int length = this.generate(loopCount);
 		waveBuffer.pos = 0;
 		waveBuffer.p4(0x52494646); // "RIFF" ChunkID
 		waveBuffer.ip4(length + 36); // ChunkSize
@@ -124,10 +111,9 @@ public class Wave {
 		return waveBuffer;
 	}
 
-	@OriginalMember(owner = "client!yb", name = "a", descriptor = "(I)I")
-	private int generate(@OriginalArg(0) int loopCount) {
-		@Pc(3) int duration = 0;
-		for (@Pc(5) int tone = 0; tone < 10; tone++) {
+    private int generate( int loopCount) {
+		int duration = 0;
+		for ( int tone = 0; tone < 10; tone++) {
 			if (this.tones[tone] != null && this.tones[tone].length + this.tones[tone].start > duration) {
 				duration = this.tones[tone].length + this.tones[tone].start;
 			}
@@ -137,23 +123,23 @@ public class Wave {
 			return 0;
 		}
 
-		@Pc(51) int sampleCount = duration * 22050 / 1000;
-		@Pc(58) int loopStart = this.loopBegin * 22050 / 1000;
-		@Pc(65) int loopStop = this.loopEnd * 22050 / 1000;
+		int sampleCount = duration * 22050 / 1000;
+		int loopStart = this.loopBegin * 22050 / 1000;
+		int loopStop = this.loopEnd * 22050 / 1000;
 		if (loopStart < 0 || loopStop < 0 || loopStop > sampleCount || loopStart >= loopStop) {
 			loopCount = 0;
 		}
 
-		@Pc(90) int totalSampleCount = sampleCount + (loopStop - loopStart) * (loopCount - 1);
-		for (@Pc(92) int sample = 44; sample < totalSampleCount + 44; sample++) {
+		int totalSampleCount = sampleCount + (loopStop - loopStart) * (loopCount - 1);
+		for ( int sample = 44; sample < totalSampleCount + 44; sample++) {
 			waveBytes[sample] = -128;
 		}
 
-		for (@Pc(106) int tone = 0; tone < 10; tone++) {
+		for ( int tone = 0; tone < 10; tone++) {
 			if (this.tones[tone] != null) {
 				int toneSampleCount = this.tones[tone].length * 22050 / 1000;
 				int start = this.tones[tone].start * 22050 / 1000;
-				@Pc(145) int[] samples = this.tones[tone].generate(toneSampleCount, this.tones[tone].length);
+				int[] samples = this.tones[tone].generate(toneSampleCount, this.tones[tone].length);
 
 				for (int sample = 0; sample < toneSampleCount; sample++) {
 					waveBytes[sample + start + 44] += (byte) (samples[sample] >> 8);
@@ -172,7 +158,7 @@ public class Wave {
 				waveBytes[sample + endOffset] = waveBytes[sample];
 			}
 
-			for (@Pc(205) int loop = 1; loop < loopCount; loop++) {
+			for ( int loop = 1; loop < loopCount; loop++) {
 				int offset = (loopStop - loopStart) * loop;
 
 				for (int sample = loopStart; sample < loopStop; sample++) {
@@ -186,82 +172,57 @@ public class Wave {
 		return totalSampleCount;
 	}
 
-	@OriginalClass("client!zb")
 	public static final class SoundTone {
 
-		@OriginalMember(owner = "client!zb", name = "c", descriptor = "Lclient!xb;")
-		private SoundEnvelope frequencyBase;
+        private SoundEnvelope frequencyBase;
 
-		@OriginalMember(owner = "client!zb", name = "d", descriptor = "Lclient!xb;")
-		private SoundEnvelope amplitudeBase;
+        private SoundEnvelope amplitudeBase;
 
-		@OriginalMember(owner = "client!zb", name = "e", descriptor = "Lclient!xb;")
-		private SoundEnvelope frequencyModRate;
+        private SoundEnvelope frequencyModRate;
 
-		@OriginalMember(owner = "client!zb", name = "f", descriptor = "Lclient!xb;")
-		private SoundEnvelope frequencyModRange;
+        private SoundEnvelope frequencyModRange;
 
-		@OriginalMember(owner = "client!zb", name = "g", descriptor = "Lclient!xb;")
-		private SoundEnvelope amplitudeModRate;
+        private SoundEnvelope amplitudeModRate;
 
-		@OriginalMember(owner = "client!zb", name = "h", descriptor = "Lclient!xb;")
-		private SoundEnvelope amplitudeModRange;
+        private SoundEnvelope amplitudeModRange;
 
-		@OriginalMember(owner = "client!zb", name = "i", descriptor = "Lclient!xb;")
-		private SoundEnvelope release;
+        private SoundEnvelope release;
 
-		@OriginalMember(owner = "client!zb", name = "j", descriptor = "Lclient!xb;")
-		private SoundEnvelope attack;
+        private SoundEnvelope attack;
 
-		@OriginalMember(owner = "client!zb", name = "k", descriptor = "[I")
-		private final int[] harmonicVolume = new int[5];
+        private final int[] harmonicVolume = new int[5];
 
-		@OriginalMember(owner = "client!zb", name = "l", descriptor = "[I")
-		private final int[] harmonicSemitone = new int[5];
+        private final int[] harmonicSemitone = new int[5];
 
-		@OriginalMember(owner = "client!zb", name = "m", descriptor = "[I")
-		private final int[] harmonicDelay = new int[5];
+        private final int[] harmonicDelay = new int[5];
 
-		@OriginalMember(owner = "client!zb", name = "n", descriptor = "I")
-		private int reverbDelay;
+        private int reverbDelay;
 
-		@OriginalMember(owner = "client!zb", name = "o", descriptor = "I")
-		private int reverbVolume = 100;
+        private int reverbVolume = 100;
 
-		@OriginalMember(owner = "client!zb", name = "p", descriptor = "I")
-		public int length = 500;
+        public int length = 500;
 
-		@OriginalMember(owner = "client!zb", name = "q", descriptor = "I")
-		public int start;
+        public int start;
 
-		@OriginalMember(owner = "client!zb", name = "r", descriptor = "[I")
-		public static int[] buffer;
+        public static int[] buffer;
 
-		@OriginalMember(owner = "client!zb", name = "s", descriptor = "[I")
-		public static int[] noise;
+        public static int[] noise;
 
-		@OriginalMember(owner = "client!zb", name = "t", descriptor = "[I")
-		public static int[] sin;
+        public static int[] sin;
 
-		@OriginalMember(owner = "client!zb", name = "u", descriptor = "[I")
-		public static final int[] tmpPhases = new int[5];
+        public static final int[] tmpPhases = new int[5];
 
-		@OriginalMember(owner = "client!zb", name = "v", descriptor = "[I")
-		public static final int[] tmpDelays = new int[5];
+        public static final int[] tmpDelays = new int[5];
 
-		@OriginalMember(owner = "client!zb", name = "w", descriptor = "[I")
-		public static final int[] tmpVolumes = new int[5];
+        public static final int[] tmpVolumes = new int[5];
 
-		@OriginalMember(owner = "client!zb", name = "x", descriptor = "[I")
-		public static final int[] tmpSemitones = new int[5];
+        public static final int[] tmpSemitones = new int[5];
 
-		@OriginalMember(owner = "client!zb", name = "y", descriptor = "[I")
-		public static final int[] tmpStarts = new int[5];
+        public static final int[] tmpStarts = new int[5];
 
-		@OriginalMember(owner = "client!zb", name = "a", descriptor = "()V")
-		public static void init() {
+        public static void init() {
 			noise = new int[32768];
-			for (@Pc(6) int i = 0; i < 32768; i++) {
+			for ( int i = 0; i < 32768; i++) {
 				if (Math.random() > 0.5D) {
 					noise[i] = 1;
 				} else {
@@ -270,16 +231,15 @@ public class Wave {
 			}
 
 			sin = new int[32768];
-			for (@Pc(31) int i = 0; i < 32768; i++) {
+			for ( int i = 0; i < 32768; i++) {
 				sin[i] = (int) (Math.sin((double) i / 5215.1903D) * 16384.0D);
 			}
 
 			buffer = new int[220500]; // 10s * 22050 KHz
 		}
 
-		@OriginalMember(owner = "client!zb", name = "a", descriptor = "(II)[I")
-		public int[] generate(@OriginalArg(0) int sampleCount, @OriginalArg(1) int length) {
-			for (@Pc(3) int sample = 0; sample < sampleCount; sample++) {
+        public int[] generate( int sampleCount, int length) {
+			for ( int sample = 0; sample < sampleCount; sample++) {
 				buffer[sample] = 0;
 			}
 
@@ -287,14 +247,14 @@ public class Wave {
 				return buffer;
 			}
 
-			@Pc(26) double samplesPerStep = (double) sampleCount / ((double) length + 0.0D);
+			double samplesPerStep = (double) sampleCount / ((double) length + 0.0D);
 
 			this.frequencyBase.reset();
 			this.amplitudeBase.reset();
 
-			@Pc(36) int frequencyStart = 0;
-			@Pc(38) int frequencyDuration = 0;
-			@Pc(40) int frequencyPhase = 0;
+			int frequencyStart = 0;
+			int frequencyDuration = 0;
+			int frequencyPhase = 0;
 
 			if (this.frequencyModRate != null) {
 				this.frequencyModRate.reset();
@@ -303,9 +263,9 @@ public class Wave {
 				frequencyDuration = (int) ((double) this.frequencyModRate.start * 32.768D / samplesPerStep);
 			}
 
-			@Pc(77) int amplitudeStart = 0;
-			@Pc(79) int amplitudeDuration = 0;
-			@Pc(81) int amplitudePhase = 0;
+			int amplitudeStart = 0;
+			int amplitudeDuration = 0;
+			int amplitudePhase = 0;
 			if (this.amplitudeModRate != null) {
 				this.amplitudeModRate.reset();
 				this.amplitudeModRange.reset();
@@ -313,7 +273,7 @@ public class Wave {
 				amplitudeDuration = (int) ((double) this.amplitudeModRate.start * 32.768D / samplesPerStep);
 			}
 
-			for (@Pc(118) int harmonic = 0; harmonic < 5; harmonic++) {
+			for ( int harmonic = 0; harmonic < 5; harmonic++) {
 				if (this.harmonicVolume[harmonic] != 0) {
 					tmpPhases[harmonic] = 0;
 					tmpDelays[harmonic] = (int) ((double) this.harmonicDelay[harmonic] * samplesPerStep);
@@ -323,7 +283,7 @@ public class Wave {
 				}
 			}
 
-			for (@Pc(193) int sample = 0; sample < sampleCount; sample++) {
+			for ( int sample = 0; sample < sampleCount; sample++) {
 				int frequency = this.frequencyBase.evaluate(sampleCount);
 				int amplitude = this.amplitudeBase.evaluate(sampleCount);
 
@@ -358,11 +318,11 @@ public class Wave {
 				this.attack.reset();
 
 				int counter = 0;
-				@Pc(369) boolean muted = true;
+				boolean muted = true;
 
 				for (int sample = 0; sample < sampleCount; sample++) {
-					@Pc(379) int releaseValue = this.release.evaluate(sampleCount);
-					@Pc(385) int attackValue = this.attack.evaluate(sampleCount);
+					int releaseValue = this.release.evaluate(sampleCount);
+					int attackValue = this.attack.evaluate(sampleCount);
 
 					int threshold;
 					if (muted) {
@@ -404,8 +364,7 @@ public class Wave {
 			return buffer;
 		}
 
-		@OriginalMember(owner = "client!zb", name = "a", descriptor = "(IIII)I")
-		private int generate(@OriginalArg(1) int amplitude, @OriginalArg(2) int phase, @OriginalArg(3) int form) {
+        private int generate( int amplitude, int phase, int form) {
 			if (form == 1) {
 				return (phase & 0x7FFF) < 16384 ? amplitude : -amplitude;
 			} else if (form == 2) {
@@ -419,8 +378,7 @@ public class Wave {
 			}
 		}
 
-		@OriginalMember(owner = "client!zb", name = "a", descriptor = "(ZLclient!kb;)V")
-		public void read(@OriginalArg(1) Packet dat) {
+        public void read( Packet dat) {
 			this.frequencyBase = new SoundEnvelope();
 			this.frequencyBase.read(dat);
 
@@ -457,8 +415,8 @@ public class Wave {
 				this.attack.read(dat);
 			}
 
-			for (@Pc(122) int harmonic = 0; harmonic < 10; harmonic++) {
-				@Pc(132) int volume = dat.gsmarts();
+			for ( int harmonic = 0; harmonic < 10; harmonic++) {
+				int volume = dat.gsmarts();
 				if (volume == 0) {
 					break;
 				}
@@ -475,44 +433,31 @@ public class Wave {
 		}
 	}
 
-	@OriginalClass("client!xb")
 	public static final class SoundEnvelope {
 
-		@OriginalMember(owner = "client!xb", name = "a", descriptor = "I")
-		private int length;
+        private int length;
 
-		@OriginalMember(owner = "client!xb", name = "b", descriptor = "[I")
-		private int[] shapeDelta;
+        private int[] shapeDelta;
 
-		@OriginalMember(owner = "client!xb", name = "c", descriptor = "[I")
-		private int[] shapePeak;
+        private int[] shapePeak;
 
-		@OriginalMember(owner = "client!xb", name = "d", descriptor = "I")
-		public int start;
+        public int start;
 
-		@OriginalMember(owner = "client!xb", name = "e", descriptor = "I")
-		public int end;
+        public int end;
 
-		@OriginalMember(owner = "client!xb", name = "f", descriptor = "I")
-		public int form;
+        public int form;
 
-		@OriginalMember(owner = "client!xb", name = "g", descriptor = "I")
-		private int threshold;
+        private int threshold;
 
-		@OriginalMember(owner = "client!xb", name = "h", descriptor = "I")
-		private int position;
+        private int position;
 
-		@OriginalMember(owner = "client!xb", name = "i", descriptor = "I")
-		private int delta;
+        private int delta;
 
-		@OriginalMember(owner = "client!xb", name = "j", descriptor = "I")
-		private int amplitude;
+        private int amplitude;
 
-		@OriginalMember(owner = "client!xb", name = "k", descriptor = "I")
-		private int ticks;
+        private int ticks;
 
-		@OriginalMember(owner = "client!xb", name = "a", descriptor = "(ZLclient!kb;)V")
-		public void read(@OriginalArg(1) Packet dat) {
+        public void read( Packet dat) {
 			this.form = dat.g1();
 			this.start = dat.g4();
 			this.end = dat.g4();
@@ -520,14 +465,13 @@ public class Wave {
 			this.shapeDelta = new int[this.length];
 			this.shapePeak = new int[this.length];
 
-			for (@Pc(31) int i = 0; i < this.length; i++) {
+			for ( int i = 0; i < this.length; i++) {
 				this.shapeDelta[i] = dat.g2();
 				this.shapePeak[i] = dat.g2();
 			}
 		}
 
-		@OriginalMember(owner = "client!xb", name = "a", descriptor = "(I)V")
-		public void reset() {
+        public void reset() {
 			this.threshold = 0;
 			this.position = 0;
 			this.delta = 0;
@@ -535,8 +479,7 @@ public class Wave {
 			this.ticks = 0;
 		}
 
-		@OriginalMember(owner = "client!xb", name = "a", descriptor = "(ZI)I")
-		public int evaluate(@OriginalArg(1) int delta) {
+        public int evaluate( int delta) {
 			if (this.ticks >= this.threshold) {
 				this.amplitude = this.shapePeak[this.position++] << 15;
 

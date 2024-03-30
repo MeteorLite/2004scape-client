@@ -13,16 +13,13 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("client!z")
 public class PlayerEntity extends PathingEntity {
 
-	@OriginalMember(owner = "client!client", name = "qh", descriptor = "[I")
-	public static final int[] DESIGN_HAIR_COLOR = new int[] {
+    public static final int[] DESIGN_HAIR_COLOR = new int[] {
 		9104, 10275, 7595, 3610, 7975, 8526, 918, 38802, 24466, 10145, 58654, 5027, 1457, 16565, 34991, 25486
 	};
 
-	@OriginalMember(owner = "client!client", name = "Oe", descriptor = "[[I")
-	public static final int[][] DESIGN_BODY_COLOR = new int[][] {
+    public static final int[][] DESIGN_BODY_COLOR = new int[][] {
 		{ 6798, 107, 10283, 16, 4797, 7744, 5799, 4634, 33697, 22433, 2983, 54193 },
 		{ 8741, 12, 64030, 43162, 7735, 8404, 1701, 38430, 24094, 10153, 56621, 4783, 1341, 16578, 35003, 25239 },
 		{ 25238, 8742, 12, 64030, 43162, 7735, 8404, 1701, 38430, 24094, 10153, 56621, 4783, 1341, 16578, 35003 },
@@ -30,77 +27,55 @@ public class PlayerEntity extends PathingEntity {
 		{ 4550, 4537, 5681, 5673, 5790, 6806, 8076, 4574 }
 	};
 
-	@OriginalMember(owner = "client!z", name = "ib", descriptor = "Ljava/lang/String;")
-	public String name;
+    public String name;
 
-	@OriginalMember(owner = "client!z", name = "jb", descriptor = "Z")
-	private boolean visible = false;
+    private boolean visible = false;
 
-	@OriginalMember(owner = "client!z", name = "kb", descriptor = "I")
-	private int gender;
+    private int gender;
 
-	@OriginalMember(owner = "client!z", name = "lb", descriptor = "I")
-	public int headicons;
+    public int headicons;
 
-	@OriginalMember(owner = "client!z", name = "mb", descriptor = "[I")
-	private final int[] appearances = new int[12];
+    private final int[] appearances = new int[12];
 
-	@OriginalMember(owner = "client!z", name = "nb", descriptor = "[I")
-	private final int[] colors = new int[5];
+    private final int[] colors = new int[5];
 
-	@OriginalMember(owner = "client!z", name = "ob", descriptor = "I")
-	public int combatLevel;
+    public int combatLevel;
 
-	@OriginalMember(owner = "client!z", name = "pb", descriptor = "J")
-	private long appearanceHashcode;
+    private long appearanceHashcode;
 
-	@OriginalMember(owner = "client!z", name = "qb", descriptor = "I")
-	public int y;
+    public int y;
 
-	@OriginalMember(owner = "client!z", name = "rb", descriptor = "I")
-	public int locStartCycle;
+    public int locStartCycle;
 
-	@OriginalMember(owner = "client!z", name = "sb", descriptor = "I")
-	public int locStopCycle;
+    public int locStopCycle;
 
-	@OriginalMember(owner = "client!z", name = "tb", descriptor = "I")
-	public int locOffsetX;
+    public int locOffsetX;
 
-	@OriginalMember(owner = "client!z", name = "ub", descriptor = "I")
-	public int locOffsetY;
+    public int locOffsetY;
 
-	@OriginalMember(owner = "client!z", name = "vb", descriptor = "I")
-	public int locOffsetZ;
+    public int locOffsetZ;
 
-	@OriginalMember(owner = "client!z", name = "wb", descriptor = "Lclient!eb;")
-	public Model locModel;
+    public Model locModel;
 
-	@OriginalMember(owner = "client!z", name = "xb", descriptor = "I")
-	public int minTileX;
+    public int minTileX;
 
-	@OriginalMember(owner = "client!z", name = "yb", descriptor = "I")
-	public int minTileZ;
+    public int minTileZ;
 
-	@OriginalMember(owner = "client!z", name = "zb", descriptor = "I")
-	public int maxTileX;
+    public int maxTileX;
 
-	@OriginalMember(owner = "client!z", name = "Ab", descriptor = "I")
-	public int maxTileZ;
+    public int maxTileZ;
 
-	@OriginalMember(owner = "client!z", name = "Bb", descriptor = "Z")
-	public boolean lowMemory = false;
+    public boolean lowMemory = false;
 
-	@OriginalMember(owner = "client!z", name = "Cb", descriptor = "Lclient!s;")
-	public static LruCache modelCache = new LruCache(200);
+    public static LruCache modelCache = new LruCache(200);
 
-	@OriginalMember(owner = "client!z", name = "a", descriptor = "(ZLclient!kb;)V")
-	public void read(@OriginalArg(1) Packet buf) {
+    public void read( Packet buf) {
 		buf.pos = 0;
 
 		this.gender = buf.g1();
 		this.headicons = buf.g1();
 
-		for (@Pc(14) int part = 0; part < 12; part++) {
+		for ( int part = 0; part < 12; part++) {
 			int msb = buf.g1();
 			if (msb == 0) {
 				this.appearances[part] = 0;
@@ -175,7 +150,7 @@ public class PlayerEntity extends PathingEntity {
 			this.appearanceHashcode += this.appearances[1] - 256 >> 8;
 		}
 
-		for (@Pc(243) int part = 0; part < 5; part++) {
+		for ( int part = 0; part < 5; part++) {
 			this.appearanceHashcode <<= 0x3;
 			this.appearanceHashcode += this.colors[part];
 		}
@@ -184,14 +159,13 @@ public class PlayerEntity extends PathingEntity {
 		this.appearanceHashcode += this.gender;
 	}
 
-	@OriginalMember(owner = "client!z", name = "a", descriptor = "(Z)Lclient!eb;")
-	@Override
-	public Model draw(int loopCycle) {
+    @Override
+    public Model draw(int loopCycle) {
 		if (!this.visible) {
 			return null;
 		}
 
-		@Pc(10) Model model = this.getSequencedModel();
+		Model model = this.getSequencedModel();
 		super.height = model.maxY;
 		model.pickable = true;
 
@@ -200,8 +174,8 @@ public class PlayerEntity extends PathingEntity {
 		}
 
 		if (super.spotanimId != -1 && super.spotanimFrame != -1) {
-			@Pc(35) SpotAnimType spotanim = SpotAnimType.instances[super.spotanimId];
-			@Pc(51) Model model2 = new Model(spotanim.getModel(), true, !spotanim.disposeAlpha, false);
+			SpotAnimType spotanim = SpotAnimType.instances[super.spotanimId];
+			Model model2 = new Model(spotanim.getModel(), true, !spotanim.disposeAlpha, false);
 
 			model2.translate(-super.spotanimOffset, 0, 0);
 			model2.createLabelReferences();
@@ -213,7 +187,7 @@ public class PlayerEntity extends PathingEntity {
 			}
 			model2.calculateNormals(spotanim.ambient + 64, spotanim.contrast + 850, -30, -50, -30, true);
 
-			@Pc(119) Model[] models = new Model[] { model, model2 };
+			Model[] models = new Model[] { model, model2 };
 			model = new Model(models, 2, true);
 		}
 
@@ -223,7 +197,7 @@ public class PlayerEntity extends PathingEntity {
 			}
 
 			if (loopCycle >= this.locStartCycle && loopCycle < this.locStopCycle) {
-				@Pc(148) Model loc = this.locModel;
+				Model loc = this.locModel;
 				loc.translate(this.locOffsetY - this.y, this.locOffsetX - super.x, this.locOffsetZ - super.z);
 				if (super.dstYaw == 512) {
 					loc.rotateY90();
@@ -236,7 +210,7 @@ public class PlayerEntity extends PathingEntity {
 					loc.rotateY90();
 				}
 
-				@Pc(211) Model[] models = new Model[] { model, loc };
+				Model[] models = new Model[] { model, loc };
 				model = new Model(models, 2, true);
 				if (super.dstYaw == 512) {
 					loc.rotateY90();
@@ -257,16 +231,15 @@ public class PlayerEntity extends PathingEntity {
 		return model;
 	}
 
-	@OriginalMember(owner = "client!z", name = "c", descriptor = "(Z)Lclient!eb;")
-	private Model getSequencedModel() {
-		@Pc(4) long hashCode = this.appearanceHashcode;
-		@Pc(6) int primaryTransformId = -1;
-		@Pc(8) int secondaryTransformId = -1;
-		@Pc(10) int rightHandValue = -1;
-		@Pc(12) int leftHandValue = -1;
+    private Model getSequencedModel() {
+		long hashCode = this.appearanceHashcode;
+		int primaryTransformId = -1;
+		int secondaryTransformId = -1;
+		int rightHandValue = -1;
+		int leftHandValue = -1;
 
 		if (super.primarySeqId >= 0 && super.primarySeqDelay == 0) {
-			@Pc(23) SeqType seq = SeqType.instances[super.primarySeqId];
+			SeqType seq = SeqType.instances[super.primarySeqId];
 
 			primaryTransformId = seq.frames[super.primarySeqFrame];
 			if (super.secondarySeqId >= 0 && super.secondarySeqId != super.seqStandId) {
@@ -286,12 +259,12 @@ public class PlayerEntity extends PathingEntity {
 			primaryTransformId = SeqType.instances[super.secondarySeqId].frames[super.secondarySeqFrame];
 		}
 
-		@Pc(101) Model model = (Model) modelCache.get(hashCode);
+		Model model = (Model) modelCache.get(hashCode);
 		if (model == null) {
-			@Pc(106) Model[] models = new Model[12];
-			@Pc(108) int modelCount = 0;
+			Model[] models = new Model[12];
+			int modelCount = 0;
 
-			for (@Pc(110) int part = 0; part < 12; part++) {
+			for ( int part = 0; part < 12; part++) {
 				int value = this.appearances[part];
 
 				if (leftHandValue >= 0 && part == 3) {
@@ -307,8 +280,8 @@ public class PlayerEntity extends PathingEntity {
 				}
 
 				if (value >= 512) {
-					@Pc(155) ObjType obj = ObjType.get(value - 512);
-					@Pc(161) Model wornModel = obj.getWornModel(this.gender);
+					ObjType obj = ObjType.get(value - 512);
+					Model wornModel = obj.getWornModel(this.gender);
 
 					if (wornModel != null) {
 						models[modelCount++] = wornModel;
@@ -336,7 +309,7 @@ public class PlayerEntity extends PathingEntity {
 			return model;
 		}
 
-		@Pc(249) Model tmp = new Model(model, true);
+		Model tmp = new Model(model, true);
 		if (primaryTransformId != -1 && secondaryTransformId != -1) {
 			tmp.applyTransforms(primaryTransformId, secondaryTransformId, SeqType.instances[super.primarySeqId].labelGroups);
 		} else if (primaryTransformId != -1) {
@@ -349,23 +322,22 @@ public class PlayerEntity extends PathingEntity {
 		return tmp;
 	}
 
-	@OriginalMember(owner = "client!z", name = "a", descriptor = "(I)Lclient!eb;")
-	public Model getHeadModel() {
+    public Model getHeadModel() {
 		if (!this.visible) {
 			return null;
 		}
 
-		@Pc(9) Model[] models = new Model[12];
-		@Pc(11) int modelCount = 0;
-		for (@Pc(13) int part = 0; part < 12; part++) {
-			@Pc(20) int value = this.appearances[part];
+		Model[] models = new Model[12];
+		int modelCount = 0;
+		for ( int part = 0; part < 12; part++) {
+			int value = this.appearances[part];
 
 			if (value >= 256 && value < 512) {
 				models[modelCount++] = IdkType.instances[value - 256].getHeadModel();
 			}
 
 			if (value >= 512) {
-				@Pc(49) Model headModel = ObjType.get(value - 512).getHeadModel(this.gender);
+				Model headModel = ObjType.get(value - 512).getHeadModel(this.gender);
 
 				if (headModel != null) {
 					models[modelCount++] = headModel;
@@ -373,8 +345,8 @@ public class PlayerEntity extends PathingEntity {
 			}
 		}
 
-		@Pc(67) Model tmp = new Model(models, modelCount);
-		for (@Pc(69) int part = 0; part < 5; part++) {
+		Model tmp = new Model(models, modelCount);
+		for ( int part = 0; part < 5; part++) {
 			if (this.colors[part] != 0) {
 				tmp.recolor(DESIGN_BODY_COLOR[part][0], DESIGN_BODY_COLOR[part][this.colors[part]]);
 
@@ -387,9 +359,8 @@ public class PlayerEntity extends PathingEntity {
 		return tmp;
 	}
 
-	@OriginalMember(owner = "client!z", name = "b", descriptor = "(Z)Z")
-	@Override
-	public boolean isVisible() {
+    @Override
+    public boolean isVisible() {
 		return this.visible;
 	}
 }

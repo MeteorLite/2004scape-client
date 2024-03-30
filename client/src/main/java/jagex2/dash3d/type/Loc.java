@@ -5,51 +5,35 @@ import jagex2.graphics.Model;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
-@OriginalClass("client!p")
 public class Loc {
 
-	@OriginalMember(owner = "client!p", name = "a", descriptor = "I")
-	public int level;
+    public int level;
 
-	@OriginalMember(owner = "client!p", name = "b", descriptor = "I")
-	public int y;
+    public int y;
 
-	@OriginalMember(owner = "client!p", name = "c", descriptor = "I")
-	public int x;
+    public int x;
 
-	@OriginalMember(owner = "client!p", name = "d", descriptor = "I")
-	public int z;
+    public int z;
 
-	@OriginalMember(owner = "client!p", name = "e", descriptor = "Lclient!eb;")
-	public Model model;
+    public Model model;
 
-	@OriginalMember(owner = "client!p", name = "f", descriptor = "Lclient!w;")
-	public Entity entity;
+    public Entity entity;
 
-	@OriginalMember(owner = "client!p", name = "g", descriptor = "I")
-	public int yaw;
+    public int yaw;
 
-	@OriginalMember(owner = "client!p", name = "h", descriptor = "I")
-	public int minSceneTileX;
+    public int minSceneTileX;
 
-	@OriginalMember(owner = "client!p", name = "i", descriptor = "I")
-	public int maxSceneTileX;
+    public int maxSceneTileX;
 
-	@OriginalMember(owner = "client!p", name = "j", descriptor = "I")
-	public int minSceneTileZ;
+    public int minSceneTileZ;
 
-	@OriginalMember(owner = "client!p", name = "k", descriptor = "I")
-	public int maxSceneTileZ;
+    public int maxSceneTileZ;
 
-	@OriginalMember(owner = "client!p", name = "l", descriptor = "I")
-	public int distance;
+    public int distance;
 
-	@OriginalMember(owner = "client!p", name = "m", descriptor = "I")
-	public int cycle;
+    public int cycle;
 
-	@OriginalMember(owner = "client!p", name = "n", descriptor = "I")
-	public int bitset;
+    public int bitset;
 
-	@OriginalMember(owner = "client!p", name = "o", descriptor = "B")
-	public byte info;
+    public byte info;
 }

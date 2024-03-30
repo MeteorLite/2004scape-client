@@ -9,141 +9,108 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("client!bc")
 public class NpcType {
 
-	@OriginalMember(owner = "client!bc", name = "b", descriptor = "I")
-	private static int count;
+    private static int count;
 
-	@OriginalMember(owner = "client!bc", name = "c", descriptor = "[I")
-	private static int[] offsets;
+    private static int[] offsets;
 
-	@OriginalMember(owner = "client!bc", name = "d", descriptor = "Lclient!kb;")
-	private static Packet dat;
+    private static Packet dat;
 
-	@OriginalMember(owner = "client!bc", name = "e", descriptor = "[Lclient!bc;")
-	private static NpcType[] cache;
+    private static NpcType[] cache;
 
-	@OriginalMember(owner = "client!bc", name = "f", descriptor = "I")
-	private static int cachePos;
+    private static int cachePos;
 
-	@OriginalMember(owner = "client!bc", name = "g", descriptor = "J")
-	public long index = -1L;
+    public long index = -1L;
 
-	@OriginalMember(owner = "client!bc", name = "h", descriptor = "Ljava/lang/String;")
-	public String name;
+    public String name;
 
-	@OriginalMember(owner = "client!bc", name = "i", descriptor = "[B")
-	public String desc;
+    public String desc;
 
-	@OriginalMember(owner = "client!bc", name = "j", descriptor = "B")
-	public byte size = 1;
+    public byte size = 1;
 
-	@OriginalMember(owner = "client!bc", name = "k", descriptor = "[I")
-	private int[] models;
+    private int[] models;
 
-	@OriginalMember(owner = "client!bc", name = "l", descriptor = "[I")
-	private int[] heads;
+    private int[] heads;
 
-	@OriginalMember(owner = "client!bc", name = "m", descriptor = "I")
-	public int readyanim = -1;
+    public int readyanim = -1;
 
-	@OriginalMember(owner = "client!bc", name = "n", descriptor = "I")
-	public int walkanim = -1;
+    public int walkanim = -1;
 
-	@OriginalMember(owner = "client!bc", name = "o", descriptor = "I")
-	public int walkanim_b = -1;
+    public int walkanim_b = -1;
 
-	@OriginalMember(owner = "client!bc", name = "p", descriptor = "I")
-	public int walkanim_r = -1;
+    public int walkanim_r = -1;
 
-	@OriginalMember(owner = "client!bc", name = "q", descriptor = "I")
-	public int walkanim_l = -1;
+    public int walkanim_l = -1;
 
-	@OriginalMember(owner = "client!bc", name = "r", descriptor = "Z")
-	private boolean disposeAlpha = false;
+    private boolean disposeAlpha = false;
 
-	@OriginalMember(owner = "client!bc", name = "s", descriptor = "[I")
-	private int[] recol_s;
+    private int[] recol_s;
 
-	@OriginalMember(owner = "client!bc", name = "t", descriptor = "[I")
-	private int[] recol_d;
+    private int[] recol_d;
 
-	@OriginalMember(owner = "client!bc", name = "u", descriptor = "[Ljava/lang/String;")
-	public String[] ops;
+    public String[] ops;
 
-	@OriginalMember(owner = "client!bc", name = "v", descriptor = "I")
-	private int code90 = -1;
+    private int code90 = -1;
 
-	@OriginalMember(owner = "client!bc", name = "w", descriptor = "I")
-	private int code91 = -1;
+    private int code91 = -1;
 
-	@OriginalMember(owner = "client!bc", name = "x", descriptor = "I")
-	private int code92 = -1;
+    private int code92 = -1;
 
-	@OriginalMember(owner = "client!bc", name = "y", descriptor = "Z")
-	public boolean visonmap = true;
+    public boolean visonmap = true;
 
-	@OriginalMember(owner = "client!bc", name = "z", descriptor = "I")
-	public int vislevel = -1;
+    public int vislevel = -1;
 
-	@OriginalMember(owner = "client!bc", name = "A", descriptor = "I")
-	private int resizeh = 128;
+    private int resizeh = 128;
 
-	@OriginalMember(owner = "client!bc", name = "B", descriptor = "I")
-	private int resizev = 128;
+    private int resizev = 128;
 
-	@OriginalMember(owner = "client!bc", name = "C", descriptor = "Lclient!s;")
-	public static LruCache modelCache = new LruCache(30);
+    public static LruCache modelCache = new LruCache(30);
 
-	@OriginalMember(owner = "client!bc", name = "a", descriptor = "(Lclient!ub;)V")
-	public static void unpack(@OriginalArg(0) Jagfile config) {
+    public static void unpack( Jagfile config) {
 		dat = new Packet(config.read("npc.dat", null));
-		@Pc(21) Packet idx = new Packet(config.read("npc.idx", null));
+		Packet idx = new Packet(config.read("npc.idx", null));
 
 		count = idx.g2();
 		offsets = new int[count];
 
-		@Pc(29) int offset = 2;
-		for (@Pc(31) int id = 0; id < count; id++) {
+		int offset = 2;
+		for ( int id = 0; id < count; id++) {
 			offsets[id] = offset;
 			offset += idx.g2();
 		}
 
 		cache = new NpcType[20];
-		for (@Pc(51) int id = 0; id < 20; id++) {
+		for ( int id = 0; id < 20; id++) {
 			cache[id] = new NpcType();
 		}
 	}
 
-	@OriginalMember(owner = "client!bc", name = "a", descriptor = "(Z)V")
-	public static void unload() {
+    public static void unload() {
 		modelCache = null;
 		offsets = null;
 		cache = null;
 		dat = null;
 	}
 
-	@OriginalMember(owner = "client!bc", name = "a", descriptor = "(I)Lclient!bc;")
-	public static NpcType get(@OriginalArg(0) int id) {
-		for (@Pc(1) int i = 0; i < 20; i++) {
+    public static NpcType get( int id) {
+		for ( int i = 0; i < 20; i++) {
 			if (cache[i].index == (long) id) {
 				return cache[i];
 			}
 		}
 
 		cachePos = (cachePos + 1) % 20;
-		@Pc(33) NpcType npc = cache[cachePos] = new NpcType();
+		NpcType npc = cache[cachePos] = new NpcType();
 		dat.pos = offsets[id];
 		npc.index = id;
 		npc.decode(dat);
 		return npc;
 	}
 
-	@OriginalMember(owner = "client!bc", name = "a", descriptor = "(ZLclient!kb;)V")
-	public void decode(@OriginalArg(1) Packet dat) {
+    public void decode( Packet dat) {
 		while (true) {
-			@Pc(10) int code = dat.g1();
+			int code = dat.g1();
 			if (code == 0) {
 				return;
 			}
@@ -215,14 +182,13 @@ public class NpcType {
 		}
 	}
 
-	@OriginalMember(owner = "client!bc", name = "a", descriptor = "(II[I)Lclient!eb;")
-	public Model getSequencedModel(@OriginalArg(0) int primaryTransformId, @OriginalArg(1) int secondaryTransformId, @OriginalArg(2) int[] seqMask) {
-		@Pc(3) Model tmp = null;
-		@Pc(9) Model model = (Model) modelCache.get(this.index);
+    public Model getSequencedModel( int primaryTransformId, int secondaryTransformId, int[] seqMask) {
+		Model tmp = null;
+		Model model = (Model) modelCache.get(this.index);
 
 		if (model == null) {
-			@Pc(16) Model[] models = new Model[this.models.length];
-			for (@Pc(18) int i = 0; i < this.models.length; i++) {
+			Model[] models = new Model[this.models.length];
+			for ( int i = 0; i < this.models.length; i++) {
 				models[i] = new Model(this.models[i]);
 			}
 
@@ -233,7 +199,7 @@ public class NpcType {
 			}
 
 			if (this.recol_s != null) {
-				for (@Pc(60) int i = 0; i < this.recol_s.length; i++) {
+				for ( int i = 0; i < this.recol_s.length; i++) {
 					model.recolor(this.recol_s[i], this.recol_d[i]);
 				}
 			}
@@ -266,18 +232,17 @@ public class NpcType {
 		return tmp;
 	}
 
-	@OriginalMember(owner = "client!bc", name = "b", descriptor = "(Z)Lclient!eb;")
-	public Model getHeadModel() {
+    public Model getHeadModel() {
 		if (this.heads == null) {
 			return null;
 		}
 
-		@Pc(17) Model[] models = new Model[this.heads.length];
-		for (@Pc(19) int i = 0; i < this.heads.length; i++) {
+		Model[] models = new Model[this.heads.length];
+		for ( int i = 0; i < this.heads.length; i++) {
 			models[i] = new Model(this.heads[i]);
 		}
 
-		@Pc(46) Model model;
+		Model model;
 		if (models.length == 1) {
 			model = models[0];
 		} else {
@@ -285,7 +250,7 @@ public class NpcType {
 		}
 
 		if (this.recol_s != null) {
-			for (@Pc(61) int i = 0; i < this.recol_s.length; i++) {
+			for ( int i = 0; i < this.recol_s.length; i++) {
 				model.recolor(this.recol_s[i], this.recol_d[i]);
 			}
 		}

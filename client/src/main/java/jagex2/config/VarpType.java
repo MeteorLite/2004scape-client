@@ -7,51 +7,36 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("client!lc")
 public class VarpType {
 
-	@OriginalMember(owner = "client!lc", name = "c", descriptor = "I")
-	private static int count;
+    private static int count;
 
-	@OriginalMember(owner = "client!lc", name = "d", descriptor = "[Lclient!lc;")
-	public static VarpType[] instances;
+    public static VarpType[] instances;
 
-	@OriginalMember(owner = "client!lc", name = "e", descriptor = "I")
-	public static int code3Count;
+    public static int code3Count;
 
-	@OriginalMember(owner = "client!lc", name = "f", descriptor = "[I")
-	public static int[] code3;
+    public static int[] code3;
 
-	@OriginalMember(owner = "client!lc", name = "g", descriptor = "Ljava/lang/String;")
-	private String code10;
+    private String code10;
 
-	@OriginalMember(owner = "client!lc", name = "h", descriptor = "I")
-	private int code1;
+    private int code1;
 
-	@OriginalMember(owner = "client!lc", name = "i", descriptor = "I")
-	private int code2;
+    private int code2;
 
-	@OriginalMember(owner = "client!lc", name = "j", descriptor = "Z")
-	private boolean hasCode3 = false;
+    private boolean hasCode3 = false;
 
-	@OriginalMember(owner = "client!lc", name = "k", descriptor = "Z")
-	private boolean code4 = true;
+    private boolean code4 = true;
 
-	@OriginalMember(owner = "client!lc", name = "l", descriptor = "I")
-	public int clientcode;
+    public int clientcode;
 
-	@OriginalMember(owner = "client!lc", name = "n", descriptor = "I")
-	private int code7;
+    private int code7;
 
-	@OriginalMember(owner = "client!lc", name = "m", descriptor = "Z")
-	private boolean code6 = false;
+    private boolean code6 = false;
 
-	@OriginalMember(owner = "client!lc", name = "o", descriptor = "Z")
-	private boolean code8 = false;
+    private boolean code8 = false;
 
-	@OriginalMember(owner = "client!lc", name = "a", descriptor = "(Lclient!ub;I)V")
-	public static void unpack(@OriginalArg(0) Jagfile config) {
-		@Pc(9) Packet dat = new Packet(config.read("varp.dat", null));
+    public static void unpack( Jagfile config) {
+		Packet dat = new Packet(config.read("varp.dat", null));
 		code3Count = 0;
 		count = dat.g2();
 
@@ -63,7 +48,7 @@ public class VarpType {
 			code3 = new int[count];
 		}
 
-		for (@Pc(30) int id = 0; id < count; id++) {
+		for ( int id = 0; id < count; id++) {
 			if (instances[id] == null) {
 				instances[id] = new VarpType();
 			}
@@ -72,10 +57,9 @@ public class VarpType {
 		}
 	}
 
-	@OriginalMember(owner = "client!lc", name = "a", descriptor = "(IILclient!kb;)V")
-	public void decode(@OriginalArg(1) int id, @OriginalArg(2) Packet dat) {
+    public void decode( int id, Packet dat) {
 		while (true) {
-			@Pc(8) int code = dat.g1();
+			int code = dat.g1();
 			if (code == 0) {
 				return;
 			}

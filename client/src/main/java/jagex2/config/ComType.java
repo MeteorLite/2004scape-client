@@ -13,7 +13,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 // Interface Component - doesn't quite belong under config...
-@OriginalClass("client!hc")
 public class ComType {
 
 	public static final int TYPE_LAYER = 0;
@@ -32,35 +31,25 @@ public class ComType {
 	public static final int BUTTON_SELECT = 5;
 	public static final int BUTTON_CONTINUE = 6;
 
-	@OriginalMember(owner = "client!hc", name = "c", descriptor = "[Lclient!hc;")
-	public static ComType[] instances;
+    public static ComType[] instances;
 
-	@OriginalMember(owner = "client!hc", name = "d", descriptor = "[I")
-	public int[] invSlotObjId;
+    public int[] invSlotObjId;
 
-	@OriginalMember(owner = "client!hc", name = "e", descriptor = "[I")
-	public int[] invSlotObjCount;
+    public int[] invSlotObjCount;
 
-	@OriginalMember(owner = "client!hc", name = "f", descriptor = "I")
-	public int seqFrame;
+    public int seqFrame;
 
-	@OriginalMember(owner = "client!hc", name = "g", descriptor = "I")
-	public int seqCycle;
+    public int seqCycle;
 
-	@OriginalMember(owner = "client!hc", name = "h", descriptor = "I")
-	public int id;
+    public int id;
 
-	@OriginalMember(owner = "client!hc", name = "i", descriptor = "I")
-	public int layer;
+    public int layer;
 
-	@OriginalMember(owner = "client!hc", name = "j", descriptor = "I")
-	public int type;
+    public int type;
 
-	@OriginalMember(owner = "client!hc", name = "k", descriptor = "I")
-	public int buttonType;
+    public int buttonType;
 
-	@OriginalMember(owner = "client!hc", name = "l", descriptor = "I")
-	public int clientCode;
+    public int clientCode;
 
 	/* Client codes:
 	 * ---- friends
@@ -124,172 +113,122 @@ public class ComType {
 	 * 655: last login info (no recovery questions set)
 	 */
 
-	@OriginalMember(owner = "client!hc", name = "m", descriptor = "I")
-	public int width;
+    public int width;
 
-	@OriginalMember(owner = "client!hc", name = "n", descriptor = "I")
-	public int height;
+    public int height;
 
-	@OriginalMember(owner = "client!hc", name = "o", descriptor = "I")
-	public int x;
+    public int x;
 
-	@OriginalMember(owner = "client!hc", name = "p", descriptor = "I")
-	public int y;
+    public int y;
 
-	@OriginalMember(owner = "client!hc", name = "q", descriptor = "[[I")
-	public int[][] scripts;
+    public int[][] scripts;
 
-	@OriginalMember(owner = "client!hc", name = "r", descriptor = "[I")
-	public int[] scriptComparator;
+    public int[] scriptComparator;
 
-	@OriginalMember(owner = "client!hc", name = "s", descriptor = "[I")
-	public int[] scriptOperand;
+    public int[] scriptOperand;
 
-	@OriginalMember(owner = "client!hc", name = "t", descriptor = "I")
-	public int overLayer;
+    public int overLayer;
 
-	@OriginalMember(owner = "client!hc", name = "u", descriptor = "I")
-	public int scroll;
+    public int scroll;
 
-	@OriginalMember(owner = "client!hc", name = "v", descriptor = "I")
-	public int scrollPosition;
+    public int scrollPosition;
 
-	@OriginalMember(owner = "client!hc", name = "w", descriptor = "Z")
-	public boolean hide;
+    public boolean hide;
 
-	@OriginalMember(owner = "client!hc", name = "x", descriptor = "[I")
-	public int[] childId;
+    public int[] childId;
 
-	@OriginalMember(owner = "client!hc", name = "y", descriptor = "[I")
-	public int[] childX;
+    public int[] childX;
 
-	@OriginalMember(owner = "client!hc", name = "z", descriptor = "[I")
-	public int[] childY;
+    public int[] childY;
 
-	@OriginalMember(owner = "client!hc", name = "A", descriptor = "I")
-	public int unusedShort1;
+    public int unusedShort1;
 
-	@OriginalMember(owner = "client!hc", name = "B", descriptor = "Z")
-	public boolean unusedBoolean1;
+    public boolean unusedBoolean1;
 
-	@OriginalMember(owner = "client!hc", name = "C", descriptor = "Z")
-	public boolean draggable;
+    public boolean draggable;
 
-	@OriginalMember(owner = "client!hc", name = "D", descriptor = "Z")
-	public boolean interactable;
+    public boolean interactable;
 
-	@OriginalMember(owner = "client!hc", name = "E", descriptor = "Z")
-	public boolean usable;
+    public boolean usable;
 
-	@OriginalMember(owner = "client!hc", name = "F", descriptor = "I")
-	public int marginX;
+    public int marginX;
 
-	@OriginalMember(owner = "client!hc", name = "G", descriptor = "I")
-	public int marginY;
+    public int marginY;
 
-	@OriginalMember(owner = "client!hc", name = "H", descriptor = "[Lclient!hb;")
-	public Pix24[] invSlotSprite;
+    public Pix24[] invSlotSprite;
 
-	@OriginalMember(owner = "client!hc", name = "I", descriptor = "[I")
-	public int[] invSlotOffsetX;
+    public int[] invSlotOffsetX;
 
-	@OriginalMember(owner = "client!hc", name = "J", descriptor = "[I")
-	public int[] invSlotOffsetY;
+    public int[] invSlotOffsetY;
 
-	@OriginalMember(owner = "client!hc", name = "K", descriptor = "[Ljava/lang/String;")
-	public String[] iops;
+    public String[] iops;
 
-	@OriginalMember(owner = "client!hc", name = "L", descriptor = "Z")
-	public boolean fill;
+    public boolean fill;
 
-	@OriginalMember(owner = "client!hc", name = "M", descriptor = "Z")
-	public boolean center;
+    public boolean center;
 
-	@OriginalMember(owner = "client!hc", name = "N", descriptor = "Z")
-	public boolean shadowed;
+    public boolean shadowed;
 
-	@OriginalMember(owner = "client!hc", name = "O", descriptor = "Lclient!jb;")
-	public PixFont font;
+    public PixFont font;
 
-	@OriginalMember(owner = "client!hc", name = "P", descriptor = "Ljava/lang/String;")
-	public String text;
+    public String text;
 
-	@OriginalMember(owner = "client!hc", name = "Q", descriptor = "Ljava/lang/String;")
-	public String activeText;
+    public String activeText;
 
-	@OriginalMember(owner = "client!hc", name = "R", descriptor = "I")
-	public int colour;
+    public int colour;
 
-	@OriginalMember(owner = "client!hc", name = "S", descriptor = "I")
-	public int activeColour;
+    public int activeColour;
 
-	@OriginalMember(owner = "client!hc", name = "T", descriptor = "I")
-	public int overColour;
+    public int overColour;
 
-	@OriginalMember(owner = "client!hc", name = "U", descriptor = "Lclient!hb;")
-	public Pix24 graphic;
+    public Pix24 graphic;
 
-	@OriginalMember(owner = "client!hc", name = "V", descriptor = "Lclient!hb;")
-	public Pix24 activeGraphic;
+    public Pix24 activeGraphic;
 
-	@OriginalMember(owner = "client!hc", name = "W", descriptor = "Lclient!eb;")
-	public Model model;
+    public Model model;
 
-	@OriginalMember(owner = "client!hc", name = "X", descriptor = "Lclient!eb;")
-	public Model activeModel;
+    public Model activeModel;
 
-	@OriginalMember(owner = "client!hc", name = "Y", descriptor = "I")
-	public int anim;
+    public int anim;
 
-	@OriginalMember(owner = "client!hc", name = "Z", descriptor = "I")
-	public int activeAnim;
+    public int activeAnim;
 
-	@OriginalMember(owner = "client!hc", name = "ab", descriptor = "I")
-	public int zoom;
+    public int zoom;
 
-	@OriginalMember(owner = "client!hc", name = "bb", descriptor = "I")
-	public int xan;
+    public int xan;
 
-	@OriginalMember(owner = "client!hc", name = "cb", descriptor = "I")
-	public int yan;
+    public int yan;
 
-	@OriginalMember(owner = "client!hc", name = "db", descriptor = "Ljava/lang/String;")
-	public String actionVerb;
+    public String actionVerb;
 
-	@OriginalMember(owner = "client!hc", name = "eb", descriptor = "Ljava/lang/String;")
-	public String action;
+    public String action;
 
-	@OriginalMember(owner = "client!hc", name = "fb", descriptor = "I")
-	public int actionTarget;
+    public int actionTarget;
 
-	@OriginalMember(owner = "client!hc", name = "gb", descriptor = "Ljava/lang/String;")
-	public String option;
+    public String option;
 
-	@OriginalMember(owner = "client!hc", name = "hb", descriptor = "Lclient!s;")
-	private static LruCache imageCache;
+    private static LruCache imageCache;
 
-	@OriginalMember(owner = "client!hc", name = "ib", descriptor = "Lclient!s;")
-	private static LruCache modelCache;
+    private static LruCache modelCache;
 
-	@OriginalMember(owner = "client!hc", name = "a", descriptor = "(Lclient!ub;[Lclient!jb;ILclient!ub;)V")
-	public static void unpack(@OriginalArg(3) Jagfile jag, @OriginalArg(0) Jagfile media, @OriginalArg(1) PixFont[] fonts) {
+    public static void unpack( Jagfile jag, Jagfile media, PixFont[] fonts) {
 		imageCache = new LruCache(50000);
 		modelCache = new LruCache(50000);
 
-		@Pc(27) Packet dat = new Packet(jag.read("data", null));
-		@Pc(29) int layer = -1;
+		Packet dat = new Packet(jag.read("data", null));
+		int layer = -1;
 
-		@Pc(32) int count = dat.g2();
+		int count = dat.g2();
 		instances = new ComType[count];
 
 		while (dat.pos < dat.data.length) {
-			@Pc(45) int id = dat.g2();
+			int id = dat.g2();
 			if (id == 65535) {
 				layer = dat.g2();
 				id = dat.g2();
 			}
 
-			@Pc(62) ComType com = instances[id] = new ComType();
+			ComType com = instances[id] = new ComType();
 			com.id = id;
 			com.layer = layer;
 			com.type = dat.g1();
@@ -304,7 +243,7 @@ public class ComType {
 				com.overLayer = (com.overLayer - 1 << 8) + dat.g1();
 			}
 
-			@Pc(114) int comparatorCount = dat.g1();
+			int comparatorCount = dat.g1();
 			if (comparatorCount > 0) {
 				com.scriptComparator = new int[comparatorCount];
 				com.scriptOperand = new int[comparatorCount];
@@ -323,7 +262,7 @@ public class ComType {
 					int opcodeCount = dat.g2();
 					com.scripts[i] = new int[opcodeCount];
 
-					for (@Pc(168) int j = 0; j < opcodeCount; j++) {
+					for ( int j = 0; j < opcodeCount; j++) {
 						com.scripts[i][j] = dat.g2();
 					}
 				}
@@ -369,9 +308,9 @@ public class ComType {
 						com.invSlotOffsetX[i] = dat.g2b();
 						com.invSlotOffsetY[i] = dat.g2b();
 
-						@Pc(352) String sprite = dat.gjstr();
+						String sprite = dat.gjstr();
 						if (media != null && sprite.length() > 0) {
-							@Pc(361) int spriteIndex = sprite.lastIndexOf(",");
+							int spriteIndex = sprite.lastIndexOf(",");
 							com.invSlotSprite[i] = getImage(media, sprite.substring(0, spriteIndex), Integer.parseInt(sprite.substring(spriteIndex + 1)));
 						}
 					}
@@ -415,7 +354,7 @@ public class ComType {
 			}
 
 			if (com.type == TYPE_GRAPHIC) {
-				@Pc(511) String sprite = dat.gjstr();
+				String sprite = dat.gjstr();
 				if (media != null && sprite.length() > 0) {
 					int spriteIndex = sprite.lastIndexOf(",");
 					com.graphic = getImage(media, sprite.substring(0, spriteIndex), Integer.parseInt(sprite.substring(spriteIndex + 1)));
@@ -510,10 +449,9 @@ public class ComType {
 		modelCache = null;
 	}
 
-	@OriginalMember(owner = "client!hc", name = "a", descriptor = "(Lclient!ub;ILjava/lang/String;I)Lclient!hb;")
-	private static Pix24 getImage(@OriginalArg(0) Jagfile media, @OriginalArg(2) String sprite, @OriginalArg(1) int spriteId) {
-		@Pc(8) long uid = (JString.hashCode(sprite) << 8) + (long) spriteId;
-		@Pc(13) Pix24 image = (Pix24) imageCache.get(uid);
+    private static Pix24 getImage( Jagfile media, String sprite, int spriteId) {
+		long uid = (JString.hashCode(sprite) << 8) + (long) spriteId;
+		Pix24 image = (Pix24) imageCache.get(uid);
 
 		if (image != null) {
 			return image;
@@ -522,16 +460,15 @@ public class ComType {
 		try {
 			image = new Pix24(media, sprite, spriteId);
 			imageCache.put(uid, image);
-		} catch (@Pc(38) Exception ignored) {
+		} catch ( Exception ignored) {
 			return null;
 		}
 
 		return image;
 	}
 
-	@OriginalMember(owner = "client!hc", name = "a", descriptor = "(II)Lclient!eb;")
-	private static Model getModel(@OriginalArg(1) int id) {
-		@Pc(5) Model m = (Model) modelCache.get(id);
+    private static Model getModel( int id) {
+		Model m = (Model) modelCache.get(id);
 		if (m != null) {
 			return m;
 		}
@@ -541,9 +478,8 @@ public class ComType {
 		return m;
 	}
 
-	@OriginalMember(owner = "client!hc", name = "a", descriptor = "(IIZ)Lclient!eb;")
-	public Model getModel(@OriginalArg(0) int primaryFrame, @OriginalArg(1) int secondaryFrame, @OriginalArg(2) boolean active) {
-		@Pc(2) Model m = this.model;
+    public Model getModel( int primaryFrame, int secondaryFrame, boolean active) {
+		Model m = this.model;
 		if (active) {
 			m = this.activeModel;
 		}
@@ -556,7 +492,7 @@ public class ComType {
 			return m;
 		}
 
-		@Pc(31) Model tmp = new Model(m, true, true, false);
+		Model tmp = new Model(m, true, true, false);
 		if (primaryFrame != -1 || secondaryFrame != -1) {
 			tmp.createLabelReferences();
 		}

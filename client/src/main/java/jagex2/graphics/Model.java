@@ -8,262 +8,178 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("client!eb")
 public class Model extends Hashable {
 
-	@OriginalMember(owner = "client!eb", name = "n", descriptor = "I")
-	public int vertexCount;
+    public int vertexCount;
 
-	@OriginalMember(owner = "client!eb", name = "o", descriptor = "[I")
-	public int[] vertexX;
+    public int[] vertexX;
 
-	@OriginalMember(owner = "client!eb", name = "p", descriptor = "[I")
-	public int[] vertexY;
+    public int[] vertexY;
 
-	@OriginalMember(owner = "client!eb", name = "q", descriptor = "[I")
-	public int[] vertexZ;
+    public int[] vertexZ;
 
-	@OriginalMember(owner = "client!eb", name = "r", descriptor = "I")
-	public int faceCount;
+    public int faceCount;
 
-	@OriginalMember(owner = "client!eb", name = "s", descriptor = "[I")
-	public int[] faceVertexA;
+    public int[] faceVertexA;
 
-	@OriginalMember(owner = "client!eb", name = "t", descriptor = "[I")
-	public int[] faceVertexB;
+    public int[] faceVertexB;
 
-	@OriginalMember(owner = "client!eb", name = "u", descriptor = "[I")
-	public int[] faceVertexC;
+    public int[] faceVertexC;
 
-	@OriginalMember(owner = "client!eb", name = "v", descriptor = "[I")
-	private int[] faceColorA;
+    private int[] faceColorA;
 
-	@OriginalMember(owner = "client!eb", name = "w", descriptor = "[I")
-	private int[] faceColorB;
+    private int[] faceColorB;
 
-	@OriginalMember(owner = "client!eb", name = "x", descriptor = "[I")
-	private int[] faceColorC;
+    private int[] faceColorC;
 
-	@OriginalMember(owner = "client!eb", name = "y", descriptor = "[I")
-	public int[] faceInfo;
+    public int[] faceInfo;
 
-	@OriginalMember(owner = "client!eb", name = "z", descriptor = "[I")
-	private int[] facePriority;
+    private int[] facePriority;
 
-	@OriginalMember(owner = "client!eb", name = "A", descriptor = "[I")
-	private int[] faceAlpha;
+    private int[] faceAlpha;
 
-	@OriginalMember(owner = "client!eb", name = "B", descriptor = "[I")
-	public int[] faceColor;
+    public int[] faceColor;
 
-	@OriginalMember(owner = "client!eb", name = "C", descriptor = "I")
-	private int priority;
+    private int priority;
 
-	@OriginalMember(owner = "client!eb", name = "D", descriptor = "I")
-	private int texturedFaceCount;
+    private int texturedFaceCount;
 
-	@OriginalMember(owner = "client!eb", name = "E", descriptor = "[I")
-	private int[] texturedVertexA;
+    private int[] texturedVertexA;
 
-	@OriginalMember(owner = "client!eb", name = "F", descriptor = "[I")
-	private int[] texturedVertexB;
+    private int[] texturedVertexB;
 
-	@OriginalMember(owner = "client!eb", name = "G", descriptor = "[I")
-	private int[] texturedVertexC;
+    private int[] texturedVertexC;
 
-	@OriginalMember(owner = "client!eb", name = "H", descriptor = "I")
-	public int minX;
+    public int minX;
 
-	@OriginalMember(owner = "client!eb", name = "I", descriptor = "I")
-	public int maxX;
+    public int maxX;
 
-	@OriginalMember(owner = "client!eb", name = "J", descriptor = "I")
-	public int maxZ;
+    public int maxZ;
 
-	@OriginalMember(owner = "client!eb", name = "K", descriptor = "I")
-	public int minZ;
+    public int minZ;
 
-	@OriginalMember(owner = "client!eb", name = "L", descriptor = "I")
-	public int radius;
+    public int radius;
 
-	@OriginalMember(owner = "client!eb", name = "M", descriptor = "I")
-	public int maxY;
+    public int maxY;
 
-	@OriginalMember(owner = "client!eb", name = "N", descriptor = "I")
-	public int minY;
+    public int minY;
 
-	@OriginalMember(owner = "client!eb", name = "O", descriptor = "I")
-	private int maxDepth;
+    private int maxDepth;
 
-	@OriginalMember(owner = "client!eb", name = "P", descriptor = "I")
-	private int minDepth;
+    private int minDepth;
 
-	@OriginalMember(owner = "client!eb", name = "Q", descriptor = "I")
-	public int objRaise;
+    public int objRaise;
 
-	@OriginalMember(owner = "client!eb", name = "R", descriptor = "[I")
-	private int[] vertexLabel;
+    private int[] vertexLabel;
 
-	@OriginalMember(owner = "client!eb", name = "S", descriptor = "[I")
-	private int[] faceLabel;
+    private int[] faceLabel;
 
-	@OriginalMember(owner = "client!eb", name = "T", descriptor = "[[I")
-	public int[][] labelVertices;
+    public int[][] labelVertices;
 
-	@OriginalMember(owner = "client!eb", name = "U", descriptor = "[[I")
-	public int[][] labelFaces;
+    public int[][] labelFaces;
 
-	@OriginalMember(owner = "client!eb", name = "V", descriptor = "Z")
-	public boolean pickable = false;
+    public boolean pickable = false;
 
-	@OriginalMember(owner = "client!eb", name = "W", descriptor = "[Lclient!n;")
-	public VertexNormal[] vertexNormal;
+    public VertexNormal[] vertexNormal;
 
-	@OriginalMember(owner = "client!eb", name = "X", descriptor = "[Lclient!n;")
-	public VertexNormal[] vertexNormalOriginal;
+    public VertexNormal[] vertexNormalOriginal;
 
-	@OriginalMember(owner = "client!eb", name = "Y", descriptor = "[Lclient!l;")
-	public static Metadata[] metadata;
+    public static Metadata[] metadata;
 
-	@OriginalMember(owner = "client!eb", name = "Z", descriptor = "Lclient!kb;")
-	private static Packet head;
+    private static Packet head;
 
-	@OriginalMember(owner = "client!eb", name = "ab", descriptor = "Lclient!kb;")
-	public static Packet face1;
+    public static Packet face1;
 
-	@OriginalMember(owner = "client!eb", name = "bb", descriptor = "Lclient!kb;")
-	public static Packet face2;
+    public static Packet face2;
 
-	@OriginalMember(owner = "client!eb", name = "cb", descriptor = "Lclient!kb;")
-	public static Packet face3;
+    public static Packet face3;
 
-	@OriginalMember(owner = "client!eb", name = "db", descriptor = "Lclient!kb;")
-	public static Packet face4;
+    public static Packet face4;
 
-	@OriginalMember(owner = "client!eb", name = "eb", descriptor = "Lclient!kb;")
-	public static Packet face5;
+    public static Packet face5;
 
-	@OriginalMember(owner = "client!eb", name = "fb", descriptor = "Lclient!kb;")
-	public static Packet point1;
+    public static Packet point1;
 
-	@OriginalMember(owner = "client!eb", name = "gb", descriptor = "Lclient!kb;")
-	public static Packet point2;
+    public static Packet point2;
 
-	@OriginalMember(owner = "client!eb", name = "hb", descriptor = "Lclient!kb;")
-	public static Packet point3;
+    public static Packet point3;
 
-	@OriginalMember(owner = "client!eb", name = "ib", descriptor = "Lclient!kb;")
-	public static Packet point4;
+    public static Packet point4;
 
-	@OriginalMember(owner = "client!eb", name = "jb", descriptor = "Lclient!kb;")
-	public static Packet point5;
+    public static Packet point5;
 
-	@OriginalMember(owner = "client!eb", name = "kb", descriptor = "Lclient!kb;")
-	public static Packet vertex1;
+    public static Packet vertex1;
 
-	@OriginalMember(owner = "client!eb", name = "lb", descriptor = "Lclient!kb;")
-	public static Packet vertex2;
+    public static Packet vertex2;
 
-	@OriginalMember(owner = "client!eb", name = "mb", descriptor = "Lclient!kb;")
-	public static Packet axis;
+    public static Packet axis;
 
-	@OriginalMember(owner = "client!eb", name = "nb", descriptor = "[Z")
-	public static boolean[] faceClippedX = new boolean[4096];
+    public static boolean[] faceClippedX = new boolean[4096];
 
-	@OriginalMember(owner = "client!eb", name = "ob", descriptor = "[Z")
-	public static boolean[] faceNearClipped = new boolean[4096];
+    public static boolean[] faceNearClipped = new boolean[4096];
 
-	@OriginalMember(owner = "client!eb", name = "pb", descriptor = "[I")
-	public static int[] vertexScreenX = new int[4096];
+    public static int[] vertexScreenX = new int[4096];
 
-	@OriginalMember(owner = "client!eb", name = "qb", descriptor = "[I")
-	public static int[] vertexScreenY = new int[4096];
+    public static int[] vertexScreenY = new int[4096];
 
-	@OriginalMember(owner = "client!eb", name = "rb", descriptor = "[I")
-	public static int[] vertexScreenZ = new int[4096];
+    public static int[] vertexScreenZ = new int[4096];
 
-	@OriginalMember(owner = "client!eb", name = "sb", descriptor = "[I")
-	public static int[] vertexViewSpaceX = new int[4096];
+    public static int[] vertexViewSpaceX = new int[4096];
 
-	@OriginalMember(owner = "client!eb", name = "tb", descriptor = "[I")
-	public static int[] vertexViewSpaceY = new int[4096];
+    public static int[] vertexViewSpaceY = new int[4096];
 
-	@OriginalMember(owner = "client!eb", name = "ub", descriptor = "[I")
-	public static int[] vertexViewSpaceZ = new int[4096];
+    public static int[] vertexViewSpaceZ = new int[4096];
 
-	@OriginalMember(owner = "client!eb", name = "vb", descriptor = "[I")
-	public static int[] tmpDepthFaceCount = new int[1500];
+    public static int[] tmpDepthFaceCount = new int[1500];
 
-	@OriginalMember(owner = "client!eb", name = "wb", descriptor = "[[I")
-	public static int[][] tmpDepthFaces = new int[1500][512];
+    public static int[][] tmpDepthFaces = new int[1500][512];
 
-	@OriginalMember(owner = "client!eb", name = "xb", descriptor = "[I")
-	public static int[] tmpPriorityFaceCount = new int[12];
+    public static int[] tmpPriorityFaceCount = new int[12];
 
-	@OriginalMember(owner = "client!eb", name = "yb", descriptor = "[[I")
-	public static int[][] tmpPriorityFaces = new int[12][2000];
+    public static int[][] tmpPriorityFaces = new int[12][2000];
 
-	@OriginalMember(owner = "client!eb", name = "zb", descriptor = "[I")
-	public static int[] tmpPriority10FaceDepth = new int[2000];
+    public static int[] tmpPriority10FaceDepth = new int[2000];
 
-	@OriginalMember(owner = "client!eb", name = "Ab", descriptor = "[I")
-	public static int[] tmpPriority11FaceDepth = new int[2000];
+    public static int[] tmpPriority11FaceDepth = new int[2000];
 
-	@OriginalMember(owner = "client!eb", name = "Bb", descriptor = "[I")
-	public static int[] tmpPriorityDepthSum = new int[12];
+    public static int[] tmpPriorityDepthSum = new int[12];
 
-	@OriginalMember(owner = "client!eb", name = "Cb", descriptor = "[I")
-	public static final int[] clippedX = new int[10];
+    public static final int[] clippedX = new int[10];
 
-	@OriginalMember(owner = "client!eb", name = "Db", descriptor = "[I")
-	public static final int[] clippedY = new int[10];
+    public static final int[] clippedY = new int[10];
 
-	@OriginalMember(owner = "client!eb", name = "Eb", descriptor = "[I")
-	public static final int[] clippedColor = new int[10];
+    public static final int[] clippedColor = new int[10];
 
-	@OriginalMember(owner = "client!eb", name = "Fb", descriptor = "I")
-	public static int baseX;
+    public static int baseX;
 
-	@OriginalMember(owner = "client!eb", name = "Gb", descriptor = "I")
-	public static int baseY;
+    public static int baseY;
 
-	@OriginalMember(owner = "client!eb", name = "Hb", descriptor = "I")
-	public static int baseZ;
+    public static int baseZ;
 
-	@OriginalMember(owner = "client!eb", name = "Ib", descriptor = "Z")
-	public static boolean checkHover;
+    public static boolean checkHover;
 
-	@OriginalMember(owner = "client!eb", name = "Jb", descriptor = "I")
-	public static int mouseX;
+    public static int mouseX;
 
-	@OriginalMember(owner = "client!eb", name = "Kb", descriptor = "I")
-	public static int mouseZ;
+    public static int mouseZ;
 
-	@OriginalMember(owner = "client!eb", name = "Lb", descriptor = "I")
-	public static int pickedCount;
+    public static int pickedCount;
 
-	@OriginalMember(owner = "client!eb", name = "Mb", descriptor = "[I")
-	public static final int[] pickedBitsets = new int[1000];
+    public static final int[] pickedBitsets = new int[1000];
 
-	@OriginalMember(owner = "client!eb", name = "Nb", descriptor = "[I")
-	public static int[] sin = Draw3D.sin;
+    public static int[] sin = Draw3D.sin;
 
-	@OriginalMember(owner = "client!eb", name = "Ob", descriptor = "[I")
-	public static int[] cos = Draw3D.cos;
+    public static int[] cos = Draw3D.cos;
 
-	@OriginalMember(owner = "client!eb", name = "Pb", descriptor = "[I")
-	public static int[] palette = Draw3D.palette;
+    public static int[] palette = Draw3D.palette;
 
-	@OriginalMember(owner = "client!eb", name = "Qb", descriptor = "[I")
-	public static int[] reciprical16 = Draw3D.reciprocal16;
+    public static int[] reciprical16 = Draw3D.reciprocal16;
 
-	@OriginalMember(owner = "client!eb", name = "<init>", descriptor = "(ZI)V")
-	public Model(@OriginalArg(1) int id) {
+    public Model( int id) {
 		if (metadata == null) {
 			return;
 		}
 
-		@Pc(28) Metadata meta = metadata[id];
+		Metadata meta = metadata[id];
 		if (meta == null) {
 			System.out.println("Error model:" + id + " not found!");
 		} else {
@@ -310,14 +226,14 @@ public class Model extends Hashable {
 			point4.pos = meta.vertexZOffset;
 			point5.pos = meta.vertexLabelsOffset;
 
-			@Pc(175) int dx = 0;
-			@Pc(177) int db = 0;
-			@Pc(179) int dc = 0;
-			@Pc(188) int a;
-			@Pc(197) int b;
-			@Pc(206) int c;
+			int dx = 0;
+			int db = 0;
+			int dc = 0;
+			int a;
+			int b;
+			int c;
 
-			for (@Pc(181) int v = 0; v < this.vertexCount; v++) {
+			for ( int v = 0; v < this.vertexCount; v++) {
 				int flags = point1.g1();
 				a = 0;
 				if ((flags & 0x1) != 0) {
@@ -376,9 +292,9 @@ public class Model extends Hashable {
 			a = 0;
 			b = 0;
 			c = 0;
-			@Pc(350) int last = 0;
+			int last = 0;
 
-			for (@Pc(352) int f = 0; f < this.faceCount; f++) {
+			for ( int f = 0; f < this.faceCount; f++) {
 				int orientation = vertex2.g1();
 
 				if (orientation == 1) {
@@ -406,7 +322,7 @@ public class Model extends Hashable {
 					this.faceVertexB[f] = b;
 					this.faceVertexC[f] = c;
 				} else if (orientation == 4) {
-					@Pc(459) int tmp = a;
+					int tmp = a;
 					a = b;
 					b = tmp;
 					c = vertex1.gsmart() + last;
@@ -426,20 +342,19 @@ public class Model extends Hashable {
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "<init>", descriptor = "(I[Lclient!eb;I)V")
-	public Model(@OriginalArg(1) Model[] models, @OriginalArg(2) int count) {
-		@Pc(23) boolean copyInfo = false;
-		@Pc(25) boolean copyPriorities = false;
-		@Pc(27) boolean copyAlpha = false;
-		@Pc(29) boolean copyLabels = false;
+    public Model( Model[] models, int count) {
+		boolean copyInfo = false;
+		boolean copyPriorities = false;
+		boolean copyAlpha = false;
+		boolean copyLabels = false;
 
 		this.vertexCount = 0;
 		this.faceCount = 0;
 		this.texturedFaceCount = 0;
 		this.priority = -1;
 
-		for (@Pc(43) int i = 0; i < count; i++) {
-			@Pc(49) Model model = models[i];
+		for ( int i = 0; i < count; i++) {
+			Model model = models[i];
 			if (model != null) {
 				this.vertexCount += model.vertexCount;
 				this.faceCount += model.faceCount;
@@ -495,11 +410,11 @@ public class Model extends Hashable {
 		this.faceCount = 0;
 		this.texturedFaceCount = 0;
 
-		for (@Pc(225) int i = 0; i < count; i++) {
-			@Pc(231) Model model = models[i];
+		for ( int i = 0; i < count; i++) {
+			Model model = models[i];
 
 			if (model != null) {
-				for (@Pc(235) int face = 0; face < model.faceCount; face++) {
+				for ( int face = 0; face < model.faceCount; face++) {
 					if (copyInfo) {
 						if (model.faceInfo == null) {
 							this.faceInfo[this.faceCount] = 0;
@@ -535,7 +450,7 @@ public class Model extends Hashable {
 					this.faceCount++;
 				}
 
-				for (@Pc(376) int f = 0; f < model.texturedFaceCount; f++) {
+				for ( int f = 0; f < model.texturedFaceCount; f++) {
 					this.texturedVertexA[this.texturedFaceCount] = this.addVertex(model, model.texturedVertexA[f]);
 					this.texturedVertexB[this.texturedFaceCount] = this.addVertex(model, model.texturedVertexB[f]);
 					this.texturedVertexC[this.texturedFaceCount] = this.addVertex(model, model.texturedVertexC[f]);
@@ -545,20 +460,19 @@ public class Model extends Hashable {
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "<init>", descriptor = "([Lclient!eb;BIZ)V")
-	public Model(@OriginalArg(0) Model[] models, @OriginalArg(2) int count, @OriginalArg(3) boolean dummy) {
-		@Pc(23) boolean copyInfo = false;
-		@Pc(25) boolean copyPriority = false;
-		@Pc(27) boolean copyAlpha = false;
-		@Pc(29) boolean copyColor = false;
+    public Model( Model[] models, int count, boolean dummy) {
+		boolean copyInfo = false;
+		boolean copyPriority = false;
+		boolean copyAlpha = false;
+		boolean copyColor = false;
 
 		this.vertexCount = 0;
 		this.faceCount = 0;
 		this.texturedFaceCount = 0;
 		this.priority = -1;
 
-		for (@Pc(43) int i = 0; i < count; i++) {
-			@Pc(49) Model model = models[i];
+		for ( int i = 0; i < count; i++) {
+			Model model = models[i];
 			if (model != null) {
 				this.vertexCount += model.vertexCount;
 				this.faceCount += model.faceCount;
@@ -615,20 +529,20 @@ public class Model extends Hashable {
 		this.faceCount = 0;
 		this.texturedFaceCount = 0;
 
-		@Pc(227) int i;
+		int i;
 		for (i = 0; i < count; i++) {
-			@Pc(240) Model model = models[i];
+			Model model = models[i];
 			if (model != null) {
-				@Pc(245) int vertexCount = this.vertexCount;
+				int vertexCount = this.vertexCount;
 
-				for (@Pc(247) int v = 0; v < model.vertexCount; v++) {
+				for ( int v = 0; v < model.vertexCount; v++) {
 					this.vertexX[this.vertexCount] = model.vertexX[v];
 					this.vertexY[this.vertexCount] = model.vertexY[v];
 					this.vertexZ[this.vertexCount] = model.vertexZ[v];
 					this.vertexCount++;
 				}
 
-				for (@Pc(289) int f = 0; f < model.faceCount; f++) {
+				for ( int f = 0; f < model.faceCount; f++) {
 					this.faceVertexA[this.faceCount] = model.faceVertexA[f] + vertexCount;
 					this.faceVertexB[this.faceCount] = model.faceVertexB[f] + vertexCount;
 					this.faceVertexC[this.faceCount] = model.faceVertexC[f] + vertexCount;
@@ -667,7 +581,7 @@ public class Model extends Hashable {
 					this.faceCount++;
 				}
 
-				for (@Pc(445) int f = 0; f < model.texturedFaceCount; f++) {
+				for ( int f = 0; f < model.texturedFaceCount; f++) {
 					this.texturedVertexA[this.texturedFaceCount] = model.texturedVertexA[f] + vertexCount;
 					this.texturedVertexB[this.texturedFaceCount] = model.texturedVertexB[f] + vertexCount;
 					this.texturedVertexC[this.texturedFaceCount] = model.texturedVertexC[f] + vertexCount;
@@ -679,8 +593,7 @@ public class Model extends Hashable {
 		this.calculateBoundsCylinder();
 	}
 
-	@OriginalMember(owner = "client!eb", name = "<init>", descriptor = "(Lclient!eb;ZZIZ)V")
-	public Model(@OriginalArg(0) Model src, @OriginalArg(1) boolean shareColors, @OriginalArg(2) boolean shareAlpha, @OriginalArg(4) boolean shareVertices) {
+    public Model( Model src, boolean shareColors, boolean shareAlpha, boolean shareVertices) {
 		this.vertexCount = src.vertexCount;
 		this.faceCount = src.faceCount;
 		this.texturedFaceCount = src.texturedFaceCount;
@@ -734,8 +647,7 @@ public class Model extends Hashable {
 		this.texturedVertexC = src.texturedVertexC;
 	}
 
-	@OriginalMember(owner = "client!eb", name = "<init>", descriptor = "(Lclient!eb;BZZ)V")
-	public Model(@OriginalArg(0) Model src, @OriginalArg(2) boolean copyVertexY, @OriginalArg(3) boolean copyFaces) {
+    public Model( Model src, boolean copyVertexY, boolean copyFaces) {
 		this.vertexCount = src.vertexCount;
 		this.faceCount = src.faceCount;
 		this.texturedFaceCount = src.texturedFaceCount;
@@ -768,8 +680,8 @@ public class Model extends Hashable {
 
 			this.vertexNormal = new VertexNormal[this.vertexCount];
 			for (int v = 0; v < this.vertexCount; v++) {
-				@Pc(170) VertexNormal copy = this.vertexNormal[v] = new VertexNormal();
-				@Pc(175) VertexNormal original = src.vertexNormal[v];
+				VertexNormal copy = this.vertexNormal[v] = new VertexNormal();
+				VertexNormal original = src.vertexNormal[v];
 				copy.x = original.x;
 				copy.y = original.y;
 				copy.z = original.z;
@@ -807,8 +719,7 @@ public class Model extends Hashable {
 		this.maxX = src.maxX;
 	}
 
-	@OriginalMember(owner = "client!eb", name = "<init>", descriptor = "(ILclient!eb;Z)V")
-	public Model(@OriginalArg(1) Model src, @OriginalArg(2) boolean shareAlpha) {
+    public Model( Model src, boolean shareAlpha) {
 		this.vertexCount = src.vertexCount;
 		this.faceCount = src.faceCount;
 		this.texturedFaceCount = src.texturedFaceCount;
@@ -817,7 +728,7 @@ public class Model extends Hashable {
 		this.vertexY = new int[this.vertexCount];
 		this.vertexZ = new int[this.vertexCount];
 
-		for (@Pc(50) int v = 0; v < this.vertexCount; v++) {
+		for ( int v = 0; v < this.vertexCount; v++) {
 			this.vertexX[v] = src.vertexX[v];
 			this.vertexY[v] = src.vertexY[v];
 			this.vertexZ[v] = src.vertexZ[v];
@@ -853,8 +764,7 @@ public class Model extends Hashable {
 		this.texturedVertexC = src.texturedVertexC;
 	}
 
-	@OriginalMember(owner = "client!eb", name = "a", descriptor = "(Z)V")
-	public static void unload() {
+    public static void unload() {
 		metadata = null;
 		head = null;
 		face1 = null;
@@ -891,8 +801,7 @@ public class Model extends Hashable {
 		reciprical16 = null;
 	}
 
-	@OriginalMember(owner = "client!eb", name = "a", descriptor = "(ILclient!ub;)V")
-	public static void unpack(@OriginalArg(1) Jagfile models) {
+    public static void unpack( Jagfile models) {
 		try {
 			head = new Packet(models.read("ob_head.dat", null));
 			face1 = new Packet(models.read("ob_face1.dat", null));
@@ -915,18 +824,18 @@ public class Model extends Hashable {
 			point4.pos = 0;
 			vertex1.pos = 0;
 			vertex2.pos = 0;
-			@Pc(172) int count = head.g2();
+			int count = head.g2();
 			metadata = new Metadata[count + 100];
-			@Pc(179) int vertexTextureDataOffset = 0;
-			@Pc(181) int labelDataOffset = 0;
-			@Pc(183) int triangleColorDataOffset = 0;
-			@Pc(185) int triangleInfoDataOffset = 0;
-			@Pc(187) int trianglePriorityDataOffset = 0;
-			@Pc(189) int triangleAlphaDataOffset = 0;
-			@Pc(191) int triangleSkinDataOffset = 0;
-			for (@Pc(193) int i = 0; i < count; i++) {
-				@Pc(198) int index = head.g2();
-				@Pc(206) Metadata meta = metadata[index] = new Metadata();
+			int vertexTextureDataOffset = 0;
+			int labelDataOffset = 0;
+			int triangleColorDataOffset = 0;
+			int triangleInfoDataOffset = 0;
+			int trianglePriorityDataOffset = 0;
+			int triangleAlphaDataOffset = 0;
+			int triangleSkinDataOffset = 0;
+			for ( int i = 0; i < count; i++) {
+				int index = head.g2();
+				Metadata meta = metadata[index] = new Metadata();
 				meta.vertexCount = head.g2();
 				meta.faceCount = head.g2();
 				meta.texturedFaceCount = head.g1();
@@ -936,12 +845,12 @@ public class Model extends Hashable {
 				meta.vertexZOffset = point4.pos;
 				meta.faceVerticesOffset = vertex1.pos;
 				meta.faceOrientationsOffset = vertex2.pos;
-				@Pc(245) int hasInfo = head.g1();
-				@Pc(248) int hasPriorities = head.g1();
-				@Pc(251) int hasAlpha = head.g1();
-				@Pc(254) int hasSkins = head.g1();
-				@Pc(257) int hasLabels = head.g1();
-				for (@Pc(259) int v = 0; v < meta.vertexCount; v++) {
+				int hasInfo = head.g1();
+				int hasPriorities = head.g1();
+				int hasAlpha = head.g1();
+				int hasSkins = head.g1();
+				int hasLabels = head.g1();
+				for ( int v = 0; v < meta.vertexCount; v++) {
 					int flags = point1.g1();
 					if ((flags & 0x1) != 0) {
 						point2.gsmart();
@@ -954,7 +863,7 @@ public class Model extends Hashable {
 					}
 				}
 				for (int f = 0; f < meta.faceCount; f++) {
-					@Pc(297) int type = vertex2.g1();
+					int type = vertex2.g1();
 					if (type == 1) {
 						vertex1.gsmart();
 						vertex1.gsmart();
@@ -996,14 +905,13 @@ public class Model extends Hashable {
 				meta.faceTextureAxisOffset = vertexTextureDataOffset;
 				vertexTextureDataOffset += meta.texturedFaceCount;
 			}
-		} catch (@Pc(421) Exception ex) {
+		} catch ( Exception ex) {
 			System.out.println("Error loading model index");
 			ex.printStackTrace();
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "a", descriptor = "(III)I")
-	public static int mulColorLightness(@OriginalArg(0) int hsl, @OriginalArg(1) int scalar, @OriginalArg(2) int faceInfo) {
+    public static int mulColorLightness( int hsl, int scalar, int faceInfo) {
 		if ((faceInfo & 0x2) == 2) {
 			if (scalar < 0) {
 				scalar = 0;
@@ -1021,13 +929,12 @@ public class Model extends Hashable {
 		return (hsl & 0xFF80) + scalar;
 	}
 
-	@OriginalMember(owner = "client!eb", name = "a", descriptor = "(Lclient!eb;I)I")
-	private int addVertex(@OriginalArg(0) Model src, @OriginalArg(1) int vertexId) {
-		@Pc(3) int identical = -1;
-		@Pc(8) int x = src.vertexX[vertexId];
-		@Pc(13) int y = src.vertexY[vertexId];
-		@Pc(18) int z = src.vertexZ[vertexId];
-		for (@Pc(20) int v = 0; v < this.vertexCount; v++) {
+    private int addVertex( Model src, int vertexId) {
+		int identical = -1;
+		int x = src.vertexX[vertexId];
+		int y = src.vertexY[vertexId];
+		int z = src.vertexZ[vertexId];
+		for ( int v = 0; v < this.vertexCount; v++) {
 			if (x == this.vertexX[v] && y == this.vertexY[v] && z == this.vertexZ[v]) {
 				identical = v;
 				break;
@@ -1045,22 +952,21 @@ public class Model extends Hashable {
 		return identical;
 	}
 
-	@OriginalMember(owner = "client!eb", name = "a", descriptor = "(I)V")
-	public void calculateBoundsCylinder() {
+    public void calculateBoundsCylinder() {
 		this.maxY = 0;
 		this.radius = 0;
 		this.minY = 0;
-		for (@Pc(14) int i = 0; i < this.vertexCount; i++) {
-			@Pc(21) int x = this.vertexX[i];
-			@Pc(26) int y = this.vertexY[i];
-			@Pc(31) int z = this.vertexZ[i];
+		for ( int i = 0; i < this.vertexCount; i++) {
+			int x = this.vertexX[i];
+			int y = this.vertexY[i];
+			int z = this.vertexZ[i];
 			if (-y > this.maxY) {
 				this.maxY = -y;
 			}
 			if (y > this.minY) {
 				this.minY = y;
 			}
-			@Pc(55) int radiusSqr = x * x + z * z;
+			int radiusSqr = x * x + z * z;
 			if (radiusSqr > this.radius) {
 				this.radius = radiusSqr;
 			}
@@ -1070,12 +976,11 @@ public class Model extends Hashable {
 		this.maxDepth = this.minDepth + (int) (Math.sqrt(this.radius * this.radius + this.minY * this.minY) + 0.99D);
 	}
 
-	@OriginalMember(owner = "client!eb", name = "b", descriptor = "(I)V")
-	public void calculateBoundsY() {
+    public void calculateBoundsY() {
 		this.maxY = 0;
 		this.minY = 0;
-		for (@Pc(8) int v = 0; v < this.vertexCount; v++) {
-			@Pc(25) int y = this.vertexY[v];
+		for ( int v = 0; v < this.vertexCount; v++) {
+			int y = this.vertexY[v];
 			if (-y > this.maxY) {
 				this.maxY = -y;
 			}
@@ -1087,8 +992,7 @@ public class Model extends Hashable {
 		this.maxDepth = this.minDepth + (int) (Math.sqrt(this.radius * this.radius + this.minY * this.minY) + 0.99D);
 	}
 
-	@OriginalMember(owner = "client!eb", name = "a", descriptor = "(B)V")
-	private void calculateBoundsAABB() {
+    private void calculateBoundsAABB() {
 		this.maxY = 0;
 		this.radius = 0;
 		this.minY = 0;
@@ -1096,10 +1000,10 @@ public class Model extends Hashable {
 		this.maxX = -999999;
 		this.maxZ = -99999;
 		this.minZ = 99999;
-		for (@Pc(27) int v = 0; v < this.vertexCount; v++) {
-			@Pc(34) int x = this.vertexX[v];
-			@Pc(39) int y = this.vertexY[v];
-			@Pc(44) int z = this.vertexZ[v];
+		for ( int v = 0; v < this.vertexCount; v++) {
+			int x = this.vertexX[v];
+			int y = this.vertexY[v];
+			int z = this.vertexZ[v];
 			if (x < this.minX) {
 				this.minX = x;
 			}
@@ -1118,7 +1022,7 @@ public class Model extends Hashable {
 			if (y > this.minY) {
 				this.minY = y;
 			}
-			@Pc(96) int radiusSqr = x * x + z * z;
+			int radiusSqr = x * x + z * z;
 			if (radiusSqr > this.radius) {
 				this.radius = radiusSqr;
 			}
@@ -1128,8 +1032,7 @@ public class Model extends Hashable {
 		this.maxDepth = this.minDepth + (int) Math.sqrt(this.radius * this.radius + this.minY * this.minY);
 	}
 
-	@OriginalMember(owner = "client!eb", name = "c", descriptor = "(I)V")
-	public void createLabelReferences() {
+    public void createLabelReferences() {
 		if (this.vertexLabel != null) {
 			int[] labelVertexCount = new int[256];
 			int count = 0;
@@ -1177,23 +1080,21 @@ public class Model extends Hashable {
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "a", descriptor = "(II)V")
-	public void applyTransform(@OriginalArg(1) int id) {
+    public void applyTransform( int id) {
 		if (this.labelVertices != null && id != -1) {
-			@Pc(11) SeqFrame transform = SeqFrame.instances[id];
-			@Pc(14) SeqBase skeleton = transform.base;
+			SeqFrame transform = SeqFrame.instances[id];
+			SeqBase skeleton = transform.base;
 			baseX = 0;
 			baseY = 0;
 			baseZ = 0;
-			for (@Pc(22) int i = 0; i < transform.length; i++) {
-				@Pc(29) int base = transform.bases[i];
+			for ( int i = 0; i < transform.length; i++) {
+				int base = transform.bases[i];
 				this.applyTransform(transform.x[i], transform.y[i], transform.z[i], skeleton.labels[base], skeleton.types[base]);
 			}
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "a", descriptor = "(III[I)V")
-	public void applyTransforms(@OriginalArg(2) int primaryId, @OriginalArg(0) int secondaryId, @OriginalArg(3) int[] mask) {
+    public void applyTransforms( int primaryId, int secondaryId, int[] mask) {
 		if (primaryId == -1) {
 			return;
 		}
@@ -1201,18 +1102,18 @@ public class Model extends Hashable {
 		if (mask == null || secondaryId == -1) {
 			this.applyTransform(primaryId);
 		} else {
-			@Pc(19) SeqFrame primary = SeqFrame.instances[primaryId];
-			@Pc(32) SeqFrame secondary = SeqFrame.instances[secondaryId];
-			@Pc(35) SeqBase skeleton = primary.base;
+			SeqFrame primary = SeqFrame.instances[primaryId];
+			SeqFrame secondary = SeqFrame.instances[secondaryId];
+			SeqBase skeleton = primary.base;
 
 			baseX = 0;
 			baseY = 0;
 			baseZ = 0;
 
-			@Pc(46) int counter = 0;
-			@Pc(48) int maskBase = mask[counter++];
+			int counter = 0;
+			int maskBase = mask[counter++];
 
-			for (@Pc(50) int i = 0; i < primary.length; i++) {
+			for ( int i = 0; i < primary.length; i++) {
 				int base = primary.bases[i];
 				while (base > maskBase) {
 					maskBase = mask[counter++];
@@ -1231,7 +1132,7 @@ public class Model extends Hashable {
 			maskBase = mask[counter++];
 
 			for (int i = 0; i < secondary.length; i++) {
-				@Pc(124) int base = secondary.bases[i];
+				int base = secondary.bases[i];
 				while (base > maskBase) {
 					maskBase = mask[counter++];
 				}
@@ -1243,9 +1144,8 @@ public class Model extends Hashable {
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "a", descriptor = "(I[IIII)V")
-	private void applyTransform(@OriginalArg(2) int x, @OriginalArg(3) int y, @OriginalArg(4) int z, @OriginalArg(1) int[] labels, @OriginalArg(0) int type) {
-		@Pc(4) int labelCount = labels.length;
+    private void applyTransform( int x, int y, int z, int[] labels, int type) {
+		int labelCount = labels.length;
 
 		if (type == 0) {
 			int count = 0;
@@ -1254,9 +1154,9 @@ public class Model extends Hashable {
 			baseZ = 0;
 
 			for (int g = 0; g < labelCount; g++) {
-				@Pc(22) int label = labels[g];
+				int label = labels[g];
 				if (label < this.labelVertices.length) {
-					@Pc(32) int[] vertices = this.labelVertices[label];
+					int[] vertices = this.labelVertices[label];
 					for (int i = 0; i < vertices.length; i++) {
 						int v = vertices[i];
 						baseX += this.vertexX[v];
@@ -1306,11 +1206,11 @@ public class Model extends Hashable {
 					this.vertexZ[v] -= baseZ;
 
 					int pitch = (x & 0xFF) * 8;
-					@Pc(227) int yaw = (y & 0xFF) * 8;
-					@Pc(233) int roll = (z & 0xFF) * 8;
+					int yaw = (y & 0xFF) * 8;
+					int roll = (z & 0xFF) * 8;
 
-					@Pc(239) int sin;
-					@Pc(243) int cos;
+					int sin;
+					int cos;
 
 					if (roll != 0) {
 						sin = Model.sin[roll];
@@ -1386,70 +1286,63 @@ public class Model extends Hashable {
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "d", descriptor = "(I)V")
-	public void rotateY90() {
-		for (@Pc(6) int v = 0; v < this.vertexCount; v++) {
-			@Pc(13) int tmp = this.vertexX[v];
+    public void rotateY90() {
+		for ( int v = 0; v < this.vertexCount; v++) {
+			int tmp = this.vertexX[v];
 			this.vertexX[v] = this.vertexZ[v];
 			this.vertexZ[v] = -tmp;
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "a", descriptor = "(BI)V")
-	public void rotateX(@OriginalArg(1) int angle) {
-		@Pc(3) int sin = Model.sin[angle];
-		@Pc(7) int cos = Model.cos[angle];
-		for (@Pc(9) int v = 0; v < this.vertexCount; v++) {
-			@Pc(27) int tmp = this.vertexY[v] * cos - this.vertexZ[v] * sin >> 16;
+    public void rotateX( int angle) {
+		int sin = Model.sin[angle];
+		int cos = Model.cos[angle];
+		for ( int v = 0; v < this.vertexCount; v++) {
+			int tmp = this.vertexY[v] * cos - this.vertexZ[v] * sin >> 16;
 			this.vertexZ[v] = this.vertexY[v] * sin + this.vertexZ[v] * cos >> 16;
 			this.vertexY[v] = tmp;
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "a", descriptor = "(IIII)V")
-	public void translate(@OriginalArg(0) int y, @OriginalArg(1) int x, @OriginalArg(3) int z) {
-		for (@Pc(11) int v = 0; v < this.vertexCount; v++) {
+    public void translate( int y, int x, int z) {
+		for ( int v = 0; v < this.vertexCount; v++) {
 			this.vertexX[v] += x;
 			this.vertexY[v] += y;
 			this.vertexZ[v] += z;
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "b", descriptor = "(II)V")
-	public void recolor(@OriginalArg(0) int src, @OriginalArg(1) int dst) {
-		for (@Pc(1) int f = 0; f < this.faceCount; f++) {
+    public void recolor( int src, int dst) {
+		for ( int f = 0; f < this.faceCount; f++) {
 			if (this.faceColor[f] == src) {
 				this.faceColor[f] = dst;
 			}
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "e", descriptor = "(I)V")
-	public void rotateY180() {
-		for (@Pc(3) int v = 0; v < this.vertexCount; v++) {
+    public void rotateY180() {
+		for ( int v = 0; v < this.vertexCount; v++) {
 			this.vertexZ[v] = -this.vertexZ[v];
 		}
 
-		for (@Pc(21) int f = 0; f < this.faceCount; f++) {
+		for ( int f = 0; f < this.faceCount; f++) {
 			int temp = this.faceVertexA[f];
 			this.faceVertexA[f] = this.faceVertexC[f];
 			this.faceVertexC[f] = temp;
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "b", descriptor = "(IIII)V")
-	public void scale(@OriginalArg(3) int x, @OriginalArg(2) int y, @OriginalArg(0) int z) {
-		for (@Pc(1) int v = 0; v < this.vertexCount; v++) {
+    public void scale( int x, int y, int z) {
+		for ( int v = 0; v < this.vertexCount; v++) {
 			this.vertexX[v] = this.vertexX[v] * x / 128;
 			this.vertexY[v] = this.vertexY[v] * y / 128;
 			this.vertexZ[v] = this.vertexZ[v] * z / 128;
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "a", descriptor = "(IIIIIZ)V")
-	public void calculateNormals(@OriginalArg(0) int lightAmbient, @OriginalArg(1) int lightAttenuation, @OriginalArg(2) int lightSrcX, @OriginalArg(3) int lightSrcY, @OriginalArg(4) int lightSrcZ, @OriginalArg(5) boolean applyLighting) {
-		@Pc(16) int lightMagnitude = (int) Math.sqrt(lightSrcX * lightSrcX + lightSrcY * lightSrcY + lightSrcZ * lightSrcZ);
-		@Pc(22) int attenuation = lightAttenuation * lightMagnitude >> 8;
+    public void calculateNormals( int lightAmbient, int lightAttenuation, int lightSrcX, int lightSrcY, int lightSrcZ, boolean applyLighting) {
+		int lightMagnitude = (int) Math.sqrt(lightSrcX * lightSrcX + lightSrcY * lightSrcY + lightSrcZ * lightSrcZ);
+		int attenuation = lightAttenuation * lightMagnitude >> 8;
 
 		if (this.faceColorA == null) {
 			this.faceColorA = new int[this.faceCount];
@@ -1466,26 +1359,26 @@ public class Model extends Hashable {
 
 		for (int f = 0; f < this.faceCount; f++) {
 			int a = this.faceVertexA[f];
-			@Pc(78) int b = this.faceVertexB[f];
-			@Pc(83) int c = this.faceVertexC[f];
+			int b = this.faceVertexB[f];
+			int c = this.faceVertexC[f];
 
-			@Pc(93) int dxAB = this.vertexX[b] - this.vertexX[a];
-			@Pc(103) int dyAB = this.vertexY[b] - this.vertexY[a];
-			@Pc(113) int dzAB = this.vertexZ[b] - this.vertexZ[a];
+			int dxAB = this.vertexX[b] - this.vertexX[a];
+			int dyAB = this.vertexY[b] - this.vertexY[a];
+			int dzAB = this.vertexZ[b] - this.vertexZ[a];
 
-			@Pc(123) int dxAC = this.vertexX[c] - this.vertexX[a];
-			@Pc(133) int dyAC = this.vertexY[c] - this.vertexY[a];
-			@Pc(143) int dzAC = this.vertexZ[c] - this.vertexZ[a];
+			int dxAC = this.vertexX[c] - this.vertexX[a];
+			int dyAC = this.vertexY[c] - this.vertexY[a];
+			int dzAC = this.vertexZ[c] - this.vertexZ[a];
 
-			@Pc(151) int nx = dyAB * dzAC - dyAC * dzAB;
-			@Pc(159) int ny = dzAB * dxAC - dzAC * dxAB;
-			@Pc(167) int nz;
+			int nx = dyAB * dzAC - dyAC * dzAB;
+			int ny = dzAB * dxAC - dzAC * dxAB;
+			int nz;
 			for (nz = dxAB * dyAC - dxAC * dyAB; nx > 8192 || ny > 8192 || nz > 8192 || nx < -8192 || ny < -8192 || nz < -8192; nz >>= 0x1) {
 				nx >>= 0x1;
 				ny >>= 0x1;
 			}
 
-			@Pc(214) int length = (int) Math.sqrt(nx * nx + ny * ny + nz * nz);
+			int length = (int) Math.sqrt(nx * nx + ny * ny + nz * nz);
 			if (length <= 0) {
 				length = 1;
 			}
@@ -1495,7 +1388,7 @@ public class Model extends Hashable {
 			nz = nz * 256 / length;
 
 			if (this.faceInfo == null || (this.faceInfo[f] & 0x1) == 0) {
-				@Pc(251) VertexNormal n = this.vertexNormal[a];
+				VertexNormal n = this.vertexNormal[a];
 				n.x += nx;
 				n.y += ny;
 				n.z += nz;
@@ -1513,7 +1406,7 @@ public class Model extends Hashable {
 				n.z += nz;
 				n.w++;
 			} else {
-				@Pc(355) int lightness = lightAmbient + (lightSrcX * nx + lightSrcY * ny + lightSrcZ * nz) / (attenuation + attenuation / 2);
+				int lightness = lightAmbient + (lightSrcX * nx + lightSrcY * ny + lightSrcZ * nz) / (attenuation + attenuation / 2);
 				this.faceColorA[f] = mulColorLightness(this.faceColor[f], lightness, this.faceInfo[f]);
 			}
 		}
@@ -1523,8 +1416,8 @@ public class Model extends Hashable {
 		} else {
 			this.vertexNormalOriginal = new VertexNormal[this.vertexCount];
 			for (int v = 0; v < this.vertexCount; v++) {
-				@Pc(399) VertexNormal normal = this.vertexNormal[v];
-				@Pc(408) VertexNormal copy = this.vertexNormalOriginal[v] = new VertexNormal();
+				VertexNormal normal = this.vertexNormal[v];
+				VertexNormal copy = this.vertexNormalOriginal[v] = new VertexNormal();
 				copy.x = normal.x;
 				copy.y = normal.y;
 				copy.z = normal.z;
@@ -1539,12 +1432,11 @@ public class Model extends Hashable {
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "a", descriptor = "(IIIII)V")
-	public void applyLighting(@OriginalArg(0) int lightAmbient, @OriginalArg(1) int lightAttenuation, @OriginalArg(2) int lightSrcX, @OriginalArg(3) int lightSrcY, @OriginalArg(4) int lightSrcZ) {
-		for (@Pc(3) int f = 0; f < this.faceCount; f++) {
+    public void applyLighting( int lightAmbient, int lightAttenuation, int lightSrcX, int lightSrcY, int lightSrcZ) {
+		for ( int f = 0; f < this.faceCount; f++) {
 			int a = this.faceVertexA[f];
-			@Pc(15) int b = this.faceVertexB[f];
-			@Pc(20) int c = this.faceVertexC[f];
+			int b = this.faceVertexB[f];
+			int c = this.faceVertexC[f];
 
 			if (this.faceInfo == null) {
 				int color = this.faceColor[f];
@@ -1562,7 +1454,7 @@ public class Model extends Hashable {
 				this.faceColorC[f] = mulColorLightness(color, lightness, 0);
 			} else if ((this.faceInfo[f] & 0x1) == 0) {
 				int color = this.faceColor[f];
-				@Pc(152) int info = this.faceInfo[f];
+				int info = this.faceInfo[f];
 
 				VertexNormal n = this.vertexNormal[a];
 				int lightness = lightAmbient + (lightSrcX * n.x + lightSrcY * n.y + lightSrcZ * n.z) / (lightAttenuation * n.w);
@@ -1594,26 +1486,25 @@ public class Model extends Hashable {
 		this.faceColor = null;
 	}
 
-	@OriginalMember(owner = "client!eb", name = "a", descriptor = "(IIIIIII)V")
-	public void drawSimple(@OriginalArg(0) int pitch, @OriginalArg(1) int yaw, @OriginalArg(2) int roll, @OriginalArg(3) int eyePitch, @OriginalArg(4) int eyeX, @OriginalArg(5) int eyeY, @OriginalArg(6) int eyeZ) {
-		@Pc(1) int centerX = Draw3D.centerX;
-		@Pc(3) int centerY = Draw3D.centerY;
-		@Pc(7) int sinPitch = sin[pitch];
-		@Pc(11) int cosPitch = cos[pitch];
-		@Pc(15) int sinYaw = sin[yaw];
-		@Pc(19) int cosYaw = cos[yaw];
-		@Pc(23) int sinRoll = sin[roll];
-		@Pc(27) int cosRoll = cos[roll];
-		@Pc(31) int sinEyePitch = sin[eyePitch];
-		@Pc(35) int cosEyePitch = cos[eyePitch];
-		@Pc(45) int midZ = eyeY * sinEyePitch + eyeZ * cosEyePitch >> 16;
+    public void drawSimple( int pitch, int yaw, int roll, int eyePitch, int eyeX, int eyeY, int eyeZ) {
+		int centerX = Draw3D.centerX;
+		int centerY = Draw3D.centerY;
+		int sinPitch = sin[pitch];
+		int cosPitch = cos[pitch];
+		int sinYaw = sin[yaw];
+		int cosYaw = cos[yaw];
+		int sinRoll = sin[roll];
+		int cosRoll = cos[roll];
+		int sinEyePitch = sin[eyePitch];
+		int cosEyePitch = cos[eyePitch];
+		int midZ = eyeY * sinEyePitch + eyeZ * cosEyePitch >> 16;
 
-		for (@Pc(47) int v = 0; v < this.vertexCount; v++) {
-			@Pc(54) int x = this.vertexX[v];
-			@Pc(59) int y = this.vertexY[v];
-			@Pc(64) int z = this.vertexZ[v];
+		for ( int v = 0; v < this.vertexCount; v++) {
+			int x = this.vertexX[v];
+			int y = this.vertexY[v];
+			int z = this.vertexZ[v];
 
-			@Pc(76) int temp;
+			int temp;
 			if (roll != 0) {
 				temp = y * sinRoll + x * cosRoll >> 16;
 				y = y * cosRoll - x * sinRoll >> 16;
@@ -1652,50 +1543,49 @@ public class Model extends Hashable {
 
 		try {
 			this.draw(false, false, 0);
-		} catch (@Pc(223) Exception ex) {
+		} catch ( Exception ex) {
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "a", descriptor = "(IIIIIIIII)V")
-	public void draw(@OriginalArg(0) int yaw, @OriginalArg(1) int sinEyePitch, @OriginalArg(2) int cosEyePitch, @OriginalArg(3) int sinEyeYaw, @OriginalArg(4) int cosEyeYaw, @OriginalArg(5) int relativeX, @OriginalArg(6) int relativeY, @OriginalArg(7) int relativeZ, @OriginalArg(8) int bitset) {
-		@Pc(11) int zPrime = relativeZ * cosEyeYaw - relativeX * sinEyeYaw >> 16;
-		@Pc(21) int midZ = relativeY * sinEyePitch + zPrime * cosEyePitch >> 16;
-		@Pc(28) int radiusCosEyePitch = this.radius * cosEyePitch >> 16;
+    public void draw( int yaw, int sinEyePitch, int cosEyePitch, int sinEyeYaw, int cosEyeYaw, int relativeX, int relativeY, int relativeZ, int bitset) {
+		int zPrime = relativeZ * cosEyeYaw - relativeX * sinEyeYaw >> 16;
+		int midZ = relativeY * sinEyePitch + zPrime * cosEyePitch >> 16;
+		int radiusCosEyePitch = this.radius * cosEyePitch >> 16;
 
-		@Pc(32) int maxZ = midZ + radiusCosEyePitch;
+		int maxZ = midZ + radiusCosEyePitch;
 		if (maxZ <= 50 || midZ >= 3500) {
 			return;
 		}
 
-		@Pc(49) int midX = relativeZ * sinEyeYaw + relativeX * cosEyeYaw >> 16;
-		@Pc(56) int leftX = midX - this.radius << 9;
+		int midX = relativeZ * sinEyeYaw + relativeX * cosEyeYaw >> 16;
+		int leftX = midX - this.radius << 9;
 		if (leftX / maxZ >= Draw2D.centerX2d) {
 			return;
 		}
 
-		@Pc(69) int rightX = midX + this.radius << 9;
+		int rightX = midX + this.radius << 9;
 		if (rightX / maxZ <= -Draw2D.centerX2d) {
 			return;
 		}
 
-		@Pc(86) int midY = relativeY * cosEyePitch - zPrime * sinEyePitch >> 16;
-		@Pc(93) int radiusSinEyePitch = this.radius * sinEyePitch >> 16;
+		int midY = relativeY * cosEyePitch - zPrime * sinEyePitch >> 16;
+		int radiusSinEyePitch = this.radius * sinEyePitch >> 16;
 
-		@Pc(99) int bottomY = midY + radiusSinEyePitch << 9;
+		int bottomY = midY + radiusSinEyePitch << 9;
 		if (bottomY / maxZ <= -Draw2D.centerY2d) {
 			return;
 		}
 
-		@Pc(115) int yPrime = radiusSinEyePitch + (this.maxY * cosEyePitch >> 16);
-		@Pc(121) int topY = midY - yPrime << 9;
+		int yPrime = radiusSinEyePitch + (this.maxY * cosEyePitch >> 16);
+		int topY = midY - yPrime << 9;
 		if (topY / maxZ >= Draw2D.centerY2d) {
 			return;
 		}
 
-		@Pc(136) int radiusZ = radiusCosEyePitch + (this.maxY * sinEyePitch >> 16);
+		int radiusZ = radiusCosEyePitch + (this.maxY * sinEyePitch >> 16);
 
-		@Pc(138) boolean clipped = midZ - radiusZ <= 50;
-		@Pc(147) boolean picking = false;
+		boolean clipped = midZ - radiusZ <= 50;
+		boolean picking = false;
 
 		if (bitset > 0 && checkHover) {
 			int z = midZ - radiusCosEyePitch;
@@ -1734,18 +1624,18 @@ public class Model extends Hashable {
 		int centerY = Draw3D.centerY;
 
 		int sinYaw = 0;
-		@Pc(243) int cosYaw = 0;
+		int cosYaw = 0;
 		if (yaw != 0) {
 			sinYaw = sin[yaw];
 			cosYaw = cos[yaw];
 		}
 
-		for (@Pc(255) int v = 0; v < this.vertexCount; v++) {
-			@Pc(262) int x = this.vertexX[v];
-			@Pc(267) int y = this.vertexY[v];
-			@Pc(272) int z = this.vertexZ[v];
+		for ( int v = 0; v < this.vertexCount; v++) {
+			int x = this.vertexX[v];
+			int y = this.vertexY[v];
+			int z = this.vertexZ[v];
 
-			@Pc(284) int temp;
+			int temp;
 			if (yaw != 0) {
 				temp = z * sinYaw + x * cosYaw >> 16;
 				z = z * cosYaw - x * sinYaw >> 16;
@@ -1782,17 +1672,16 @@ public class Model extends Hashable {
 
 		try {
 			this.draw(clipped, picking, bitset);
-		} catch (@Pc(418) Exception ex) {
+		} catch ( Exception ex) {
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "a", descriptor = "(ZZI)V")
-	private void draw(@OriginalArg(0) boolean clipped, @OriginalArg(1) boolean picking, @OriginalArg(2) int bitset) {
-		for (@Pc(3) int depth = 0; depth < this.maxDepth; depth++) {
+    private void draw( boolean clipped, boolean picking, int bitset) {
+		for ( int depth = 0; depth < this.maxDepth; depth++) {
 			tmpDepthFaceCount[depth] = 0;
 		}
 
-		for (@Pc(16) int f = 0; f < this.faceCount; f++) {
+		for ( int f = 0; f < this.faceCount; f++) {
 			if (this.faceInfo == null || this.faceInfo[f] != -1) {
 				int a = this.faceVertexA[f];
 				int b = this.faceVertexB[f];
@@ -1826,7 +1715,7 @@ public class Model extends Hashable {
 			for (int depth = this.maxDepth - 1; depth >= 0; depth--) {
 				int count = tmpDepthFaceCount[depth];
 				if (count > 0) {
-					@Pc(238) int[] faces = tmpDepthFaces[depth];
+					int[] faces = tmpDepthFaces[depth];
 					for (int f = 0; f < count; f++) {
 						this.drawFace(faces[f]);
 					}
@@ -1843,7 +1732,7 @@ public class Model extends Hashable {
 		for (int depth = this.maxDepth - 1; depth >= 0; depth--) {
 			int faceCount = tmpDepthFaceCount[depth];
 			if (faceCount > 0) {
-				@Pc(288) int[] faces = tmpDepthFaces[depth];
+				int[] faces = tmpDepthFaces[depth];
 				for (int i = 0; i < faceCount; i++) {
 					int priorityDepth = faces[i];
 					int priorityFace = this.facePriority[priorityDepth];
@@ -1876,8 +1765,8 @@ public class Model extends Hashable {
 		int priorityFace = 0;
 		int priorityFaceCount = tmpPriorityFaceCount[10];
 
-		@Pc(436) int[] priorityFaces = tmpPriorityFaces[10];
-		@Pc(438) int[] priorithFaceDepths = tmpPriority10FaceDepth;
+		int[] priorityFaces = tmpPriorityFaces[10];
+		int[] priorithFaceDepths = tmpPriority10FaceDepth;
 		if (priorityFace == priorityFaceCount) {
 			priorityFace = 0;
 			priorityFaceCount = tmpPriorityFaceCount[11];
@@ -1892,7 +1781,7 @@ public class Model extends Hashable {
 			priorityDepth = -1000;
 		}
 
-		for (@Pc(466) int priority = 0; priority < 10; priority++) {
+		for ( int priority = 0; priority < 10; priority++) {
 			while (priority == 0 && priorityDepth > averagePriorityDepthSum1_2) {
 				this.drawFace(priorityFaces[priorityFace++]);
 
@@ -1944,9 +1833,9 @@ public class Model extends Hashable {
 				}
 			}
 
-			@Pc(604) int count = tmpPriorityFaceCount[priority];
-			@Pc(608) int[] faces = tmpPriorityFaces[priority];
-			for (@Pc(610) int i = 0; i < count; i++) {
+			int count = tmpPriorityFaceCount[priority];
+			int[] faces = tmpPriorityFaces[priority];
+			for ( int i = 0; i < count; i++) {
 				this.drawFace(faces[i]);
 			}
 		}
@@ -1969,16 +1858,15 @@ public class Model extends Hashable {
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "f", descriptor = "(I)V")
-	private void drawFace(@OriginalArg(0) int face) {
+    private void drawFace( int face) {
 		if (faceNearClipped[face]) {
 			this.drawNearClippedFace(face);
 			return;
 		}
 
-		@Pc(14) int a = this.faceVertexA[face];
-		@Pc(19) int b = this.faceVertexB[face];
-		@Pc(24) int c = this.faceVertexC[face];
+		int a = this.faceVertexA[face];
+		int b = this.faceVertexB[face];
+		int c = this.faceVertexC[face];
 
 		Draw3D.clipX = faceClippedX[face];
 
@@ -1988,7 +1876,7 @@ public class Model extends Hashable {
 			Draw3D.alpha = this.faceAlpha[face];
 		}
 
-		@Pc(45) int type;
+		int type;
 		if (this.faceInfo == null) {
 			type = 0;
 		} else {
@@ -2014,19 +1902,18 @@ public class Model extends Hashable {
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "g", descriptor = "(I)V")
-	private void drawNearClippedFace(@OriginalArg(0) int face) {
-		@Pc(3) int centerX = Draw3D.centerX;
-		@Pc(5) int centerY = Draw3D.centerY;
-		@Pc(7) int elements = 0;
+    private void drawNearClippedFace( int face) {
+		int centerX = Draw3D.centerX;
+		int centerY = Draw3D.centerY;
+		int elements = 0;
 
-		@Pc(12) int a = this.faceVertexA[face];
-		@Pc(17) int b = this.faceVertexB[face];
-		@Pc(22) int c = this.faceVertexC[face];
+		int a = this.faceVertexA[face];
+		int b = this.faceVertexB[face];
+		int c = this.faceVertexC[face];
 
-		@Pc(26) int zA = vertexViewSpaceZ[a];
-		@Pc(30) int zB = vertexViewSpaceZ[b];
-		@Pc(34) int zC = vertexViewSpaceZ[c];
+		int zA = vertexViewSpaceZ[a];
+		int zB = vertexViewSpaceZ[b];
+		int zC = vertexViewSpaceZ[c];
 
 		if (zA >= 50) {
 			clippedX[elements] = vertexScreenX[a];
@@ -2104,8 +1991,8 @@ public class Model extends Hashable {
 		int x1 = clippedX[1];
 		int x2 = clippedX[2];
 		int y0 = clippedY[0];
-		@Pc(582) int y1 = clippedY[1];
-		@Pc(586) int y2 = clippedY[2];
+		int y1 = clippedY[1];
+		int y2 = clippedY[2];
 
 		if ((x0 - x1) * (y2 - y1) - (y0 - y1) * (x2 - x1) <= 0) {
 			return;
@@ -2179,8 +2066,7 @@ public class Model extends Hashable {
 		}
 	}
 
-	@OriginalMember(owner = "client!eb", name = "a", descriptor = "(IIIIIIII)Z")
-	private boolean pointWithinTriangle(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int yA, @OriginalArg(3) int yB, @OriginalArg(4) int yC, @OriginalArg(5) int xA, @OriginalArg(6) int xB, @OriginalArg(7) int xC) {
+    private boolean pointWithinTriangle( int x, int y, int yA, int yB, int yC, int xA, int xB, int xC) {
 		if (y < yA && y < yB && y < yC) {
 			return false;
 		} else if (y > yA && y > yB && y > yC) {
@@ -2192,72 +2078,50 @@ public class Model extends Hashable {
 		}
 	}
 
-	@OriginalClass("client!l")
 	public static final class Metadata {
 
-		@OriginalMember(owner = "client!l", name = "a", descriptor = "I")
-		public int vertexCount;
+        public int vertexCount;
 
-		@OriginalMember(owner = "client!l", name = "b", descriptor = "I")
-		public int faceCount;
+        public int faceCount;
 
-		@OriginalMember(owner = "client!l", name = "c", descriptor = "I")
-		public int texturedFaceCount;
+        public int texturedFaceCount;
 
-		@OriginalMember(owner = "client!l", name = "d", descriptor = "I")
-		public int vertexFlagsOffset;
+        public int vertexFlagsOffset;
 
-		@OriginalMember(owner = "client!l", name = "e", descriptor = "I")
-		public int vertexXOffset;
+        public int vertexXOffset;
 
-		@OriginalMember(owner = "client!l", name = "f", descriptor = "I")
-		public int vertexYOffset;
+        public int vertexYOffset;
 
-		@OriginalMember(owner = "client!l", name = "g", descriptor = "I")
-		public int vertexZOffset;
+        public int vertexZOffset;
 
-		@OriginalMember(owner = "client!l", name = "h", descriptor = "I")
-		public int vertexLabelsOffset;
+        public int vertexLabelsOffset;
 
-		@OriginalMember(owner = "client!l", name = "i", descriptor = "I")
-		public int faceVerticesOffset;
+        public int faceVerticesOffset;
 
-		@OriginalMember(owner = "client!l", name = "j", descriptor = "I")
-		public int faceOrientationsOffset;
+        public int faceOrientationsOffset;
 
-		@OriginalMember(owner = "client!l", name = "k", descriptor = "I")
-		public int faceColorsOffset;
+        public int faceColorsOffset;
 
-		@OriginalMember(owner = "client!l", name = "l", descriptor = "I")
-		public int faceInfosOffset;
+        public int faceInfosOffset;
 
-		@OriginalMember(owner = "client!l", name = "m", descriptor = "I")
-		public int facePrioritiesOffset;
+        public int facePrioritiesOffset;
 
-		@OriginalMember(owner = "client!l", name = "n", descriptor = "I")
-		public int faceAlphasOffset;
+        public int faceAlphasOffset;
 
-		@OriginalMember(owner = "client!l", name = "o", descriptor = "I")
-		public int faceLabelsOffset;
+        public int faceLabelsOffset;
 
-		@OriginalMember(owner = "client!l", name = "p", descriptor = "I")
-		public int faceTextureAxisOffset;
+        public int faceTextureAxisOffset;
 	}
 
-	@OriginalClass("client!n")
 	public static final class VertexNormal {
 
-		@OriginalMember(owner = "client!n", name = "a", descriptor = "I")
-		public int x;
+        public int x;
 
-		@OriginalMember(owner = "client!n", name = "b", descriptor = "I")
-		public int y;
+        public int y;
 
-		@OriginalMember(owner = "client!n", name = "c", descriptor = "I")
-		public int z;
+        public int z;
 
-		@OriginalMember(owner = "client!n", name = "d", descriptor = "I")
-		public int w;
+        public int w;
 	}
 
 }

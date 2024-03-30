@@ -19,9 +19,7 @@ public class MidiPlayer {
 
   private static boolean isRunning = false;
 
-  public static int volume = 80;
-
-  public static int fadingVolume = volume;
+  public static int volume = 20;
 
   private static int fadeTime = 3000;
 
@@ -33,8 +31,16 @@ public class MidiPlayer {
 
   private static long length = -1;
 
+  static boolean firstReset = true;
 
-  public static void playSong(boolean forced) {
+  public static boolean isJingle = false;
+
+  public static void playSong(String name, boolean forced) {
+
+    if (firstReset) {
+      volume = 40;
+      firstReset = false;
+    }
 
     if (midi == null || volume == 0) {
       sequencer.stop();
@@ -58,7 +64,7 @@ public class MidiPlayer {
       if (soundfont == null) {
         soundfont = MidiSystem.getSoundbank(
             Objects.requireNonNull(
-                ClassLoader.getSystemClassLoader().getResourceAsStream("osrs_sound_font.sf2")));
+                ClassLoader.getSystemClassLoader().getResourceAsStream("SCC1_Florestan.sf2")));
       }
       if (sequencer == null) {
         sequencer = MidiSystem.getSequencer(false);
@@ -68,12 +74,11 @@ public class MidiPlayer {
         synthesizer = MidiSystem.getSynthesizer();
       }
 
-      fadingVolume = volume;
-
-      if (isRunning) {
+      if (isRunning && !isJingle) {
         fadeOut();
       } else {
-
+        if (sequencer.isRunning())
+          sequencer.stop();
         sequencer = MidiSystem.getSequencer(false);
         synthesizer = MidiSystem.getSynthesizer();
 
@@ -106,12 +111,13 @@ public class MidiPlayer {
     fadeThread = new Thread(new Runnable() {
       @Override
       public void run() {
+        int oldVolume = volume;
         while (System.currentTimeMillis() < fadeStart + fadeTime) {
-          if (fadingVolume >= 10) {
-            fadingVolume -= 10;
+          if (volume >= 10) {
+            volume -= 10;
             MidiChannel[] channels = synthesizer.getChannels();
             for (MidiChannel channel : channels) {
-              channel.controlChange(7, fadingVolume);
+              channel.controlChange(7, volume);
             }
           }
 
@@ -121,9 +127,9 @@ public class MidiPlayer {
             throw new RuntimeException(e);
           }
         }
-        synthesizer.close();
         isRunning = false;
-        playSong(true);
+        playSong("", true);
+        volume = oldVolume;
       }
     });
 

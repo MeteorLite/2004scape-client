@@ -5,37 +5,28 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("client!tb")
 public class Isaac {
 
-	@OriginalMember(owner = "client!tb", name = "a", descriptor = "I")
-	private int count;
+    private int count;
 
-	@OriginalMember(owner = "client!tb", name = "b", descriptor = "[I")
-	private final int[] rsl;
+    private final int[] rsl;
 
-	@OriginalMember(owner = "client!tb", name = "c", descriptor = "[I")
-	private final int[] mem;
+    private final int[] mem;
 
-	@OriginalMember(owner = "client!tb", name = "d", descriptor = "I")
-	private int a;
+    private int a;
 
-	@OriginalMember(owner = "client!tb", name = "e", descriptor = "I")
-	private int b;
+    private int b;
 
-	@OriginalMember(owner = "client!tb", name = "f", descriptor = "I")
-	private int c;
+    private int c;
 
-	@OriginalMember(owner = "client!tb", name = "<init>", descriptor = "(B[I)V")
-	public Isaac(@OriginalArg(1) int[] seed) {
+    public Isaac( int[] seed) {
 		this.mem = new int[256];
 		this.rsl = new int[256];
 		System.arraycopy(seed, 0, this.rsl, 0, seed.length);
 		this.init();
 	}
 
-	@OriginalMember(owner = "client!tb", name = "a", descriptor = "()I")
-	public int nextInt() {
+    public int nextInt() {
 		if (this.count-- == 0) {
 			this.isaac();
 			this.count = 255;
@@ -43,12 +34,11 @@ public class Isaac {
 		return this.rsl[this.count];
 	}
 
-	@OriginalMember(owner = "client!tb", name = "b", descriptor = "()V")
-	private void isaac() {
+    private void isaac() {
 		this.b += ++this.c;
 
-		for (@Pc(15) int i = 0; i < 256; i++) {
-			@Pc(22) int x = this.mem[i];
+		for ( int i = 0; i < 256; i++) {
+			int x = this.mem[i];
 			switch (i & 0x3) {
 				case 0:
 					this.a ^= this.a << 13;
@@ -64,24 +54,23 @@ public class Isaac {
 			}
 
 			this.a += this.mem[i + 128 & 0xFF];
-			@Pc(101) int y;
+			int y;
 			this.mem[i] = y = this.mem[x >> 2 & 0xFF] + this.a + this.b;
 			this.rsl[i] = this.b = this.mem[y >> 8 >> 2 & 0xFF] + x;
 		}
 	}
 
-	@OriginalMember(owner = "client!tb", name = "c", descriptor = "()V")
-	private void init() {
-		@Pc(4) int h = 0x9e3779b9;
-		@Pc(6) int g = 0x9e3779b9;
-		@Pc(8) int f = 0x9e3779b9;
-		@Pc(10) int e = 0x9e3779b9;
-		@Pc(12) int d = 0x9e3779b9;
-		@Pc(14) int c = 0x9e3779b9;
-		@Pc(16) int b = 0x9e3779b9;
-		@Pc(17) int a = 0x9e3779b9;
+    private void init() {
+		int h = 0x9e3779b9;
+		int g = 0x9e3779b9;
+		int f = 0x9e3779b9;
+		int e = 0x9e3779b9;
+		int d = 0x9e3779b9;
+		int c = 0x9e3779b9;
+		int b = 0x9e3779b9;
+		int a = 0x9e3779b9;
 
-		@Pc(19) int i;
+		int i;
 		for (i = 0; i < 4; i++) {
 			a ^= b << 11; d += a; b += c;
 			b ^= c >>> 2; e += b; c += d;

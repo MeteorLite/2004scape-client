@@ -7,11 +7,9 @@ import org.openrs2.deob.annotation.Pc;
 
 public class BZip2 {
 
-	@OriginalMember(owner = "client!rb", name = "a", descriptor = "Lclient!sb;")
-	private static final BZip2State state = new BZip2State();
+    private static final BZip2State state = new BZip2State();
 
-	@OriginalMember(owner = "client!rb", name = "a", descriptor = "([BI[BII)I")
-	public static int read(@OriginalArg(0) byte[] decompressed, @OriginalArg(1) int length, @OriginalArg(2) byte[] stream, @OriginalArg(3) int avail_in, @OriginalArg(4) int next_in) {
+    public static int read( byte[] decompressed, int length, byte[] stream, int avail_in, int next_in) {
 		synchronized (state) {
 			state.stream = stream;
 			state.next_in = next_in;
@@ -32,19 +30,18 @@ public class BZip2 {
 	}
 
 	// unRLE_obuf_to_output_FAST
-	@OriginalMember(owner = "client!rb", name = "a", descriptor = "(Lclient!sb;)V")
-	private static void finish(@OriginalArg(0) BZip2State s) {
-		@Pc(4) byte c_state_out_ch = s.state_out_ch;
-		@Pc(7) int c_state_out_len = s.state_out_len;
-		@Pc(10) int c_nblock_used = s.c_nblock_used;
-		@Pc(13) int c_k0 = s.k0;
-		@Pc(15) int[] c_tt = BZip2State.tt;
-		@Pc(18) int c_tPos = s.tPos;
-		@Pc(21) byte[] cs_decompressed = s.decompressed;
-		@Pc(24) int cs_next_out = s.next_out;
-		@Pc(27) int cs_avail_out = s.avail_out;
-		@Pc(29) int avail_out_INIT = cs_avail_out;
-		@Pc(34) int s_save_nblockPP = s.save_nblock + 1;
+    private static void finish( BZip2State s) {
+		byte c_state_out_ch = s.state_out_ch;
+		int c_state_out_len = s.state_out_len;
+		int c_nblock_used = s.c_nblock_used;
+		int c_k0 = s.k0;
+		int[] c_tt = BZip2State.tt;
+		int c_tPos = s.tPos;
+		byte[] cs_decompressed = s.decompressed;
+		int cs_next_out = s.next_out;
+		int cs_avail_out = s.avail_out;
+		int avail_out_INIT = cs_avail_out;
+		int s_save_nblockPP = s.save_nblock + 1;
 
 		label67:
 		while (true) {
@@ -73,8 +70,8 @@ public class BZip2 {
 				}
 			}
 
-			@Pc(64) boolean next = true;
-			@Pc(87) byte k1;
+			boolean next = true;
+			byte k1;
 			while (next) {
 				next = false;
 				if (c_nblock_used == s_save_nblockPP) {
@@ -153,7 +150,7 @@ public class BZip2 {
 			}
 		}
 
-		@Pc(224) int total_out_lo32_old = s.total_out_lo32;
+		int total_out_lo32_old = s.total_out_lo32;
 		s.total_out_lo32 += avail_out_INIT - cs_avail_out;
 		if (s.total_out_lo32 < total_out_lo32_old) {
 			s.total_out_hi32++;
@@ -173,8 +170,7 @@ public class BZip2 {
 	}
 
 	// BZ2_decompress
-	@OriginalMember(owner = "client!rb", name = "b", descriptor = "(Lclient!sb;)V")
-	private static void decompress(@OriginalArg(0) BZip2State s) {
+    private static void decompress( BZip2State s) {
 		// libbzip2 uses these variables in a save area
 		/*@Pc(3) boolean save_i = false;
 		@Pc(5) boolean save_j = false;
@@ -196,19 +192,19 @@ public class BZip2 {
 		@Pc(37) boolean save_zvec = false;
 		@Pc(39) boolean save_zj = false;*/
 
-		@Pc(41) int gMinlen = 0;
-		@Pc(43) int[] gLimit = null;
-		@Pc(45) int[] gBase = null;
-		@Pc(47) int[] gPerm = null;
+		int gMinlen = 0;
+		int[] gLimit = null;
+		int[] gBase = null;
+		int[] gPerm = null;
 
 		s.blockSize100k = 1;
 		if (BZip2State.tt == null) {
 			BZip2State.tt = new int[s.blockSize100k * 100000];
 		}
 
-		@Pc(60) boolean reading = true;
+		boolean reading = true;
 		while (reading) {
-			@Pc(64) byte uc = getUnsignedChar(s);
+			byte uc = getUnsignedChar(s);
 			if (uc == 0x17) {
 				return;
 			}
@@ -242,7 +238,7 @@ public class BZip2 {
 			s.origPtr = s.origPtr << 8 | uc & 0xFF;
 
 			// Receive the mapping table
-			@Pc(164) int i;
+			int i;
 			for (i = 0; i < 16; i++) {
 				uc = getBit(s);
 				s.inUse16[i] = uc == 1;
@@ -252,7 +248,7 @@ public class BZip2 {
 				s.inUse[i] = false;
 			}
 
-			@Pc(212) int j;
+			int j;
 			for (i = 0; i < 16; i++) {
 				if (s.inUse16[i]) {
 					for (j = 0; j < 16; j++) {
@@ -264,10 +260,10 @@ public class BZip2 {
 				}
 			}
 			makeMaps(s);
-			@Pc(244) int alphaSize = s.nInUse + 2;
+			int alphaSize = s.nInUse + 2;
 
-			@Pc(248) int nGroups = getBits(3, s);
-			@Pc(252) int nSelectors = getBits(15, s);
+			int nGroups = getBits(3, s);
+			int nSelectors = getBits(15, s);
 			for (i = 0; i < nSelectors; i++) {
 				j = 0;
 
@@ -283,15 +279,15 @@ public class BZip2 {
 			}
 
 			// Undo the MTF values for the selectors
-			@Pc(279) byte[] pos = new byte[BZip2State.BZ_N_GROUPS];
-			@Pc(281) byte v;
+			byte[] pos = new byte[BZip2State.BZ_N_GROUPS];
+			byte v;
 			for (v = 0; v < nGroups; v++) {
 				pos[v] = v;
 			}
 
 			for (i = 0; i < nSelectors; i++) {
 				v = s.selectorMtf[i];
-				@Pc(308) byte tmp = pos[v];
+				byte tmp = pos[v];
 				while (v > 0) {
 					pos[v] = pos[v - 1];
 					v--;
@@ -301,9 +297,9 @@ public class BZip2 {
 			}
 
 			// Now the coding tables
-			@Pc(340) int t;
+			int t;
 			for (t = 0; t < nGroups; t++) {
-				@Pc(346) int curr = getBits(5, s);
+				int curr = getBits(5, s);
 
 				for (i = 0; i < alphaSize; i++) {
 					while (true) {
@@ -326,8 +322,8 @@ public class BZip2 {
 
 			// Create the Huffman decoding tables
 			for (t = 0; t < nGroups; t++) {
-				@Pc(388) byte minLen = 32;
-				@Pc(390) byte maxLen = 0;
+				byte minLen = 32;
+				byte maxLen = 0;
 
 				for (i = 0; i < alphaSize; i++) {
 					if (s.len[t][i] > maxLen) {
@@ -344,19 +340,19 @@ public class BZip2 {
 			}
 
 			// Now the MTF values
-			@Pc(462) int EOB = s.nInUse + 1;
-			@Pc(467) int nblockMAX = s.blockSize100k * 100000;
-			@Pc(469) int groupNo = -1;
-			@Pc(471) byte groupPos = 0;
+			int EOB = s.nInUse + 1;
+			int nblockMAX = s.blockSize100k * 100000;
+			int groupNo = -1;
+			byte groupPos = 0;
 
 			for (i = 0; i <= 255; i++) {
 				s.unzftab[i] = 0;
 			}
 
 			// MTF init
-			@Pc(486) int kk = BZip2State.MTFA_SIZE - 1;
-			for (@Pc(488) int ii = 256 / BZip2State.MTFL_SIZE - 1; ii >= 0; ii--) {
-				for (@Pc(492) int jj = BZip2State.MTFL_SIZE - 1; jj >= 0; jj--) {
+			int kk = BZip2State.MTFA_SIZE - 1;
+			for ( int ii = 256 / BZip2State.MTFL_SIZE - 1; ii >= 0; ii--) {
+				for ( int jj = BZip2State.MTFL_SIZE - 1; jj >= 0; jj--) {
 					s.mtfa[kk] = (byte) (ii * BZip2State.MTFL_SIZE + jj);
 					kk--;
 				}
@@ -365,10 +361,10 @@ public class BZip2 {
 			}
 			// end MTF init
 
-			@Pc(520) int nblock = 0;
+			int nblock = 0;
 
 			// macro: GET_MTF_VAL
-			@Pc(530) byte gSel;
+			byte gSel;
 			if (groupPos == 0) {
 				groupNo++;
 				groupPos = 50;
@@ -379,20 +375,20 @@ public class BZip2 {
 				gBase = s.base[gSel];
 			}
 
-			@Pc(551) int gPos = groupPos - 1;
-			@Pc(553) int zn = gMinlen;
-			@Pc(557) int zvec;
-			@Pc(566) byte zj;
+			int gPos = groupPos - 1;
+			int zn = gMinlen;
+			int zvec;
+			byte zj;
 			for (zvec = getBits(gMinlen, s); zvec > gLimit[zn]; zvec = zvec << 1 | zj) {
 				zn++;
 				zj = getBit(s);
 			}
 
-			@Pc(582) int nextSym = gPerm[zvec - gBase[zn]];
+			int nextSym = gPerm[zvec - gBase[zn]];
 			while (nextSym != EOB) {
 				if (nextSym == BZip2State.BZ_RUNA || nextSym == BZip2State.BZ_RUNB) {
-					@Pc(592) int es = -1;
-					@Pc(594) int N = 1;
+					int es = -1;
+					int N = 1;
 
 					do {
 						if (nextSym == BZip2State.BZ_RUNA) {
@@ -433,8 +429,8 @@ public class BZip2 {
 					}
 				} else {
 					// uc = MTF ( nextSym-1 )
-					@Pc(724) int nn = nextSym - 1;
-					@Pc(732) int pp;
+					int nn = nextSym - 1;
+					int pp;
 
 					if (nn < BZip2State.MTFL_SIZE) {
 						// avoid general-case expense
@@ -442,7 +438,7 @@ public class BZip2 {
 						uc = s.mtfa[pp + nn];
 
 						while (nn > 3) {
-							@Pc(745) int z = pp + nn;
+							int z = pp + nn;
 							s.mtfa[z] = s.mtfa[z - 1];
 							s.mtfa[z - 1] = s.mtfa[z - 2];
 							s.mtfa[z - 2] = s.mtfa[z - 3];
@@ -458,8 +454,8 @@ public class BZip2 {
 						s.mtfa[pp] = uc;
 					} else {
 						// general case
-						@Pc(825) int lno = nn / BZip2State.MTFL_SIZE;
-						@Pc(829) int off = nn % BZip2State.MTFL_SIZE;
+						int lno = nn / BZip2State.MTFL_SIZE;
+						int off = nn % BZip2State.MTFL_SIZE;
 
 						pp = s.mtfbase[lno] + off;
 						uc = s.mtfa[pp];
@@ -482,8 +478,8 @@ public class BZip2 {
 
 						if (s.mtfbase[0] == 0) {
 							kk = BZip2State.MTFA_SIZE - 1;
-							for (@Pc(926) int ii = 256 / BZip2State.MTFL_SIZE - 1; ii >= 0; ii--) {
-								for (@Pc(930) int jj = BZip2State.MTFL_SIZE - 1; jj >= 0; jj--) {
+							for ( int ii = 256 / BZip2State.MTFL_SIZE - 1; ii >= 0; ii--) {
+								for ( int jj = BZip2State.MTFL_SIZE - 1; jj >= 0; jj--) {
 									s.mtfa[kk] = s.mtfa[s.mtfbase[ii] + jj];
 									kk--;
 								}
@@ -563,20 +559,17 @@ public class BZip2 {
 	}
 
 	// macro: GET_UCHAR
-	@OriginalMember(owner = "client!rb", name = "c", descriptor = "(Lclient!sb;)B")
-	private static byte getUnsignedChar(@OriginalArg(0) BZip2State s) {
+    private static byte getUnsignedChar( BZip2State s) {
 		return (byte) getBits(8, s);
 	}
 
 	// macro: GET_BIT
-	@OriginalMember(owner = "client!rb", name = "d", descriptor = "(Lclient!sb;)B")
-	private static byte getBit(@OriginalArg(0) BZip2State s) {
+    private static byte getBit( BZip2State s) {
 		return (byte) getBits(1, s);
 	}
 
 	// macro: GET_BITS
-	@OriginalMember(owner = "client!rb", name = "a", descriptor = "(ILclient!sb;)I")
-	private static int getBits(@OriginalArg(0) int n, @OriginalArg(1) BZip2State s) {
+    private static int getBits( int n, BZip2State s) {
 		while (s.bsLive < n) {
 			s.bsBuff = s.bsBuff << 8 | s.stream[s.next_in] & 0xFF;
 			s.bsLive += 8;
@@ -588,17 +581,16 @@ public class BZip2 {
 			}
 		}
 
-		@Pc(17) int value = s.bsBuff >> s.bsLive - n & (1 << n) - 1;
+		int value = s.bsBuff >> s.bsLive - n & (1 << n) - 1;
 		s.bsLive -= n;
 		return value;
 	}
 
 	// makeMaps_d
-	@OriginalMember(owner = "client!rb", name = "e", descriptor = "(Lclient!sb;)V")
-	private static void makeMaps(@OriginalArg(0) BZip2State s) {
+    private static void makeMaps( BZip2State s) {
 		s.nInUse = 0;
 
-		for (@Pc(4) int i = 0; i < 256; i++) {
+		for ( int i = 0; i < 256; i++) {
 			if (s.inUse[i]) {
 				s.seqToUnseq[s.nInUse] = (byte) i;
 				s.nInUse++;
@@ -607,13 +599,12 @@ public class BZip2 {
 	}
 
 	// BZ2_hbCreateDecodeTables
-	@OriginalMember(owner = "client!rb", name = "a", descriptor = "([I[I[I[BIII)V")
-	private static void createDecodeTables(@OriginalArg(0) int[] limit, @OriginalArg(1) int[] base, @OriginalArg(2) int[] perm, @OriginalArg(3) byte[] length, @OriginalArg(4) int minLen, @OriginalArg(5) int maxLen, @OriginalArg(6) int alphaSize) {
-		@Pc(3) int pp = 0;
-		@Pc(5) int i;
+    private static void createDecodeTables( int[] limit, int[] base, int[] perm, byte[] length, int minLen, int maxLen, int alphaSize) {
+		int pp = 0;
+		int i;
 
 		for (i = minLen; i <= maxLen; i++) {
-			for (@Pc(9) int j = 0; j < alphaSize; j++) {
+			for ( int j = 0; j < alphaSize; j++) {
 				if (length[j] == i) {
 					perm[pp] = j;
 					pp++;
@@ -637,7 +628,7 @@ public class BZip2 {
 			limit[i] = 0;
 		}
 
-		@Pc(93) int vec = 0;
+		int vec = 0;
 		for (i = minLen; i <= maxLen; i++) {
 			vec += base[i + 1] - base[i];
 			limit[i] = vec - 1;
@@ -649,154 +640,105 @@ public class BZip2 {
 		}
 	}
 
-	@OriginalClass("client!sb")
 	public static final class BZip2State {
 
-		@OriginalMember(owner = "client!sb", name = "a", descriptor = "I")
-		public static final int MTFA_SIZE = 4096;
+        public static final int MTFA_SIZE = 4096;
 
-		@OriginalMember(owner = "client!sb", name = "b", descriptor = "I")
-		public static final int MTFL_SIZE = 16;
+        public static final int MTFL_SIZE = 16;
 
-		@OriginalMember(owner = "client!sb", name = "c", descriptor = "I")
-		public static final int BZ_MAX_ALPHA_SIZE = 258;
+        public static final int BZ_MAX_ALPHA_SIZE = 258;
 
-		@OriginalMember(owner = "client!sb", name = "d", descriptor = "I")
-		public static final int BZ_MAX_CODE_LEN = 23;
+        public static final int BZ_MAX_CODE_LEN = 23;
 
-		@OriginalMember(owner = "client!sb", name = "e", descriptor = "I")
-		private static final int anInt732 = 1; // TODO
+        private static final int anInt732 = 1; // TODO
 
-		@OriginalMember(owner = "client!sb", name = "f", descriptor = "I")
-		private static final int BZ_N_GROUPS = 6;
+        private static final int BZ_N_GROUPS = 6;
 
-		@OriginalMember(owner = "client!sb", name = "g", descriptor = "I")
-		private static final int BZ_G_SIZE = 50;
+        private static final int BZ_G_SIZE = 50;
 
-		@OriginalMember(owner = "client!sb", name = "h", descriptor = "I")
-		private static final int anInt735 = 4; // TODO
+        private static final int anInt735 = 4; // TODO
 
-		@OriginalMember(owner = "client!sb", name = "i", descriptor = "I")
-		private static final int BZ_MAX_SELECTORS = (2 + (900000 / BZ_G_SIZE)); // 18002
+        private static final int BZ_MAX_SELECTORS = (2 + (900000 / BZ_G_SIZE)); // 18002
 
 		public static final int BZ_RUNA = 0;
 		public static final int BZ_RUNB = 1;
 
-		@OriginalMember(owner = "client!sb", name = "j", descriptor = "[B")
-		public byte[] stream;
+        public byte[] stream;
 
-		@OriginalMember(owner = "client!sb", name = "k", descriptor = "I")
-		public int next_in;
+        public int next_in;
 
-		@OriginalMember(owner = "client!sb", name = "l", descriptor = "I")
-		public int avail_in;
+        public int avail_in;
 
-		@OriginalMember(owner = "client!sb", name = "m", descriptor = "I")
-		public int total_in_lo32;
+        public int total_in_lo32;
 
-		@OriginalMember(owner = "client!sb", name = "n", descriptor = "I")
-		public int total_in_hi32;
+        public int total_in_hi32;
 
-		@OriginalMember(owner = "client!sb", name = "o", descriptor = "[B")
-		public byte[] decompressed;
+        public byte[] decompressed;
 
-		@OriginalMember(owner = "client!sb", name = "p", descriptor = "I")
-		public int next_out;
+        public int next_out;
 
-		@OriginalMember(owner = "client!sb", name = "q", descriptor = "I")
-		public int avail_out;
+        public int avail_out;
 
-		@OriginalMember(owner = "client!sb", name = "r", descriptor = "I")
-		public int total_out_lo32;
+        public int total_out_lo32;
 
-		@OriginalMember(owner = "client!sb", name = "s", descriptor = "I")
-		public int total_out_hi32;
+        public int total_out_hi32;
 
-		@OriginalMember(owner = "client!sb", name = "t", descriptor = "B")
-		public byte state_out_ch;
+        public byte state_out_ch;
 
-		@OriginalMember(owner = "client!sb", name = "u", descriptor = "I")
-		public int state_out_len;
+        public int state_out_len;
 
-		@OriginalMember(owner = "client!sb", name = "v", descriptor = "Z")
-		public boolean blockRandomized;
+        public boolean blockRandomized;
 
-		@OriginalMember(owner = "client!sb", name = "w", descriptor = "I")
-		public int bsBuff;
+        public int bsBuff;
 
-		@OriginalMember(owner = "client!sb", name = "x", descriptor = "I")
-		public int bsLive;
+        public int bsLive;
 
-		@OriginalMember(owner = "client!sb", name = "y", descriptor = "I")
-		public int blockSize100k;
+        public int blockSize100k;
 
-		@OriginalMember(owner = "client!sb", name = "z", descriptor = "I")
-		public int currBlockNo;
+        public int currBlockNo;
 
-		@OriginalMember(owner = "client!sb", name = "A", descriptor = "I")
-		public int origPtr;
+        public int origPtr;
 
-		@OriginalMember(owner = "client!sb", name = "B", descriptor = "I")
-		public int tPos;
+        public int tPos;
 
-		@OriginalMember(owner = "client!sb", name = "C", descriptor = "I")
-		public int k0;
+        public int k0;
 
-		@OriginalMember(owner = "client!sb", name = "D", descriptor = "[I")
-		public final int[] unzftab = new int[256];
+        public final int[] unzftab = new int[256];
 
-		@OriginalMember(owner = "client!sb", name = "E", descriptor = "I")
-		public int c_nblock_used;
+        public int c_nblock_used;
 
-		@OriginalMember(owner = "client!sb", name = "F", descriptor = "[I")
-		public final int[] cftab = new int[257];
+        public final int[] cftab = new int[257];
 
-		@OriginalMember(owner = "client!sb", name = "G", descriptor = "[I")
-		private final int[] cftabCopy = new int[257];
+        private final int[] cftabCopy = new int[257];
 
-		@OriginalMember(owner = "client!sb", name = "H", descriptor = "[I")
-		public static int[] tt;
+        public static int[] tt;
 
-		@OriginalMember(owner = "client!sb", name = "I", descriptor = "I")
-		public int nInUse;
+        public int nInUse;
 
-		@OriginalMember(owner = "client!sb", name = "J", descriptor = "[Z")
-		public final boolean[] inUse = new boolean[256];
+        public final boolean[] inUse = new boolean[256];
 
-		@OriginalMember(owner = "client!sb", name = "K", descriptor = "[Z")
-		public final boolean[] inUse16 = new boolean[16];
+        public final boolean[] inUse16 = new boolean[16];
 
-		@OriginalMember(owner = "client!sb", name = "L", descriptor = "[B")
-		public final byte[] seqToUnseq = new byte[256];
+        public final byte[] seqToUnseq = new byte[256];
 
-		@OriginalMember(owner = "client!sb", name = "M", descriptor = "[B")
-		public final byte[] mtfa = new byte[MTFA_SIZE];
+        public final byte[] mtfa = new byte[MTFA_SIZE];
 
-		@OriginalMember(owner = "client!sb", name = "N", descriptor = "[I")
-		public final int[] mtfbase = new int[256 / MTFL_SIZE];
+        public final int[] mtfbase = new int[256 / MTFL_SIZE];
 
-		@OriginalMember(owner = "client!sb", name = "O", descriptor = "[B")
-		public final byte[] selector = new byte[BZ_MAX_SELECTORS];
+        public final byte[] selector = new byte[BZ_MAX_SELECTORS];
 
-		@OriginalMember(owner = "client!sb", name = "P", descriptor = "[B")
-		public final byte[] selectorMtf = new byte[BZ_MAX_SELECTORS];
+        public final byte[] selectorMtf = new byte[BZ_MAX_SELECTORS];
 
-		@OriginalMember(owner = "client!sb", name = "Q", descriptor = "[[B")
-		public final byte[][] len = new byte[BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
+        public final byte[][] len = new byte[BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
 
-		@OriginalMember(owner = "client!sb", name = "R", descriptor = "[[I")
-		public final int[][] limit = new int[BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
+        public final int[][] limit = new int[BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
 
-		@OriginalMember(owner = "client!sb", name = "S", descriptor = "[[I")
-		public final int[][] base = new int[BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
+        public final int[][] base = new int[BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
 
-		@OriginalMember(owner = "client!sb", name = "T", descriptor = "[[I")
-		public final int[][] perm = new int[BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
+        public final int[][] perm = new int[BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
 
-		@OriginalMember(owner = "client!sb", name = "U", descriptor = "[I")
-		public final int[] minLens = new int[BZ_N_GROUPS];
+        public final int[] minLens = new int[BZ_N_GROUPS];
 
-		@OriginalMember(owner = "client!sb", name = "V", descriptor = "I")
-		public int save_nblock;
+        public int save_nblock;
 	}
 }
