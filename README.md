@@ -11,6 +11,12 @@ All credits to them for the refactor.
 `iosApp` - ios Swift code
 `rs2` - Decompiled client source code. Some class names are original.
 
+## Working
+
+use latest IntelliJ for desktop  
+use latest Android Studio for Android
+use whatever the hell it is people use for IOS, for IOS
+
 ## Sources
 
 Thanks to these individuals' projects for shedding light on some things - this would've taken a lot longer to complete without their efforts.

@@ -330,7 +330,6 @@ public class GameShell extends Applet implements Runnable, MouseListener, MouseM
 
 	@Override
 	public final void mouseMoved( MouseEvent e) {
-		System.out.println(e.getX() + ":" + e.getY());
 		int x = e.getX();
 		int y = e.getY();
 
