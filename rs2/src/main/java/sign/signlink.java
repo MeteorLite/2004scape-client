@@ -7,6 +7,7 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
+import java.net.UnknownHostException;
 
 public class signlink implements Runnable {
 
@@ -74,7 +75,8 @@ public class signlink implements Runnable {
 
 	public static String errorname = "";
 
-	public static void startpriv( InetAddress address) {
+	public static void startDaemon() throws UnknownHostException {
+		InetAddress address = InetAddress.getByName("localhost");
 		threadliveid = (int) (Math.random() * 9.9999999E7D);
 
 		if (active) {

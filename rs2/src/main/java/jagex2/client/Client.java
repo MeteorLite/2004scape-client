@@ -34,7 +34,7 @@ import java.util.zip.CRC32;
 import static audio.MidiPlayer.isJingle;
 import static jagex2.client.Configuration.PLAY_ALL_SOUNDS;
 
-public class client extends GameShell {
+public class Client extends GameShell {
 
 	public boolean showDebug = false;
 	public boolean showPerformance = false;
@@ -870,9 +870,9 @@ public class client extends GameShell {
 				signlink.sunjava = true;
 			}
 
-			signlink.startpriv(InetAddress.getByName("localhost"));
+			signlink.startDaemon();
 
-			client c = new client();
+			Client c = new Client();
 			c.initApplication(789, 531);
 		} catch ( Exception _ex) {
 		}

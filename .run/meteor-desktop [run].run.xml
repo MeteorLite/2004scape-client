@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="client-2004 [run]" type="GradleRunConfiguration" factoryName="Gradle">
+  <configuration default="false" name="meteor-desktop [run]" type="GradleRunConfiguration" factoryName="Gradle">
     <ExternalSystemSettings>
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -10,7 +10,7 @@
       </option>
       <option name="taskNames">
         <list>
-          <option value="run" />
+          <option value="client-desktop:run" />
         </list>
       </option>
       <option name="vmOptions" />

@@ -1,6 +1,6 @@
 package audio;
 
-import jagex2.client.client;
+import jagex2.client.Client;
 
 import javax.sound.sampled.*;
 import java.io.IOException;
@@ -35,9 +35,9 @@ public class SoundPlayer {
 	}
 
 	public static void playLastSound() throws IOException {
-		if (client.lastWaveId != -1) {
-			new SoundPlayer(sounds.get(client.lastWaveId), 100, 0);
-			client.lastWaveId = -1;
+		if (Client.lastWaveId != -1) {
+			new SoundPlayer(sounds.get(Client.lastWaveId), 100, 0);
+			Client.lastWaveId = -1;
 		}
 	}
 

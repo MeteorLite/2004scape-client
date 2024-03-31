@@ -55,7 +55,7 @@ public class GameShell extends Applet implements Runnable, MouseListener, MouseM
 
 	private int keyQueueWritePos;
 
-	protected final void initApplication( int width, int height) {
+	public final void initApplication( int width, int height) {
 		this.screenWidth = width;
 		this.screenHeight = height;
 		this.frame = new ViewBox(this, this.screenWidth, this.screenHeight);

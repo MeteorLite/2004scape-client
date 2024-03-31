@@ -1,3 +1,7 @@
-rootProject.name = "rs2"
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
+}
+rootProject.name = "meteor"
 
-include("client")
+include("rs2")
+include("client-desktop")

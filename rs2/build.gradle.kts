@@ -9,7 +9,7 @@ java {
 }
 
 application {
-    mainClass.set("jagex2.client.client")
+    mainClass.set("jagex2.client.Client")
 }
 
 tasks.withType<JavaCompile> {
