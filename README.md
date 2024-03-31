@@ -1,12 +1,14 @@
 # 2004Scape Client
 
-Based off of Lost City's excellent base
+Based off of Lost City's excellent base  
 Striving to offer a true Kotlin/Compose multiplatform rs2 client in my free time
 
 All credits to them for the refactor.
 
 ## Project Structure
 
+`composeApp` - common/desktop/android/ios sources
+`iosApp` - ios Swift code
 `rs2` - Decompiled client source code. Some class names are original.
 
 ## Sources
