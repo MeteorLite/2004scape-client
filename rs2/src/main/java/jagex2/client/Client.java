@@ -29,12 +29,15 @@ import java.math.BigInteger;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.zip.CRC32;
 
 import static audio.MidiPlayer.isJingle;
-import static jagex2.client.Configuration.PLAY_ALL_SOUNDS;
+import static jagex2.client.Configuration.*;
 
 public class Client extends GameShell {
+
+	public static boolean vanilla = true;
 
 	public boolean showDebug = false;
 	public boolean showPerformance = false;
@@ -2808,6 +2811,15 @@ public class Client extends GameShell {
 		}
 	}
 
+	public void preInit() throws UnknownHostException {
+		Client.vanilla = false;
+		Client.nodeId = 10;
+		Client.portOffset = Configuration.PORT_OFFSET;
+		Client.setHighMemory();
+		Client.members = true;
+		signlink.startDaemon();
+	}
+
 	@Override
 	protected void draw() {
 		if (this.errorStarted || this.errorLoading || this.errorHost) {
@@ -3230,7 +3242,7 @@ public class Client extends GameShell {
 		this.areaViewport.bind();
 	}
 
-	protected Component getBaseComponent() {
+	public Component getBaseComponent() {
 		if (signlink.mainapp != null) {
 			return signlink.mainapp;
 		}
@@ -3821,7 +3833,7 @@ public class Client extends GameShell {
 		}
 
 		this.imageTitle4.draw(super.graphics, 214, 186);
-		if (this.redrawTitleBackground) {
+		if (this.redrawTitleBackground || ALWAYS_REDRAW_TITLE) {
 			this.redrawTitleBackground = false;
 			this.imageTitle2.draw(super.graphics, 128, 0);
 			this.imageTitle3.draw(super.graphics, 214, 386);
@@ -4631,7 +4643,7 @@ public class Client extends GameShell {
 	}
 
 	private void drawGame() {
-		if (this.redrawTitleBackground) {
+		if (this.redrawTitleBackground || ALWAYS_REDRAW_TITLE) {
 			this.redrawTitleBackground = false;
 			this.areaBackleft1.draw(super.graphics, 0, 11);
 			this.areaBackleft2.draw(super.graphics, 0, 375);
@@ -4677,7 +4689,7 @@ public class Client extends GameShell {
 			this.redrawSidebar = true;
 		}
 
-		if (this.redrawSidebar) {
+		if (this.redrawSidebar || ALWAYS_REDRAW_GAME_FRAME) {
 			this.drawSidebar();
 			this.redrawSidebar = false;
 		}
@@ -4726,12 +4738,12 @@ public class Client extends GameShell {
 			this.redrawChatback = true;
 		}
 
-		if (this.redrawChatback) {
+		if (this.redrawChatback || ALWAYS_REDRAW_CHAT_BACK) {
 			this.drawChatback();
 			this.redrawChatback = false;
 		}
 
-		if (this.sceneState == 2) {
+		if (this.sceneState == 2 || ALWAYS_REDRAW_MINIMAP) {
 			this.drawMinimap();
 			this.areaMapback.draw(super.graphics, 561, 5);
 		}
@@ -4740,7 +4752,7 @@ public class Client extends GameShell {
 			this.redrawSideicons = true;
 		}
 
-		if (this.redrawSideicons) {
+		if (this.redrawSideicons || ALWAYS_REDRAW_SIDE_ICONS) {
 			if (this.flashingTab != -1 && this.flashingTab == this.selectedTab) {
 				this.flashingTab = -1;
 				// TUTORIAL_CLICKSIDE
@@ -4851,7 +4863,7 @@ public class Client extends GameShell {
 			this.areaViewport.bind();
 		}
 
-		if (this.redrawPrivacySettings) {
+		if (this.redrawPrivacySettings || ALWAYS_REDRAW_PRIVACY_SETTINGS) {
 			this.redrawPrivacySettings = false;
 			this.areaBackbase1.bind();
 			this.imageBackbase1.draw(0, 0);
@@ -6614,7 +6626,7 @@ public class Client extends GameShell {
 	}
 
 	@Override
-	protected void refresh() {
+	public void refresh() {
 		this.redrawTitleBackground = true;
 	}
 

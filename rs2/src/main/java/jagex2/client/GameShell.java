@@ -3,9 +3,11 @@ package jagex2.client;
 import jagex2.graphics.Pix24;
 import jagex2.graphics.PixMap;
 
+import javax.swing.*;
 import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 
 public class GameShell extends Applet implements Runnable, MouseListener, MouseMotionListener, KeyListener, FocusListener, WindowListener {
 
@@ -29,7 +31,7 @@ public class GameShell extends Applet implements Runnable, MouseListener, MouseM
 
 	private final Pix24[] temp = new Pix24[6];
 
-	protected ViewBox frame;
+	public ViewBox frame;
 
 	private boolean refresh = true;
 
@@ -55,19 +57,25 @@ public class GameShell extends Applet implements Runnable, MouseListener, MouseM
 
 	private int keyQueueWritePos;
 
-	public final void initApplication( int width, int height) {
+	public static JPanel gamePanel;
+
+	public final void initApplication(int width, int height) {
 		this.screenWidth = width;
 		this.screenHeight = height;
-		this.frame = new ViewBox(this, this.screenWidth, this.screenHeight);
-		this.graphics = this.getBaseComponent().getGraphics();
+		this.frame = new ViewBox(this, width, height);
+		if (Client.vanilla)
+			this.graphics = this.getBaseComponent().getGraphics();
+		else {
+			this.frame.add(gamePanel);
+			this.graphics = gamePanel.getGraphics();
+		}
 		this.drawArea = new PixMap(this.getBaseComponent(), this.screenWidth, this.screenHeight);
 		this.startThread(this, 1);
 	}
 
-	protected final void initApplet( int width, int height) {
+	protected final void initApplet(int width, int height) {
 		this.screenWidth = width;
 		this.screenHeight = height;
-		this.graphics = this.getBaseComponent().getGraphics();
 		this.drawArea = new PixMap(this.getBaseComponent(), this.screenWidth, this.screenHeight);
 		this.startThread(this, 1);
 	}
@@ -213,7 +221,10 @@ public class GameShell extends Applet implements Runnable, MouseListener, MouseM
 	@Override
 	public final void update( Graphics g) {
 		if (this.graphics == null) {
-			this.graphics = g;
+			if (Client.vanilla)
+				this.graphics = this.frame.getGraphics();
+			else
+				this.graphics = gamePanel.getGraphics();
 		}
 
 		this.refresh = true;
@@ -223,21 +234,20 @@ public class GameShell extends Applet implements Runnable, MouseListener, MouseM
 	@Override
 	public final void paint( Graphics g) {
 		if (this.graphics == null) {
-			this.graphics = g;
+			if (Client.vanilla)
+				this.graphics = this.frame.getGraphics();
+			else
+				this.graphics = gamePanel.getGraphics();
 		}
 
 		this.refresh = true;
 		this.refresh();
 	}
 
+	@Override
 	public final void mousePressed( MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
-
-		if (this.frame != null) {
-			x -= this.frame.insets.left;
-			y -= this.frame.insets.top;
-		}
 
 		this.idleCycles = 0;
 		this.mouseClickX = x;
@@ -270,6 +280,7 @@ public class GameShell extends Applet implements Runnable, MouseListener, MouseM
 		}
 	}
 
+	@Override
 	public final void mouseReleased( MouseEvent e) {
 		this.idleCycles = 0;
 		this.mouseButton = 0;
@@ -285,30 +296,29 @@ public class GameShell extends Applet implements Runnable, MouseListener, MouseM
 		}
 	}
 
+	@Override
 	public final void mouseClicked( MouseEvent e) {
 	}
 
+	@Override
 	public final void mouseEntered( MouseEvent e) {
 		if (InputTracking.enabled) {
 			InputTracking.mouseEntered();
 		}
 	}
 
+	@Override
 	public final void mouseExited( MouseEvent e) {
 		if (InputTracking.enabled) {
 			InputTracking.mouseExited();
 		}
 	}
 
+	@Override
 	public final void mouseDragged( MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
 
-		if (this.frame != null) {
-			x -= this.frame.insets.left;
-			y -= this.frame.insets.top;
-		}
-
 		this.idleCycles = 0;
 		this.mouseX = x;
 		this.mouseY = y;
@@ -318,15 +328,12 @@ public class GameShell extends Applet implements Runnable, MouseListener, MouseM
 		}
 	}
 
+	@Override
 	public final void mouseMoved( MouseEvent e) {
+		System.out.println(e.getX() + ":" + e.getY());
 		int x = e.getX();
 		int y = e.getY();
 
-		if (this.frame != null) {
-			x -= this.frame.insets.left;
-			y -= this.frame.insets.top;
-		}
-
 		this.idleCycles = 0;
 		this.mouseX = x;
 		this.mouseY = y;
@@ -336,6 +343,7 @@ public class GameShell extends Applet implements Runnable, MouseListener, MouseM
 		}
 	}
 
+	@Override
 	public final void keyPressed( KeyEvent e) {
 		this.idleCycles = 0;
 
@@ -404,6 +412,7 @@ public class GameShell extends Applet implements Runnable, MouseListener, MouseM
 		}
 	}
 
+	@Override
 	public final void keyReleased( KeyEvent e) {
 		this.idleCycles = 0;
 
@@ -467,9 +476,11 @@ public class GameShell extends Applet implements Runnable, MouseListener, MouseM
 		}
 	}
 
+	@Override
 	public final void keyTyped( KeyEvent e) {
 	}
 
+	@Override
 	public final void focusGained( FocusEvent e) {
 		this.refresh = true;
 		this.refresh();
@@ -479,6 +490,7 @@ public class GameShell extends Applet implements Runnable, MouseListener, MouseM
 		}
 	}
 
+	@Override
 	public final void focusLost( FocusEvent e) {
 		if (InputTracking.enabled) {
 			InputTracking.focusLost();
@@ -547,7 +559,10 @@ public class GameShell extends Applet implements Runnable, MouseListener, MouseM
 
 	protected void drawProgress( String message, int progress) {
 		while (this.graphics == null) {
-			this.graphics = this.getBaseComponent().getGraphics();
+			if (Client.vanilla)
+				this.graphics = this.frame.getGraphics();
+			else
+				this.graphics = gamePanel.getGraphics();
 
 			try {
 				this.getBaseComponent().repaint();
